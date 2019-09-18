@@ -1,0 +1,9 @@
+package com.msanti16.module04;
+
+public class Destroyer {
+
+	public Destroyer() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

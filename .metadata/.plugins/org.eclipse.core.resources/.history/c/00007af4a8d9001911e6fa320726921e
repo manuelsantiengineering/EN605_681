@@ -1,0 +1,9 @@
+package com.msanti16.module04.domain;
+
+public abstract class Ship {
+
+	public Ship() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

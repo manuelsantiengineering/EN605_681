@@ -1,0 +1,15 @@
+package com.msanti16.module04;
+
+import com.msanti16.module04.domain.Destroyer;
+import com.msanti16.module04.domain.Submarine;
+import com.msanti16.module04.domain.P3;
+
+public class Test {
+
+	public static void main(String[] args) {
+		System.out.println("EN 605.681 Principles of Enterprise Web Development");
+		System.out.println("Manuel E. Santiago - Homework for Java OO Programming");
+
+	}
+
+}

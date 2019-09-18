@@ -1,0 +1,11 @@
+package com.msanti16.module04.domain;
+
+public interface Contact {
+	int getLength();
+	void setLength (int length);
+	int getSpeed();
+	void setSpeed (int speed);
+	setSpeed(String)
+	getName/setName (String)
+	getType/setType (String) (This is an arbitrary string label for anything of class Contact)
+}

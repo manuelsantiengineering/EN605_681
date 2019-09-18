@@ -1,0 +1,15 @@
+package com.msanti16.module03Java;
+
+public class FirstClass {
+
+	public static void main(String[] args) {
+		System.out.println("Module 3 Assignment - Manuel Santiago");
+		
+
+	}
+	
+	public int getProduct(int a, int b) {
+		return a*b;
+	}
+
+}

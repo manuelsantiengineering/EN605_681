@@ -1,0 +1,19 @@
+body {
+  background-color: Snow;
+}
+
+.myHeader {
+  background-color: Gainsboro;
+}
+
+.textColorEasy {
+  color: LimeGreen;
+}
+
+.textColorIntermmediate {
+  color: Orange;
+}
+
+.textColorDifficult {
+  color: Red;
+}

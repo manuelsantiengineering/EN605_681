@@ -1,0 +1,9 @@
+package com.msanti16.module04.domain;
+
+public class P3 extends Aircraft {
+
+	public P3() {
+		super();
+	}
+
+}
