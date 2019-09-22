@@ -11173,3 +11173,18 @@ java.lang.NoSuchMethodException: org.eclipse.jdt.internal.ui.javaeditor.JavaSour
 	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:659)
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:595)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1501)
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-09-17 20:46:01.286
+!MESSAGE ClasspathListenerHandler removeClasspathListener sts4.classpath.oZKrlWUM
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-09-17 20:46:01.287
+!MESSAGE unsubscribing from classpath changes: sts4.classpath.oZKrlWUM
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-09-17 20:46:01.288
+!MESSAGE subsribers = null
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-09-17 20:46:01.288
+!MESSAGE ClasspathListenerHandler removeClasspathListener sts4.classpath.oZKrlWUM => OK
+
+!ENTRY org.eclipse.core.jobs 2 2 2019-09-17 20:46:12.862
+!MESSAGE Job found still running after platform shutdown.  Jobs should be canceled by the plugin that scheduled them during shutdown: org.eclipse.equinox.internal.p2.ui.sdk.scheduler.AutomaticUpdater$2

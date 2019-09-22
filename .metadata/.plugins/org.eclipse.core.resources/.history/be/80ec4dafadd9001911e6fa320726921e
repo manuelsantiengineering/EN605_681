@@ -1,6 +1,6 @@
 package com.msanti16.module04.domain;
 
-public class Destroyer extends Ship {
+public class Destroyer extends Ship{
 	private int numberofMissiles;
 	
 	public Destroyer() {
