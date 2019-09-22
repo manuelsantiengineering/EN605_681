@@ -24,11 +24,28 @@ public class P3 extends Aircraft {
 	}
 	
 	@Override
+	public boolean equals(Object obj) {
+		if(this == obj) {
+			return true;
+		}
+		if(obj == null || this.getClass() != obj.getClass()) {
+			return false;
+		}
+		P3 p3 = (P3) obj;
+		if (super.equals(p3) 
+				&& this.getNumberOfEngines() == p3.getNumberOfEngines() ) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	
+	@Override
 	public String toString() {
 		StringBuilder strBuilder = new StringBuilder(super.toString());
 		strBuilder.replace(strBuilder.lastIndexOf("]"), strBuilder.length(), "");
 		strBuilder.append(", numberOfEngines: ").append(this.getNumberOfEngines())
-			.append(" ]\n");
+			.append(" ]");
 		return strBuilder.toString();
 	}	
 	

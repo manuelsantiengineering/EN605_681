@@ -32,11 +32,28 @@ public class Destroyer extends Ship {
 	}
 	
 	@Override
+	public boolean equals(Object obj) {
+		if(this == obj) {
+			return true;
+		}
+		if(obj == null || this.getClass() != obj.getClass()) {
+			return false;
+		}
+		Destroyer destroyer = (Destroyer) obj;
+		if (super.equals(destroyer) 
+				&& this.getNumberofMissiles() == destroyer.getNumberofMissiles() ) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	
+	@Override
 	public String toString() {
 		StringBuilder strBuilder = new StringBuilder(super.toString());
 		strBuilder.replace(strBuilder.lastIndexOf("]"), strBuilder.length(), "");
 		strBuilder.append(", numberOfMissiles: ").append(this.getNumberofMissiles())
-			.append(" ]\n");
+			.append(" ]");
 		return strBuilder.toString();
 	}		
 }

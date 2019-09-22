@@ -69,7 +69,7 @@ public abstract class Ship implements Contact {
 			.append("\n\t[Speed: ").append(this.getSpeed())
 			.append(", length: ").append(this.getLength())
 			.append(", name: ").append(this.getName())
-			.append(" ]\n");
+			.append(" ]");
 		return strBuilder.toString();
 	}	
 	

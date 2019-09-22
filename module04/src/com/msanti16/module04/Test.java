@@ -2,6 +2,7 @@ package com.msanti16.module04;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
@@ -14,12 +15,6 @@ import com.msanti16.module04.domain.Ship;
 
 public class Test {
 
-	//TODO Make a collection of Destroyers (you select the type of Collection)
-	//TODO Make a collection of Submarines (you select the type)
-	//TODO Make a collection that holds all Ships
-	//TODO Make a collection that holds all Contacts
-	//TODO You get to pick the names and values for the classes above.
-	//TODO Print out the list of Contacts.
 	//TODO In your test class, you should exercise your Exception handling case for the submarine 
 	// by setting the number of torpedoes in one of your submarine classes to the string "Foo".
 	//TODO Zip up the source code and the Java classes and a screen shot of 
@@ -46,16 +41,77 @@ public class Test {
 		destroyer02.setLength(60);
 		destroyer02.setSpeed(35);
 		
-		Ship[] ships = {destroyer01, destroyer02, submarine01, submarine02};
-		Contact[] contacts = {destroyer01, destroyer02, submarine01, submarine02, p301, p302};
-		
-		List list = new ArrayList();
+		List<Destroyer> list = new ArrayList<Destroyer>();
 		list.add(destroyer01);
 		list.add(destroyer02);
 		
-		Set set = new TreeSet();
+		Set<Submarine> set = new TreeSet<Submarine>();
 		set.add(submarine01);
 		set.add(submarine02);
+
+		
+		Ship[] ships = {destroyer01, destroyer02, submarine01, submarine02};
+		Contact[] contacts = {destroyer01, destroyer02, submarine01, submarine02, p301, p302};
+		
+		System.out.println("Assignment Instructions: ");
+		System.out.println("\t1. Create 2 Destroyers");
+		System.out.println("\t" + destroyer01);
+		System.out.println("\t" + destroyer02);
+		
+		System.out.println("\t2. Create 2 Submarines");
+		System.out.println("\t" + submarine01);
+		System.out.println("\t" + submarine02);
+		
+		System.out.println("\t3. Create 2 P3s");
+		System.out.println("\t" + p301);
+		System.out.println("\t" + p302);
+		
+		System.out.println("\t4. Make a collection of Destroyers (you select the type of Collection)");
+		for(int i = 0; i < list.size(); i++) {			
+			System.out.println("\t" + list.get(i));
+		}
+		
+		System.out.println("\t5. Make a collection of Submarines (you select the type)");		
+		Iterator<Submarine> iter = set.iterator();
+		while(iter.hasNext()) {			
+			System.out.println("\t" + iter.next());
+		}
+		
+		System.out.println("\t6. Make a collection that holds all Ships");	
+		for(int i = 0; i < ships.length; i++) {			
+			System.out.println("\t" + ships[i]);
+		}
+		
+		System.out.println("\t7. Make a collection that holds all Contacts");	
+		for(int i = 0; i < contacts.length; i++) {			
+			System.out.println("\t" + contacts[i]);
+		}
+		
+		System.out.println("\t8. Extras - Does ");
+		System.out.println("\t" + destroyer02);
+		System.out.println("Equals \n\t" + ships[0]);
+		System.out.println("Result: " + destroyer02.equals(ships[0]));
+		
+		System.out.println("\t9. Extras - Does ");
+		System.out.println("\t" + destroyer01);
+		System.out.println("Equals \n\t" + ships[0]);
+		System.out.println("Result: " + destroyer01.equals(ships[0]));
+		
+		System.out.println("\t10. Extras - Does ");
+		System.out.println("\t" + submarine01);
+		System.out.println("Equals \n\t" + contacts[2]);
+		System.out.println("Result: " + submarine01.equals(contacts[2]));
+		
+		System.out.println("\t11. Extras - Does ");
+		System.out.println("\t" + p301);
+		System.out.println("Equals \n\t" + contacts[4]);
+		System.out.println("Result: " + p301.equals(contacts[4]));
+		
+		System.out.println("\t11. Extras - Does ");
+		System.out.println("\t" + p301);
+		System.out.println("Equals \n\t" + contacts[5]);
+		System.out.println("Result: " + p301.equals(contacts[5]));
+		
 		
 	}
 

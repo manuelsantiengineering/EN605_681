@@ -80,7 +80,7 @@ public abstract class Aircraft implements Contact {
 			.append(", length: ").append(this.getLength())
 			.append(", altitude: ").append(this.getAltitude())
 			.append(", name: ").append(this.getName())
-			.append(" ]\n");
+			.append(" ]");
 		return strBuilder.toString();
 	}	
 	

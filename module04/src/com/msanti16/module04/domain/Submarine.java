@@ -32,11 +32,28 @@ public class Submarine extends Ship {
 	}
 
 	@Override
+	public boolean equals(Object obj) {
+		if(this == obj) {
+			return true;
+		}
+		if(obj == null || this.getClass() != obj.getClass()) {
+			return false;
+		}
+		Submarine submarine = (Submarine) obj;
+		if (super.equals(submarine) 
+				&& this.getNumberOfTorpedos() == submarine.getNumberOfTorpedos() ) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	
+	@Override
 	public String toString() {
 		StringBuilder strBuilder = new StringBuilder(super.toString());
 		strBuilder.replace(strBuilder.lastIndexOf("]"), strBuilder.length(), "");
 		strBuilder.append(", numberOfTorpedos: ").append(this.getNumberOfTorpedos())
-			.append(" ]\n");
+			.append(" ]");
 		return strBuilder.toString();
 	}		
 	
