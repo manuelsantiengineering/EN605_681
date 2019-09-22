@@ -52,6 +52,26 @@ public abstract class Aircraft implements Contact {
 	}	
 
 	@Override
+	public boolean equals(Object obj) {
+		if(this == obj) {
+			return true;
+		}
+		if(obj == null || this.getClass() != obj.getClass()) {
+			return false;
+		}
+		Aircraft aircraft = (Aircraft) obj;
+		if (this.getName() == aircraft.getName() 
+				&& this.getLength() == aircraft.getLength() 
+				&& this.getSpeed() == aircraft.getSpeed()
+				&& this.getAltitude() == aircraft.getAltitude() 
+				&& this.getType() == aircraft.getType()) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	
+	@Override
 	public String toString() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder

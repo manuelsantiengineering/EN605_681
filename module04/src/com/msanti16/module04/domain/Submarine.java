@@ -35,7 +35,8 @@ public class Submarine extends Ship {
 	public String toString() {
 		StringBuilder strBuilder = new StringBuilder(super.toString());
 		strBuilder.replace(strBuilder.lastIndexOf("]"), strBuilder.length(), "");
-		strBuilder.append(", numberOfTorpedos: ").append(this.getNumberOfTorpedos());
+		strBuilder.append(", numberOfTorpedos: ").append(this.getNumberOfTorpedos())
+			.append(" ]\n");
 		return strBuilder.toString();
 	}		
 	

@@ -35,7 +35,8 @@ public class Destroyer extends Ship {
 	public String toString() {
 		StringBuilder strBuilder = new StringBuilder(super.toString());
 		strBuilder.replace(strBuilder.lastIndexOf("]"), strBuilder.length(), "");
-		strBuilder.append(", numberOfMissiles: ").append(this.getNumberofMissiles());
+		strBuilder.append(", numberOfMissiles: ").append(this.getNumberofMissiles())
+			.append(" ]\n");
 		return strBuilder.toString();
 	}		
 }

@@ -43,6 +43,25 @@ public abstract class Ship implements Contact {
 	}	
 	
 	@Override
+	public boolean equals(Object obj) {
+		if(this == obj) {
+			return true;
+		}
+		if(obj == null || this.getClass() != obj.getClass()) {
+			return false;
+		}
+		Ship ship = (Ship) obj;
+		if (this.getName() == ship.getName() 
+				&& this.getLength() == ship.getLength() 
+				&& this.getSpeed() == ship.getSpeed() 
+				&& this.getType() == ship.getType()) {
+			return true;
+		}else {
+			return false;
+		}
+	}	
+	
+	@Override
 	public String toString() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder
