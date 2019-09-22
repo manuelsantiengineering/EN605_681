@@ -1,28 +1,41 @@
 package com.msanti16.module04.domain;
 
 public class Destroyer extends Ship {
-	private int numberofMissiles;
+	private int numberOfMissiles = 0;
 	
 	public Destroyer() {
-		super();
+		super.setType("Destroyer");
+	}
+	
+	public Destroyer(String name, int length, int speed) {
+		super.setType("Destroyer");
+		super.setName(name);
+		super.setLength(length);
+		super.setSpeed(speed);
 	}
 
 	public int getNumberofMissiles() {
-		return numberofMissiles;
+		return numberOfMissiles;
 	}
 
-	public void setNumberofMissiles(int numberofMissiles) {
-		this.numberofMissiles = numberofMissiles;
+	public void setNumberOfMissiles(int numberOfMissiles) {
+		this.numberOfMissiles = numberOfMissiles;
 	}
 
-	public void setNumberofMissiles(String numberofMissiles) {
+	public void setNumberOfMissiles(String numberOfMissiles) {
 		try{
-			this.numberofMissiles = Integer.parseInt(numberofMissiles);
+			this.numberOfMissiles = Integer.parseInt(numberOfMissiles);
 		}catch (NumberFormatException e){
 			System.out.println("Error: unable to parse string into integer value for variable \'numberofMissiles\'.");
-			this.numberofMissiles = 2;
+			this.numberOfMissiles = 2;
 		}
 	}
 	
-	
+	@Override
+	public String toString() {
+		StringBuilder strBuilder = new StringBuilder(super.toString());
+		strBuilder.replace(strBuilder.lastIndexOf("]"), strBuilder.length(), "");
+		strBuilder.append(", numberOfMissiles: ").append(this.getNumberofMissiles());
+		return strBuilder.toString();
+	}		
 }

@@ -1,0 +1,34 @@
+package com.msanti16.module04.domain;
+
+public class Submarine extends Ship {
+	private int numberOfTorpedos;
+	
+	public Submarine() {
+		super();
+	}
+
+	public int getNumberofTorpedos() {
+		return numberOfTorpedos;
+	}
+
+	public void setNumberofTorpedos(int numberOfTorpedos) {
+		this.numberOfTorpedos = numberOfTorpedos;
+	}
+	
+	public void setNumberofTorpedos(String numberOfTorpedos) {
+		try{
+			this.numberOfTorpedos = Integer.parseInt(numberOfTorpedos);
+		}catch (NumberFormatException e){
+			System.out.println("Error: unable to parse string into integer value for variable \'numberOfTorpedos\'.");			
+			this.numberOfTorpedos = 2;
+		}
+	}
+
+	@Override
+	public String toString() {
+		return "Submarine [numberOfTorpedos=" + numberOfTorpedos + "]";
+	}	
+
+	
+	
+}

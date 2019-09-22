@@ -1,11 +1,11 @@
 package com.msanti16.module04.domain;
 
 public abstract class Aircraft implements Contact {
-	private int altitude;
-	private int length;
-	private int speed;
-	private String name;
-	private String type;	
+	private int altitude = 0;
+	private int length = 0;
+	private int speed = 0;
+	private String name = "";
+	private String type = "";	
 	
 	public int getAltitude() {
 		return altitude;
@@ -15,49 +15,53 @@ public abstract class Aircraft implements Contact {
 		this.altitude = altitude;
 	}
 
-	@Override
 	public int getLength() { 
 		return this.length;
 	}
-
-	@Override
+	
 	public void setLength(int length) {
 		this.length = length;		
 	}
 
-	@Override
 	public int getSpeed() {
 		return this.speed;
 	}
 
-	@Override
 	public void setSpeed(int speed) {
 		this.speed = speed;
 	}
 
-	@Override
 	public void setSpeed(String speed) {
 		
 	}
 
-	@Override
 	public String getName() {		
 		return this.name;
 	}
 
-	@Override
 	public void setName(String name) {
 		this.name = name;
 	}
 
-	@Override
 	public String getType() {
 		return this.type;
 	}
 
-	@Override
 	public void setType(String type) {
 		this.type = type;
 	}	
 
+	@Override
+	public String toString() {
+		StringBuilder strBuilder = new StringBuilder();
+		strBuilder
+			.append("Class: Aircraft\tType: ").append(this.getType())
+			.append("\n\t[Speed: ").append(this.getSpeed())
+			.append(", length: ").append(this.getLength())
+			.append(", altitude: ").append(this.getAltitude())
+			.append(", name: ").append(this.getName())
+			.append(" ]\n");
+		return strBuilder.toString();
+	}	
+	
 }

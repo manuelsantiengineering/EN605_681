@@ -1,22 +1,22 @@
 package com.msanti16.module04.domain;
 
 public interface Contact {
-	int getLength();
+	public int getLength();
 	
-	void setLength (int length);
+	public void setLength (int length);
 	
-	int getSpeed();
+	public int getSpeed();
 	
-	void setSpeed (int speed);
+	public void setSpeed (int speed);
 	
-	void setSpeed(String speed);
+	public void setSpeed(String speed);
 	
-	String getName();
+	public String getName();
 	
-	void setName (String name);
+	public void setName (String name);
 	
-	String getType();
+	public String getType();
 	
-	void setType (String type);
+	public void setType (String type);
 	
 }

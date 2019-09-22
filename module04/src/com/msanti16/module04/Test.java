@@ -8,6 +8,8 @@ public class Test {
 
 	//TODO Implement better toString() that takes advantage of inheritance.
 	//TODO Implement class constructors where parameters can be passed, like type, name, ...
+	//TODO Private attributes
+	//TODO 
 	
 	//TODO Create 2 Destroyers
 	//TODO Create 2 Submarines

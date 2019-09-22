@@ -1,34 +1,42 @@
 package com.msanti16.module04.domain;
 
 public class Submarine extends Ship {
-	private int numberofTorpedos;
+	private int numberOfTorpedos = 0;
 	
 	public Submarine() {
-		super();
+		super.setType("Submarine");
 	}
 
-	public int getNumberofTorpedos() {
-		return numberofTorpedos;
-	}
-
-	public void setNumberofTorpedos(int numberofTorpedos) {
-		this.numberofTorpedos = numberofTorpedos;
+	public Submarine(String name, int length, int speed) {
+		super.setType("Submarine");
+		super.setName(name);
+		super.setLength(length);
+		super.setSpeed(speed);
 	}
 	
-	public void setNumberofTorpedos(String numberofTorpedos) {
+	public int getNumberOfTorpedos() {
+		return numberOfTorpedos;
+	}
+
+	public void setNumberOfTorpedos(int numberOfTorpedos) {
+		this.numberOfTorpedos = numberOfTorpedos;
+	}
+	
+	public void setNumberOfTorpedos(String numberOfTorpedos) {
 		try{
-			this.numberofTorpedos = Integer.parseInt(numberofTorpedos);
+			this.numberOfTorpedos = Integer.parseInt(numberOfTorpedos);
 		}catch (NumberFormatException e){
-			System.out.println("Error: unable to parse string into integer value for variable \'numberofTorpedos\'.");			
-			this.numberofTorpedos = 2;
+			System.out.println("Error: unable to parse string into integer value for variable \'numberOfTorpedos\'.");			
+			this.numberOfTorpedos = 2;
 		}
 	}
 
 	@Override
 	public String toString() {
-		return "Submarine [numberofTorpedos=" + numberofTorpedos + "]";
-	}	
-
-	
+		StringBuilder strBuilder = new StringBuilder(super.toString());
+		strBuilder.replace(strBuilder.lastIndexOf("]"), strBuilder.length(), "");
+		strBuilder.append(", numberOfTorpedos: ").append(this.getNumberOfTorpedos());
+		return strBuilder.toString();
+	}		
 	
 }
