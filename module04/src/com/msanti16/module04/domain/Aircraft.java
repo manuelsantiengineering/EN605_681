@@ -75,8 +75,8 @@ public abstract class Aircraft implements Contact {
 	public String toString() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder
-			.append("Class: Aircraft\tType: ").append(this.getType())
-			.append("\n\t[Speed: ").append(this.getSpeed())
+			.append("[Class: Aircraft, type: ").append(this.getType())
+			.append(", speed: ").append(this.getSpeed())
 			.append(", length: ").append(this.getLength())
 			.append(", altitude: ").append(this.getAltitude())
 			.append(", name: ").append(this.getName())

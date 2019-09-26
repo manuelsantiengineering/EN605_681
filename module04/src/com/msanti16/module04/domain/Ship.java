@@ -65,8 +65,8 @@ public abstract class Ship implements Contact {
 	public String toString() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder
-			.append("Class: Ship\tType: ").append(this.getType())
-			.append("\n\t[Speed: ").append(this.getSpeed())
+			.append("[Class: Ship, type: ").append(this.getType())
+			.append(", speed: ").append(this.getSpeed())
 			.append(", length: ").append(this.getLength())
 			.append(", name: ").append(this.getName())
 			.append(" ]");
