@@ -40,6 +40,7 @@ Since making a Web-Start application is no longer an option, you need to learn h
  */
 
 import com.msanti16.bookingrate.constants.ReservationConstants;
+import com.msanti16.bookingrate.exceptions.JTextFieldLimit;
 import com.msanti16.bookingrate.model.Reservation;
 import com.sun.xml.internal.bind.v2.runtime.output.StAXExStreamWriterOutput;
 
@@ -67,10 +68,10 @@ public class ReservationGui extends JFrame {
     private JLabel labelCost;
 
     /* User Selections */
+    private JTextField txtName;
     private JTextField txtReservationMonth;
     private JTextField txtReservationDay;
     private JTextField txtReservationYear;
-    private JTextField txtName;
     private JComboBox comboBoxTours;
     private JComboBox comboBoxDuration;
     private JLabel labelCostPerDay;
@@ -91,6 +92,11 @@ public class ReservationGui extends JFrame {
             comboBoxDuration.addItem(x);
         }
 
+        txtName.setDocument(new JTextFieldLimit(56));
+        txtReservationMonth.setDocument(new JTextFieldLimit(2));
+        txtReservationDay.setDocument(new JTextFieldLimit(2));
+        txtReservationYear.setDocument(new JTextFieldLimit(4));
+
         btnReserve.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -108,12 +114,13 @@ public class ReservationGui extends JFrame {
         txtReservationMonth.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent e) {
-//                super.keyTyped(e);
+                super.keyTyped(e);
                 if(!Character.isDigit(e.getKeyChar())){
                     JOptionPane.showMessageDialog(null, "Please ony use digits","Error", JOptionPane.ERROR_MESSAGE);
-                    txtReservationMonth.replaceSelection(null);
+                    e.consume();
                 }
-
+//                System.out.println(txtReservationMonth.getAction());
+//                System.out.println(txtReservationMonth.getSelectedText());
             }
         });
 
@@ -122,10 +129,9 @@ public class ReservationGui extends JFrame {
             public void keyTyped(KeyEvent e) {
                 super.keyTyped(e);
                 if(!Character.isDigit(e.getKeyChar())){
-                    txtReservationDay.setText("");
                     JOptionPane.showMessageDialog(null, "Please ony use digits", "Error", JOptionPane.ERROR_MESSAGE);
+                    e.consume();
                 }
-
             }
         });
 
@@ -134,8 +140,8 @@ public class ReservationGui extends JFrame {
             public void keyTyped(KeyEvent e) {
                 super.keyTyped(e);
                 if(!Character.isDigit(e.getKeyChar())){
-                    txtReservationYear.setText("");
                     JOptionPane.showMessageDialog(null, "Please ony use digits", "Error", JOptionPane.ERROR_MESSAGE);
+                    e.consume();
                 }
 
             }
@@ -170,7 +176,7 @@ public class ReservationGui extends JFrame {
     }
 
     public static void main(String[] args) {
-        JFrame reservationFrame = new JFrame("Reservation");
+        JFrame reservationFrame = new JFrame("Reservation Form");
         reservationFrame.setContentPane(new ReservationGui().panelRootReserve);
         reservationFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         reservationFrame.pack();
