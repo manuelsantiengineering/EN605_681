@@ -11,5 +11,4 @@ public interface ReservationConstants {
     int[]   DURATION_HELLROARING_PLATEAU        = {2, 3, 4};
     int[]   DURATION_BEATEN_PATH                = {5, 7};
 
-
 }

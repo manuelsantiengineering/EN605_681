@@ -108,9 +108,10 @@ public class ReservationGui extends JFrame {
         txtReservationMonth.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent e) {
-                super.keyTyped(e);
+//                super.keyTyped(e);
                 if(!Character.isDigit(e.getKeyChar())){
-                    JOptionPane.showMessageDialog(null, "Please ony use digits");
+                    JOptionPane.showMessageDialog(null, "Please ony use digits","Error", JOptionPane.ERROR_MESSAGE);
+                    txtReservationMonth.replaceSelection(null);
                 }
 
             }
@@ -121,7 +122,8 @@ public class ReservationGui extends JFrame {
             public void keyTyped(KeyEvent e) {
                 super.keyTyped(e);
                 if(!Character.isDigit(e.getKeyChar())){
-                    JOptionPane.showMessageDialog(null, "Please ony use digits");
+                    txtReservationDay.setText("");
+                    JOptionPane.showMessageDialog(null, "Please ony use digits", "Error", JOptionPane.ERROR_MESSAGE);
                 }
 
             }
@@ -132,7 +134,8 @@ public class ReservationGui extends JFrame {
             public void keyTyped(KeyEvent e) {
                 super.keyTyped(e);
                 if(!Character.isDigit(e.getKeyChar())){
-                    JOptionPane.showMessageDialog(null, "Please ony use digits");
+                    txtReservationYear.setText("");
+                    JOptionPane.showMessageDialog(null, "Please ony use digits", "Error", JOptionPane.ERROR_MESSAGE);
                 }
 
             }
