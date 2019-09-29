@@ -10,8 +10,8 @@
 package com.msanti16.bookingrate;
 
 import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 public class Rates {
     public static enum HIKE {GARDINER, HELLROARING, BEATEN};
@@ -26,7 +26,7 @@ public class Rates {
     // start of trip
     private BookingDay beginDate = null;
     // end of trip
-    private BookingDay endDate = null;    
+    private BookingDay endDate = null;
     // Format the date to something readable
     private final static DateFormat FORMAT = DateFormat.getDateInstance();
     // cached number of weekend days

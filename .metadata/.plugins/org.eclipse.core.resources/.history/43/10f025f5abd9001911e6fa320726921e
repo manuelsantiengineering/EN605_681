@@ -1,9 +1,0 @@
-package com.msanti16.module04.domain;
-
-public abstract class Aircraft {
-
-	public Aircraft() {
-		// TODO Auto-generated constructor stub
-	}
-
-}

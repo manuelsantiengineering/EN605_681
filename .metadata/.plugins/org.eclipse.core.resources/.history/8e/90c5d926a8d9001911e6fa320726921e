@@ -1,5 +1,0 @@
-package com.msanti16.module04.domain;
-
-public interface Contact {
-
-}
