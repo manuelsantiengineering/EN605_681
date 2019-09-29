@@ -43,19 +43,30 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Reservation {
-    private JButton btnReserve;
+    /* Panels */
     private JPanel panelRootReserve;
     private JPanel panelSouthReserve;
     private JPanel panelEastTextReserve;
     private JPanel panelWestLabelReserve;
     private JPanel panelNorthLabelReserve;
+
+    /* Labels */
     private JLabel labelBhcTitle;
+    private JLabel labelReserveDate;
+    private JLabel labelName;
+    private JLabel labelDuration;
+    private JLabel labelTours;
+
+    /* User Selections */
     private JTextField txtReservationMonth;
     private JTextField txtReservationDay;
     private JTextField txtReservationYear;
-    private JLabel labelReserveDate;
-    private JLabel labelName;
-    private JTextField textField1;
+    private JTextField txtName;
+    private JComboBox comboBoxTours;
+    private JSpinner spinnerDuration;
+
+    /* Buttons */
+    private JButton btnReserve;
 
     public Reservation() {
         btnReserve.addActionListener(new ActionListener() {
