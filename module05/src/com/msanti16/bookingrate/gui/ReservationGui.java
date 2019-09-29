@@ -40,9 +40,9 @@ Since making a Web-Start application is no longer an option, you need to learn h
  */
 
 import com.msanti16.bookingrate.constants.ReservationConstants;
-import com.msanti16.bookingrate.exceptions.JTextFieldLimit;
+import com.msanti16.bookingrate.exceptions.BadUserNameException;
+import com.msanti16.bookingrate.utils.JTextFieldLimit;
 import com.msanti16.bookingrate.model.Reservation;
-import com.sun.xml.internal.bind.v2.runtime.output.StAXExStreamWriterOutput;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -68,7 +68,7 @@ public class ReservationGui extends JFrame {
     private JLabel labelCost;
 
     /* User Selections */
-    private JTextField txtName;
+    private JTextField txtUsername;
     private JTextField txtReservationMonth;
     private JTextField txtReservationDay;
     private JTextField txtReservationYear;
@@ -81,9 +81,8 @@ public class ReservationGui extends JFrame {
 
     private final static List<Reservation> reservations = new ArrayList<Reservation>();
 
-    public ReservationGui() {
+    public ReservationGui(){
         super("Reservation Panel");
-
         comboBoxTours.addItem(ReservationConstants.TOUR_GARDINER_LAKE);
         comboBoxTours.addItem(ReservationConstants.TOUR_HELLROARING_PLATEAU);
         comboBoxTours.addItem(ReservationConstants.TOUR_BEATEN_PATH);
@@ -92,19 +91,12 @@ public class ReservationGui extends JFrame {
             comboBoxDuration.addItem(x);
         }
 
-        txtName.setDocument(new JTextFieldLimit(56));
+        txtUsername.setDocument(new JTextFieldLimit(56));
         txtReservationMonth.setDocument(new JTextFieldLimit(2));
         txtReservationDay.setDocument(new JTextFieldLimit(2));
         txtReservationYear.setDocument(new JTextFieldLimit(4));
 
-        btnReserve.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, "Reservation Completed!");
-            }
-        });
-
-        txtName.addActionListener(new ActionListener() {
+        txtUsername.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println(e.getActionCommand());
@@ -119,8 +111,6 @@ public class ReservationGui extends JFrame {
                     JOptionPane.showMessageDialog(null, "Please ony use digits","Error", JOptionPane.ERROR_MESSAGE);
                     e.consume();
                 }
-//                System.out.println(txtReservationMonth.getAction());
-//                System.out.println(txtReservationMonth.getSelectedText());
             }
         });
 
@@ -143,7 +133,6 @@ public class ReservationGui extends JFrame {
                     JOptionPane.showMessageDialog(null, "Please ony use digits", "Error", JOptionPane.ERROR_MESSAGE);
                     e.consume();
                 }
-
             }
         });
 
@@ -171,6 +160,21 @@ public class ReservationGui extends JFrame {
                         comboBoxDuration.addItem(x);
                     }
                 }
+            }
+        });
+
+        btnReserve.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Reservation reservation = new Reservation();
+                try{
+                    reservation.setUsername(txtUsername.getText());
+                }catch (BadUserNameException exception){
+                    System.out.println("Error: " + exception);
+                    JOptionPane.showMessageDialog(null, exception.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                }
+
+                JOptionPane.showMessageDialog(null, "Reservation Completed!");
             }
         });
     }

@@ -1,10 +1,12 @@
 package com.msanti16.bookingrate.model;
 
+import com.msanti16.bookingrate.exceptions.BadUserNameException;
+
 import java.util.Date;
 
 public class Reservation {
     private long            id;
-    private String          userName;
+    private String          username;
     private String          tourName;
     private Integer         duration;
     private BookingDay      startDate;
@@ -15,10 +17,10 @@ public class Reservation {
         super();
     }
 
-    public Reservation(long id, String userName, String tourName, Integer duration, BookingDay startDate, BookingDay endDate) {
+    public Reservation(long id, String username, String tourName, Integer duration, BookingDay startDate, BookingDay endDate) {
         super();
         this.id = id;
-        this.userName = userName;
+        this.username = username;
         this.tourName = tourName;
         this.duration = duration;
         this.startDate = startDate;
@@ -33,12 +35,19 @@ public class Reservation {
         this.id = id;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username)  throws BadUserNameException {
+        username = username.trim();
+        if(username.length() < 1 || username.isEmpty()){
+            throw new BadUserNameException("Username value is too short", username);
+        }
+        if(!username.matches("^[a-zA-Z]*$")){
+            throw new BadUserNameException("Username must be all characters", username);
+        }
+        this.username = username;
     }
 
     public String getTourName() {
@@ -85,7 +94,7 @@ public class Reservation {
     public String toString() {
         return "Reservation{" +
                 "id=" + id +
-                ", userName='" + userName + '\'' +
+                ", username='" + username + '\'' +
                 ", tourName='" + tourName + '\'' +
                 ", duration=" + duration +
                 ", startDate=" + startDate +
