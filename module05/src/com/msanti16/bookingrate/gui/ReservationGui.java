@@ -1,4 +1,6 @@
-package com.msanti16.bookingrate;
+package com.msanti16.bookingrate.gui;
+
+
 
 
 /*
@@ -16,7 +18,6 @@ Since making a Web-Start application is no longer an option, you need to learn h
     - Submitting the query (use a JButton)
     - Showing the results (DON'T use a JButton)
     - Total Cost
-    - It's up to you how to lay out the window, but keep in mind the balance and symmetry issues.
 2) I have provided two classes to assist you in your project:
     - The first class, BookingDay, is a class that allows you to define a single BookingDay. There are two constructors
         . BookingDay() - The first constructor allows the class to be used a a Java Bean in later homeworks.
@@ -40,9 +41,9 @@ Since making a Web-Start application is no longer an option, you need to learn h
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.ActionListener;import java.awt.event.KeyAdapter;
 
-public class Reservation {
+public class ReservationGui extends JFrame {
     /* Panels */
     private JPanel panelRootReserve;
     private JPanel panelSouthReserve;
@@ -51,7 +52,7 @@ public class Reservation {
     private JPanel panelNorthLabelReserve;
 
     /* Labels */
-    private JLabel labelBhcTitle;
+    private JLabel labelTitle;
     private JLabel labelReserveDate;
     private JLabel labelName;
     private JLabel labelDuration;
@@ -68,18 +69,26 @@ public class Reservation {
     /* Buttons */
     private JButton btnReserve;
 
-    public Reservation() {
+    public ReservationGui() {
+        super("Reservation Panel");
         btnReserve.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JOptionPane.showMessageDialog(null, "Reservation Completed!");
             }
         });
+    comboBoxTours.addKeyListener(new KeyAdapter() { } );
+        comboBoxTours.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+
+                }
+        });
     }
 
     public static void main(String[] args) {
         JFrame reservationFrame = new JFrame("Reservation");
-        reservationFrame.setContentPane(new Reservation().panelRootReserve);
+        reservationFrame.setContentPane(new ReservationGui().panelRootReserve);
         reservationFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         reservationFrame.pack();
         reservationFrame.setVisible(true);

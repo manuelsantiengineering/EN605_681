@@ -11,7 +11,7 @@
  * Internally, months are from 0-11 (like the GregorianCalendar) but externally
  * they run 1-12
  */
-package com.msanti16.bookingrate;
+package com.msanti16.bookingrate.model;
 
 import java.util.GregorianCalendar;
 
@@ -80,11 +80,11 @@ public class BookingDay {
 
 
     /** Do the date fields describe a valid date?
-     @return true if the year is between 2007 and 2020, and the day and month are valid dates
+     @return true if the year is between 2019 and 2022, and the day and month are valid dates
      */
     public boolean isValidDate() {
         StringBuilder builder = new StringBuilder();
-        if ((year < 2007 || year > 2020) ||
+        if ((year < 2019 || year > 2022) ||
             (month < 0 || month > 11) ||
             badDay()) {
             validation = NOT_VALID;
@@ -240,58 +240,32 @@ public class BookingDay {
      * @return the GregorianCalendar object for this date
      */
     public GregorianCalendar getDate() {
-//        System.out.println("getDate(" + year + "," + month + "," + dayOfMonth + "0");
         return new GregorianCalendar(year, month, dayOfMonth);
     }
 
-    /** Get the year of this date
-     *
-     * @return the year
-     */
     int getYear() {
         return year;
     }
 
-    /** Set the year of this date.  This invalidates the BookingDay object,
-     * and isValidDate() must be called again
-     *
-     * @param year
-     */
     public void setYear(int year) {
         validation=NOT_VALIDATED;
         this.year = year;
     }
 
-    /** Get the month of this date
-     *
-     * @return the month (Jan = 1, Dec = 12)
-     */
     public int getMonth() {
         return month + 1;
 
     }
 
-    /** Set the month of this date
-     *
-     * @param month (Jan = 1, Dec = 12)
-     */
     public void setMonth(int month) {
         validation=NOT_VALIDATED;
         this.month = month - 1;
     }
 
-    /** Get the day of the month
-     *
-     * @return the day of the month
-     */
     public int getDayOfMonth() {
         return dayOfMonth;
     }
 
-    /** Set the day of the month
-     *
-     * @param dayOfMonth
-     */
     public void setDayOfMonth(int dayOfMonth) {
         this.dayOfMonth = dayOfMonth;
     }

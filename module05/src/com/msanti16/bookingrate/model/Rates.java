@@ -7,7 +7,7 @@
  *
  * @author evansrb1
  */
-package com.msanti16.bookingrate;
+package com.msanti16.bookingrate.model;
 
 import java.text.DateFormat;
 import java.util.Calendar;
