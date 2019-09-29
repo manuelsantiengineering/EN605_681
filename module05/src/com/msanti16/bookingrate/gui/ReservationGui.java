@@ -39,15 +39,22 @@ Since making a Web-Start application is no longer an option, you need to learn h
 4) Use the values for the hikes that were given in Week 2's homework. You will need someway for a user to select which hike they want and then based on that the duration.
  */
 
+import com.msanti16.bookingrate.constants.ReservationConstants;
+import com.msanti16.bookingrate.model.Reservation;
+import com.sun.xml.internal.bind.v2.runtime.output.StAXExStreamWriterOutput;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.util.List;
+import java.util.ArrayList;
 
 public class ReservationGui extends JFrame {
     /* Panels */
     private JPanel panelRootReserve;
     private JPanel panelSouthReserve;
-    private JPanel panelEastTextReserve;
+    private JPanel panelEastInputReserve;
     private JPanel panelWestLabelReserve;
     private JPanel panelNorthLabelReserve;
 
@@ -57,6 +64,7 @@ public class ReservationGui extends JFrame {
     private JLabel labelName;
     private JLabel labelDuration;
     private JLabel labelTours;
+    private JLabel labelCost;
 
     /* User Selections */
     private JTextField txtReservationMonth;
@@ -64,25 +72,97 @@ public class ReservationGui extends JFrame {
     private JTextField txtReservationYear;
     private JTextField txtName;
     private JComboBox comboBoxTours;
-    private JSpinner spinnerDuration;
+    private JComboBox comboBoxDuration;
+    private JLabel labelCostPerDay;
 
     /* Buttons */
     private JButton btnReserve;
 
+    private final static List<Reservation> reservations = new ArrayList<Reservation>();
+
     public ReservationGui() {
         super("Reservation Panel");
+
+        comboBoxTours.addItem(ReservationConstants.TOUR_GARDINER_LAKE);
+        comboBoxTours.addItem(ReservationConstants.TOUR_HELLROARING_PLATEAU);
+        comboBoxTours.addItem(ReservationConstants.TOUR_BEATEN_PATH);
+        labelCostPerDay.setText("$40");
+        for(int x : ReservationConstants.DURATION_GARDINER_LAKE){
+            comboBoxDuration.addItem(x);
+        }
+
         btnReserve.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JOptionPane.showMessageDialog(null, "Reservation Completed!");
             }
         });
-    comboBoxTours.addKeyListener(new KeyAdapter() { } );
-        comboBoxTours.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
 
+        txtName.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println(e.getActionCommand());
+            }
+        });
+
+        txtReservationMonth.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                super.keyTyped(e);
+                if(!Character.isDigit(e.getKeyChar())){
+                    JOptionPane.showMessageDialog(null, "Please ony use digits");
                 }
+
+            }
+        });
+
+        txtReservationDay.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                super.keyTyped(e);
+                if(!Character.isDigit(e.getKeyChar())){
+                    JOptionPane.showMessageDialog(null, "Please ony use digits");
+                }
+
+            }
+        });
+
+        txtReservationYear.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                super.keyTyped(e);
+                if(!Character.isDigit(e.getKeyChar())){
+                    JOptionPane.showMessageDialog(null, "Please ony use digits");
+                }
+
+            }
+        });
+
+        comboBoxTours.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println(e.paramString());
+                System.out.println(comboBoxTours.getSelectedIndex());
+                if(comboBoxTours.getSelectedIndex() == 0){
+                    comboBoxDuration.removeAllItems();
+                    labelCostPerDay.setText("$40");
+                    for(int x : ReservationConstants.DURATION_GARDINER_LAKE){
+                        comboBoxDuration.addItem(x);
+                    }
+                }else if(comboBoxTours.getSelectedIndex() == 1){
+                    comboBoxDuration.removeAllItems();
+                    labelCostPerDay.setText("$35");
+                    for(int x : ReservationConstants.DURATION_HELLROARING_PLATEAU){
+                        comboBoxDuration.addItem(x);
+                    }
+                }else if(comboBoxTours.getSelectedIndex() == 2){
+                    comboBoxDuration.removeAllItems();
+                    labelCostPerDay.setText("$45");
+                    for(int x : ReservationConstants.DURATION_BEATEN_PATH){
+                        comboBoxDuration.addItem(x);
+                    }
+                }
+            }
         });
     }
 
