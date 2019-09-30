@@ -73,31 +73,6 @@ public class Rates {
         premiumRate = baseRate + (baseRate / 2);
     }
 
-    public Rates(int value ) {
-        switch(hike) {
-            case GARDINER:
-                baseRate=4000;
-                validDurations = new int[2];
-                validDurations[0] = 3;
-                validDurations[1] = 5;
-                break;
-            case HELLROARING:
-                baseRate=3500;
-                validDurations = new int[3];
-                validDurations[0] = 2;
-                validDurations[1] = 3;
-                validDurations[2] = 4;
-                break;
-            case BEATEN:
-                baseRate=4500;
-                validDurations = new int[2];
-                validDurations[0] = 5;
-                validDurations[1] = 7;
-                break;
-        }
-        premiumRate = baseRate + (baseRate / 2);
-    }
-
     /** Get the total cost for the trip.  Returns -0.01 is something is amiss.
      * 
      * @return the cost of the trip

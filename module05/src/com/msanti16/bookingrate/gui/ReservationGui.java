@@ -9,6 +9,7 @@ import com.msanti16.bookingrate.constants.ReservationConstants;
 import com.msanti16.bookingrate.exceptions.BadBookingDateException;
 import com.msanti16.bookingrate.exceptions.BadIntegerParsingException;
 import com.msanti16.bookingrate.exceptions.BadUserNameException;
+import com.msanti16.bookingrate.exceptions.OutOfSeasonException;
 import com.msanti16.bookingrate.model.BookingDay;
 import com.msanti16.bookingrate.model.Rates;
 import com.msanti16.bookingrate.utils.JTextFieldLimit;
@@ -49,6 +50,7 @@ public class ReservationGui extends JFrame {
 
     /* Buttons */
     private JButton btnReserve;
+    private JLabel labelPremiumCostPerDay;
 
     private final static List<Reservation> reservationsList = new ArrayList<Reservation>();
 
@@ -57,7 +59,8 @@ public class ReservationGui extends JFrame {
         comboBoxTours.addItem(ReservationConstants.TOURS[0]);
         comboBoxTours.addItem(ReservationConstants.TOURS[1]);
         comboBoxTours.addItem(ReservationConstants.TOURS[2]);
-        labelCostPerDay.setText("$40");
+        labelCostPerDay.setText("$40.00");
+        labelPremiumCostPerDay.setText("$60.00");
         for(int x : ReservationConstants.DURATION_GARDINER_LAKE){
             comboBoxDuration.addItem(x);
         }
@@ -112,19 +115,22 @@ public class ReservationGui extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 if(comboBoxTours.getSelectedIndex() == 0){
                     comboBoxDuration.removeAllItems();
-                    labelCostPerDay.setText("$40");
+                    labelCostPerDay.setText("$40.00");
+                    labelPremiumCostPerDay.setText("$60.00");
                     for(int x : ReservationConstants.DURATION_GARDINER_LAKE){
                         comboBoxDuration.addItem(x);
                     }
                 }else if(comboBoxTours.getSelectedIndex() == 1){
                     comboBoxDuration.removeAllItems();
-                    labelCostPerDay.setText("$35");
+                    labelCostPerDay.setText("$35.00");
+                    labelPremiumCostPerDay.setText("$52.50");
                     for(int x : ReservationConstants.DURATION_HELLROARING_PLATEAU){
                         comboBoxDuration.addItem(x);
                     }
                 }else if(comboBoxTours.getSelectedIndex() == 2){
                     comboBoxDuration.removeAllItems();
-                    labelCostPerDay.setText("$45");
+                    labelCostPerDay.setText("$45.00");
+                    labelPremiumCostPerDay.setText("$67.50");
                     for(int x : ReservationConstants.DURATION_BEATEN_PATH){
                         comboBoxDuration.addItem(x);
                     }
@@ -178,6 +184,14 @@ public class ReservationGui extends JFrame {
                     rates.setBeginDate(reservation.getStartDate());
                     rates.setDuration(duration);
 
+                    if(!rates.isValidDates()){
+                        throw new OutOfSeasonException("Selected dates are out of the season.");
+                    }
+
+                    System.out.println("Begin Date: " );
+                    System.out.println("Rate: " + rates.getBaseRate());
+                    System.out.println("Cost: " + rates.getCost());
+
                     reservation.setTotalCost(rates.getCost());
 
                     JOptionPane.showMessageDialog(null, "Reservation Completed!\n" + reservation);
@@ -191,6 +205,9 @@ public class ReservationGui extends JFrame {
                     System.out.println("Error: " + exception);
                     JOptionPane.showMessageDialog(null, exception.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                 }catch (NumberFormatException exception){
+                    System.out.println("Error: " + exception);
+                    JOptionPane.showMessageDialog(null, exception.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                }catch (OutOfSeasonException exception){
                     System.out.println("Error: " + exception);
                     JOptionPane.showMessageDialog(null, exception.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                 }

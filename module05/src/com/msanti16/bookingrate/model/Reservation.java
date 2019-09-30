@@ -106,7 +106,7 @@ public class Reservation {
         strBld.append("\nTour: ").append(tourName);
         strBld.append("\nStart Date: ").append(startDate);
         strBld.append("\nDuration: ").append(duration).append(" days");
-        strBld.append("\nTotal Cost: ").append(totalCost).append(" days");
+        strBld.append("\nTotal Cost: $").append(String.format("%.2f", totalCost));
         return  strBld.toString();
     }
 }
