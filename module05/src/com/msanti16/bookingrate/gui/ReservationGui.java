@@ -41,6 +41,7 @@ Since making a Web-Start application is no longer an option, you need to learn h
 
 import com.msanti16.bookingrate.constants.ReservationConstants;
 import com.msanti16.bookingrate.exceptions.BadBookingDateException;
+import com.msanti16.bookingrate.exceptions.BadIntegerParsingException;
 import com.msanti16.bookingrate.exceptions.BadUserNameException;
 import com.msanti16.bookingrate.model.BookingDay;
 import com.msanti16.bookingrate.utils.JTextFieldLimit;
@@ -50,6 +51,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.Date;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -169,6 +171,16 @@ public class ReservationGui extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 Reservation reservation = new Reservation();
                 try{
+                    if(txtReservationMonth.getText().isEmpty()){
+                        throw new BadIntegerParsingException("Reservation month can't be empty", txtReservationMonth.getText());
+                    }
+                    if(txtReservationDay.getText().isEmpty()){
+                        throw new BadIntegerParsingException("Reservation day can't be empty", txtReservationDay.getText());
+                    }
+                    if(txtReservationYear.getText().isEmpty()){
+                        throw new BadIntegerParsingException("Reservation year can't be empty", txtReservationYear.getText());
+                    }
+
                     int year = Integer.parseInt(txtReservationYear.getText());
                     int month = Integer.parseInt(txtReservationMonth.getText());
                     int day = Integer.parseInt(txtReservationDay.getText());
@@ -177,16 +189,20 @@ public class ReservationGui extends JFrame {
                     String tourName = ReservationConstants.TOURS[comboBoxTours.getSelectedIndex()];
 
                     reservation.setUsername(txtUsername.getText());
-                    reservation.setStartDate(startDate);
                     reservation.setTourName(tourName);
+                    reservation.setStartDate(startDate);
                     reservation.setDuration(duration);
                     reservation.setId(reservationsList.size());
+                    reservation.setCreatedAt(new Date());
 
-                    JOptionPane.showMessageDialog(null, "Reservation Completed!");
+                    JOptionPane.showMessageDialog(null, "Reservation Completed!\n" + reservation);
                 }catch (BadUserNameException exception){
                     System.out.println("Error: " + exception);
                     JOptionPane.showMessageDialog(null, exception.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                 }catch (BadBookingDateException exception){
+                    System.out.println("Error: " + exception);
+                    JOptionPane.showMessageDialog(null, exception.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                }catch (BadIntegerParsingException exception){
                     System.out.println("Error: " + exception);
                     JOptionPane.showMessageDialog(null, exception.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                 }catch (NumberFormatException exception){

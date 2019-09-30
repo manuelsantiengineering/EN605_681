@@ -8,23 +8,29 @@ public class Reservation {
     private long            id;
     private String          username;
     private String          tourName;
-    private Integer         duration;
     private BookingDay      startDate;
-    private BookingDay      endDate;
+    private Integer         duration;
     private Date            createdAt;
 
     public Reservation() {
         super();
     }
 
-    public Reservation(long id, String username, String tourName, Integer duration, BookingDay startDate, BookingDay endDate) {
+    public Reservation(long id, String username, String tourName, Integer duration, BookingDay startDate)
+            throws BadUserNameException {
         super();
+        username = username.trim();
+        if(username.length() < 1 || username.isEmpty()){
+            throw new BadUserNameException("Username value is too short", username);
+        }
+        if(!username.matches("^[a-zA-Z]*$")){
+            throw new BadUserNameException("Username must be all characters", username);
+        }
         this.id = id;
         this.username = username;
         this.tourName = tourName;
         this.duration = duration;
         this.startDate = startDate;
-        this.endDate = endDate;
     }
 
     public long getId() {
@@ -74,14 +80,6 @@ public class Reservation {
         this.startDate = startDate;
     }
 
-    public BookingDay getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(BookingDay endDate) {
-        this.endDate = endDate;
-    }
-
     public Date getCreatedAt() {
         return createdAt;
     }
@@ -93,13 +91,11 @@ public class Reservation {
     @Override
     public String toString() {
         return "Reservation{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", tourName='" + tourName + '\'' +
-                ", duration=" + duration +
-                ", startDate=" + startDate +
-                ", endDate=" + endDate +
-                ", createdAt=" + createdAt +
-                '}';
+                "Confirmation Num.: " + id +
+                "\nDate of Reservation: " + createdAt.toString() +
+                "\nName: " + username +
+                "\nTour: " + tourName +
+                "\nStart Date: " + startDate +
+                "\nDuration: " + duration;
     }
 }
