@@ -9,6 +9,8 @@
  */
 package com.msanti16.bookingrate.model;
 
+import com.msanti16.bookingrate.exceptions.BadBookingDateException;
+
 import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -283,24 +285,29 @@ public class Rates {
      */
     public boolean setDuration(int days) {
         boolean valid = false;
-        for (int d : validDurations) {
-            if (days == d) {
-                valid = true;
-                break;
+        try {
+            for (int d : validDurations) {
+                if (days == d) {
+                    valid = true;
+                    break;
+                }
             }
+            if (!valid) {
+                return false;
+            } else {
+                // first a quick check to see if this is a valid
+                GregorianCalendar day = beginDate.getDate();
+                day.add(Calendar.DAY_OF_MONTH, days - 1);
+                endDate = new BookingDay(day.get(Calendar.YEAR),
+                        day.get(Calendar.MONTH) + 1,
+                        day.get(Calendar.DAY_OF_MONTH));
+                synched = false;
+                return true;
+            }
+        }catch (BadBookingDateException exception){
+            System.out.println("Error: " + exception);
         }
-        if (!valid) {
-            return false;
-        } else {
-            // first a quick check to see if this is a valid
-            GregorianCalendar day = beginDate.getDate();
-            day.add(Calendar.DAY_OF_MONTH, days - 1);
-            endDate = new BookingDay(day.get(Calendar.YEAR),
-                    day.get(Calendar.MONTH) + 1,
-                    day.get(Calendar.DAY_OF_MONTH));
-            synched = false; 
-            return true;
-        }
+        return false;
     }
 
     /** Set the end date of the reservation
@@ -313,24 +320,24 @@ public class Rates {
     }
 
     /** Quick test of the class */
-    public static void main(String[] argv) {
-        BookingDay startDay = new BookingDay(2008,7,1);
-        BookingDay endDay = new BookingDay(2008,7, 7);
-        System.out.println("start Day of " + startDay + " " + (startDay.isValidDate()?"is valid":"is not valid"));
-        System.out.println("end Day " + endDay + " " + (endDay.isValidDate()?"is valid":"is not valid"));        
-
-        Rates rates = new Rates(HIKE.BEATEN);
-
-        rates.setBeginDate(startDay);
-        boolean success = rates.setDuration(7);
-        System.out.println("duration was " + (success ? "good" : "bad"));
-        System.out.println("valid Dates = " + rates.isValidDates());
-        if (rates.isValidDates()) {
-            System.out.println("Cost of trip = " + rates.getCost());
-            System.out.println("Weekdays: " + rates.getNormalDays());
-            System.out.println("Weekends: " + rates.getPremiumDays());        
-        } else {
-            System.out.println("Sorry, but " + rates.getDetails());
-        }
-    }
+//    public static void main(String[] argv) {
+//        BookingDay startDay = new BookingDay(2008,7,1);
+//        BookingDay endDay = new BookingDay(2008,7, 7);
+//        System.out.println("start Day of " + startDay + " " + (startDay.isValidDate()?"is valid":"is not valid"));
+//        System.out.println("end Day " + endDay + " " + (endDay.isValidDate()?"is valid":"is not valid"));
+//
+//        Rates rates = new Rates(HIKE.BEATEN);
+//
+//        rates.setBeginDate(startDay);
+//        boolean success = rates.setDuration(7);
+//        System.out.println("duration was " + (success ? "good" : "bad"));
+//        System.out.println("valid Dates = " + rates.isValidDates());
+//        if (rates.isValidDates()) {
+//            System.out.println("Cost of trip = " + rates.getCost());
+//            System.out.println("Weekdays: " + rates.getNormalDays());
+//            System.out.println("Weekends: " + rates.getPremiumDays());
+//        } else {
+//            System.out.println("Sorry, but " + rates.getDetails());
+//        }
+//    }
 }

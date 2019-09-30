@@ -13,6 +13,8 @@
  */
 package com.msanti16.bookingrate.model;
 
+import com.msanti16.bookingrate.exceptions.BadBookingDateException;
+
 import java.util.GregorianCalendar;
 
 /**
@@ -71,11 +73,20 @@ public class BookingDay {
      @param month, the month Jan = 1, Dec = 12
      @param dayOfMonth, the numerical day of the month
      */
-    public BookingDay(int year, int month, int dayOfMonth) {
-    //    System.out.println("BookingDay(" + year +"," + month + "," + dayOfMonth + ")");
+    public BookingDay(int year, int month, int dayOfMonth) throws BadBookingDateException {
+        if(month < 1 || month > 12){
+            throw new BadBookingDateException("Month must be between 1 and 12", month);
+        }
+        if(year < 2019 || year > 2022){
+            throw new BadBookingDateException("Year must be between 2019 and 2022", year);
+        }
+        this.dayOfMonth = dayOfMonth;
+        if(badDay()){
+            throw new BadBookingDateException("Day value is not acceptable", dayOfMonth);
+        }
         this.year = year;
         this.month = month - 1;
-        this.dayOfMonth = dayOfMonth;
+
     }
 
 
@@ -270,11 +281,4 @@ public class BookingDay {
         this.dayOfMonth = dayOfMonth;
     }
 
-    public static void main(String[] argv) {
-        BookingDay day = new BookingDay(2008, 6, 15);
-        System.out.println("Day = " + day);
-        System.out.println("Day is before 5/1? " + day.before(5, 1));
-        System.out.println("Day is before 9/1? " + day.before(9, 1));
-
-    }
 }

@@ -40,7 +40,9 @@ Since making a Web-Start application is no longer an option, you need to learn h
  */
 
 import com.msanti16.bookingrate.constants.ReservationConstants;
+import com.msanti16.bookingrate.exceptions.BadBookingDateException;
 import com.msanti16.bookingrate.exceptions.BadUserNameException;
+import com.msanti16.bookingrate.model.BookingDay;
 import com.msanti16.bookingrate.utils.JTextFieldLimit;
 import com.msanti16.bookingrate.model.Reservation;
 
@@ -79,13 +81,13 @@ public class ReservationGui extends JFrame {
     /* Buttons */
     private JButton btnReserve;
 
-    private final static List<Reservation> reservations = new ArrayList<Reservation>();
+    private final static List<Reservation> reservationsList = new ArrayList<Reservation>();
 
     public ReservationGui(){
         super("Reservation Panel");
-        comboBoxTours.addItem(ReservationConstants.TOUR_GARDINER_LAKE);
-        comboBoxTours.addItem(ReservationConstants.TOUR_HELLROARING_PLATEAU);
-        comboBoxTours.addItem(ReservationConstants.TOUR_BEATEN_PATH);
+        comboBoxTours.addItem(ReservationConstants.TOURS[0]);
+        comboBoxTours.addItem(ReservationConstants.TOURS[1]);
+        comboBoxTours.addItem(ReservationConstants.TOURS[2]);
         labelCostPerDay.setText("$40");
         for(int x : ReservationConstants.DURATION_GARDINER_LAKE){
             comboBoxDuration.addItem(x);
@@ -139,8 +141,6 @@ public class ReservationGui extends JFrame {
         comboBoxTours.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println(e.paramString());
-                System.out.println(comboBoxTours.getSelectedIndex());
                 if(comboBoxTours.getSelectedIndex() == 0){
                     comboBoxDuration.removeAllItems();
                     labelCostPerDay.setText("$40");
@@ -161,6 +161,7 @@ public class ReservationGui extends JFrame {
                     }
                 }
             }
+
         });
 
         btnReserve.addActionListener(new ActionListener() {
@@ -168,13 +169,30 @@ public class ReservationGui extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 Reservation reservation = new Reservation();
                 try{
+                    int year = Integer.parseInt(txtReservationYear.getText());
+                    int month = Integer.parseInt(txtReservationMonth.getText());
+                    int day = Integer.parseInt(txtReservationDay.getText());
+                    BookingDay startDate = new BookingDay(year, month, day);
+                    int duration = Integer.parseInt(comboBoxDuration.getItemAt(comboBoxDuration.getSelectedIndex()).toString());
+                    String tourName = ReservationConstants.TOURS[comboBoxTours.getSelectedIndex()];
+
                     reservation.setUsername(txtUsername.getText());
+                    reservation.setStartDate(startDate);
+                    reservation.setTourName(tourName);
+                    reservation.setDuration(duration);
+                    reservation.setId(reservationsList.size());
+
+                    JOptionPane.showMessageDialog(null, "Reservation Completed!");
                 }catch (BadUserNameException exception){
                     System.out.println("Error: " + exception);
                     JOptionPane.showMessageDialog(null, exception.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                }catch (BadBookingDateException exception){
+                    System.out.println("Error: " + exception);
+                    JOptionPane.showMessageDialog(null, exception.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                }catch (NumberFormatException exception){
+                    System.out.println("Error: " + exception);
+                    JOptionPane.showMessageDialog(null, exception.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                 }
-
-                JOptionPane.showMessageDialog(null, "Reservation Completed!");
             }
         });
     }
