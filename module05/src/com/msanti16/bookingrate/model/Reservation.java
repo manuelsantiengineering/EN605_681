@@ -11,6 +11,7 @@ public class Reservation {
     private BookingDay      startDate;
     private Integer         duration;
     private Date            createdAt;
+    private Double          totalCost = 0.0;
 
     public Reservation() {
         super();
@@ -88,14 +89,24 @@ public class Reservation {
         this.createdAt = createdAt;
     }
 
+    public Double getTotalCost() {
+        return totalCost;
+    }
+
+    public void setTotalCost(Double totalCost) {
+        this.totalCost = totalCost;
+    }
+
     @Override
     public String toString() {
-        return "Reservation{" +
-                "Confirmation Num.: " + id +
-                "\nDate of Reservation: " + createdAt.toString() +
-                "\nName: " + username +
-                "\nTour: " + tourName +
-                "\nStart Date: " + startDate +
-                "\nDuration: " + duration;
+        StringBuilder strBld = new StringBuilder();
+        strBld.append("Confirmation Num.: ").append(id);
+        strBld.append("\nDate of Reservation: ").append(createdAt.toString());
+        strBld.append("\nName: ").append(username);
+        strBld.append("\nTour: ").append(tourName);
+        strBld.append("\nStart Date: ").append(startDate);
+        strBld.append("\nDuration: ").append(duration).append(" days");
+        strBld.append("\nTotal Cost: ").append(totalCost).append(" days");
+        return  strBld.toString();
     }
 }
