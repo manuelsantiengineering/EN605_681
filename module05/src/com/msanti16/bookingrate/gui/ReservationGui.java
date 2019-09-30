@@ -81,7 +81,7 @@ public class ReservationGui extends JFrame {
             @Override
             public void keyTyped(KeyEvent e) {
                 super.keyTyped(e);
-                if(!Character.isDigit(e.getKeyChar())){
+                if(!Character.isDigit(e.getKeyChar()) && !Character.isISOControl(e.getKeyChar())){
                     JOptionPane.showMessageDialog(null, "Please ony use digits","Error", JOptionPane.ERROR_MESSAGE);
                     e.consume();
                 }
@@ -92,7 +92,7 @@ public class ReservationGui extends JFrame {
             @Override
             public void keyTyped(KeyEvent e) {
                 super.keyTyped(e);
-                if(!Character.isDigit(e.getKeyChar())){
+                if(!Character.isDigit(e.getKeyChar()) && !Character.isISOControl(e.getKeyChar())){
                     JOptionPane.showMessageDialog(null, "Please ony use digits", "Error", JOptionPane.ERROR_MESSAGE);
                     e.consume();
                 }
@@ -103,7 +103,7 @@ public class ReservationGui extends JFrame {
             @Override
             public void keyTyped(KeyEvent e) {
                 super.keyTyped(e);
-                if(!Character.isDigit(e.getKeyChar())){
+                if(!Character.isDigit(e.getKeyChar()) && !Character.isISOControl(e.getKeyChar())){
                     JOptionPane.showMessageDialog(null, "Please ony use digits", "Error", JOptionPane.ERROR_MESSAGE);
                     e.consume();
                 }
