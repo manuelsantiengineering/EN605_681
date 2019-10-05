@@ -1,5 +1,6 @@
 package com.msanti16.net.socket;
 
+import com.msanti16.net.services.CreateQuoteMessage;
 import com.msanti16.net.services.ParseQuoteMessage;
 
 import java.io.BufferedReader;
@@ -18,7 +19,6 @@ public class Main {
         System.out.println("Module 6 Homework");
         System.out.println("Manuel E. Santiago Laboy");
 
-//        ClientSocket.createSocket(SERVER_HOST, PORT);
         Socket echoSocket = null;
         PrintWriter out = null;
         BufferedReader in = null;
@@ -40,36 +40,26 @@ public class Main {
         }
         System.out.println("Reading stdIn....");
         BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
-//        BufferedReader stdIn = new BufferedReader(new String(""));
-        String userInput;
 
-        String echo;
-        String testQuoteMessage;
-        while ((userInput=stdIn.readLine()) != null) {
-//            out.println(userInput);
-            out.println("1:2008:7:1:3");
-            echo = in.readLine();
-            if (echo == null) {
+        String response;
+        String testRequestMessage = CreateQuoteMessage.createMessage(1, 2019, 10, 4, 3);
+        Double testQuoteResponse;
+        while (stdIn.readLine() != null) {
+            out.println(testRequestMessage);
+            response = in.readLine();
+            if (response == null) {
                 System.out.println("Disconnected!");
                 break;
             } else {
-                testQuoteMessage = ParseQuoteMessage.parseQuote(echo);
-                System.out.println("echo: " + echo);
-                System.out.println("testQuoteMessage: " + testQuoteMessage);
+                testQuoteResponse = ParseQuoteMessage.parseQuote(response);
+                System.out.println(response);
+                System.out.println("testQuoteResponse: " + testQuoteResponse);
             }
         }
-
-//		int data;
-//		System.out.print("Value: ");
-//		while((data = stdIn.read()) != -1){
-//			System.out.print((char) data);
-//		}
-
 
         out.close();
         in.close();
         stdIn.close();
         echoSocket.close();
-
     }
 }
