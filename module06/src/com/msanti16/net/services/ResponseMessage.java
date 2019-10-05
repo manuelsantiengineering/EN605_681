@@ -15,7 +15,7 @@ public class ResponseMessage {
 
     public void parseQuote(String response){
         try{
-            String[] parsedMessage = message.split(":");
+            String[] parsedMessage = response.split(":");
             this.quote = Double.parseDouble(parsedMessage[0]);
             this.message = parsedMessage[1];
         }catch (NumberFormatException exception){
