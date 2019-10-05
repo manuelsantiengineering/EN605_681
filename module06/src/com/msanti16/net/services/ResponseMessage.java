@@ -2,7 +2,7 @@ package com.msanti16.net.services;
 
 public class ResponseMessage {
     private Double quote = -0.01;
-    private String message = "";
+    private String message = "No Response";
 
     public ResponseMessage() {
         super();
