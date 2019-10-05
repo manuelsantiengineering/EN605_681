@@ -14,6 +14,7 @@ import com.msanti16.net.exceptions.OutOfSeasonException;
 import com.msanti16.net.domain.BookingDay;
 import com.msanti16.net.domain.Reservation;
 import com.msanti16.net.utils.JTextFieldLimit;
+import controller.ReservationController;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -21,7 +22,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class ReservationGui extends JFrame {
@@ -39,6 +39,7 @@ public class ReservationGui extends JFrame {
     private JLabel labelDuration;
     private JLabel labelTours;
     private JLabel labelCost;
+    private JLabel labelPremiumCostPerDay;
 
     /* User Selections */
     private JTextField txtUsername;
@@ -51,7 +52,6 @@ public class ReservationGui extends JFrame {
 
     /* Buttons */
     private JButton btnReserve;
-    private JLabel labelPremiumCostPerDay;
 
     private final static List<Reservation> reservationsList = new ArrayList<Reservation>();
 
@@ -70,6 +70,27 @@ public class ReservationGui extends JFrame {
         txtReservationMonth.setDocument(new JTextFieldLimit(2));
         txtReservationDay.setDocument(new JTextFieldLimit(2));
         txtReservationYear.setDocument(new JTextFieldLimit(4));
+
+        //START NEW MANUEL
+        ReservationController reservationController = new ReservationController(
+                txtUsername, txtReservationYear, txtReservationMonth,
+                txtReservationDay, comboBoxTours, comboBoxDuration
+        );
+        btnReserve.addActionListener(reservationController);
+
+
+
+        //END NEW MANUEL
+
+
+
+
+
+
+
+
+
+
 
         txtUsername.addActionListener(new ActionListener() {
             @Override
@@ -140,88 +161,88 @@ public class ReservationGui extends JFrame {
 
         });
 
-        btnReserve.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Reservation reservation = new Reservation();
-                try{
-                    if(txtReservationMonth.getText().isEmpty()){
-                        throw new BadIntegerParsingException("Reservation month can't be empty", txtReservationMonth.getText());
-                    }
-                    if(txtReservationDay.getText().isEmpty()){
-                        throw new BadIntegerParsingException("Reservation day can't be empty", txtReservationDay.getText());
-                    }
-                    if(txtReservationYear.getText().isEmpty()){
-                        throw new BadIntegerParsingException("Reservation year can't be empty", txtReservationYear.getText());
-                    }
-
-                    int year = Integer.parseInt(txtReservationYear.getText());
-                    int month = Integer.parseInt(txtReservationMonth.getText());
-                    int day = Integer.parseInt(txtReservationDay.getText());
-                    BookingDay startDate = new BookingDay(year, month, day);
-                    int duration = Integer.parseInt(comboBoxDuration.getItemAt(comboBoxDuration.getSelectedIndex()).toString());
-
-                    reservation.setUsername(txtUsername.getText());
-                    reservation.setTourName(comboBoxTours.getSelectedIndex());
-                    reservation.setStartDate(startDate);
-                    reservation.setDuration(duration);
-                    reservation.setId(reservationsList.size());
-                    reservation.setCreatedAt(new Date());
-
-//                    Rates rates;
-//                    switch (comboBoxTours.getSelectedIndex()){
-//                        case 1:
-//                            rates = new Rates(Rates.HIKE.HELLROARING);
-//                            break;
-//                        case 2:
-//                            rates = new Rates(Rates.HIKE.BEATEN);
-//                            break;
-//                        case 0:
-//                        default:
-//                            rates = new Rates(Rates.HIKE.GARDINER);
-//                            break;
+//        btnReserve.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                Reservation reservation = new Reservation();
+//                try{
+//                    if(txtReservationMonth.getText().isEmpty()){
+//                        throw new BadIntegerParsingException("Reservation month can't be empty", txtReservationMonth.getText());
 //                    }
-//                    rates.setBeginDate(reservation.getStartDate());
-//                    rates.setDuration(duration);
-//
-//                    if(!rates.isValidDates()){
-//                        throw new OutOfSeasonException("Selected dates are out of the season.");
+//                    if(txtReservationDay.getText().isEmpty()){
+//                        throw new BadIntegerParsingException("Reservation day can't be empty", txtReservationDay.getText());
+//                    }
+//                    if(txtReservationYear.getText().isEmpty()){
+//                        throw new BadIntegerParsingException("Reservation year can't be empty", txtReservationYear.getText());
 //                    }
 //
-//                    System.out.println("Begin Date: " );
-//                    System.out.println("Rate: " + rates.getBaseRate());
-//                    System.out.println("Cost: " + rates.getCost());
+//                    int year = Integer.parseInt(txtReservationYear.getText());
+//                    int month = Integer.parseInt(txtReservationMonth.getText());
+//                    int day = Integer.parseInt(txtReservationDay.getText());
+//                    BookingDay startDate = new BookingDay(year, month, day);
+//                    int duration = Integer.parseInt(comboBoxDuration.getItemAt(comboBoxDuration.getSelectedIndex()).toString());
 //
-//                    reservation.setTotalCost(rates.getCost());
-
-                    JOptionPane.showMessageDialog(null, "Reservation Completed!\n" + reservation);
-                }catch (BadUserNameException exception){
-                    System.out.println("Error: " + exception);
-                    JOptionPane.showMessageDialog(null, exception.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-                }catch (BadBookingDateException exception){
-                    System.out.println("Error: " + exception);
-                    JOptionPane.showMessageDialog(null, exception.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-                }catch (BadIntegerParsingException exception){
-                    System.out.println("Error: " + exception);
-                    JOptionPane.showMessageDialog(null, exception.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-                }catch (NumberFormatException exception){
-                    System.out.println("Error: " + exception);
-                    JOptionPane.showMessageDialog(null, exception.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-                }
-//                catch (OutOfSeasonException exception){
+//                    reservation.setUsername(txtUsername.getText());
+//                    reservation.setTourName(comboBoxTours.getSelectedIndex());
+//                    reservation.setStartDate(startDate);
+//                    reservation.setDuration(duration);
+//                    reservation.setId(reservationsList.size());
+//                    reservation.setCreatedAt(new Date());
+//
+////                    Rates rates;
+////                    switch (comboBoxTours.getSelectedIndex()){
+////                        case 1:
+////                            rates = new Rates(Rates.HIKE.HELLROARING);
+////                            break;
+////                        case 2:
+////                            rates = new Rates(Rates.HIKE.BEATEN);
+////                            break;
+////                        case 0:
+////                        default:
+////                            rates = new Rates(Rates.HIKE.GARDINER);
+////                            break;
+////                    }
+////                    rates.setBeginDate(reservation.getStartDate());
+////                    rates.setDuration(duration);
+////
+////                    if(!rates.isValidDates()){
+////                        throw new OutOfSeasonException("Selected dates are out of the season.");
+////                    }
+////
+////                    System.out.println("Begin Date: " );
+////                    System.out.println("Rate: " + rates.getBaseRate());
+////                    System.out.println("Cost: " + rates.getCost());
+////
+////                    reservation.setTotalCost(rates.getCost());
+//
+//                    JOptionPane.showMessageDialog(null, "Reservation Completed!\n" + reservation);
+//                }catch (BadUserNameException exception){
+//                    System.out.println("Error: " + exception);
+//                    JOptionPane.showMessageDialog(null, exception.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+//                }catch (BadBookingDateException exception){
+//                    System.out.println("Error: " + exception);
+//                    JOptionPane.showMessageDialog(null, exception.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+//                }catch (BadIntegerParsingException exception){
+//                    System.out.println("Error: " + exception);
+//                    JOptionPane.showMessageDialog(null, exception.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+//                }catch (NumberFormatException exception){
 //                    System.out.println("Error: " + exception);
 //                    JOptionPane.showMessageDialog(null, exception.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 //                }
-            }
-        });
+////                catch (OutOfSeasonException exception){
+//////                    System.out.println("Error: " + exception);
+//////                    JOptionPane.showMessageDialog(null, exception.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+//////                }
+//            }
+//        });
     }
 
-    public static void main(String[] args) {
-        JFrame reservationFrame = new JFrame("Reservation Form");
-        reservationFrame.setContentPane(new ReservationGui().panelRootReserve);
-        reservationFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        reservationFrame.pack();
-        reservationFrame.setVisible(true);
-    }
+//    public static void main(String[] args) {
+//        JFrame reservationFrame = new JFrame("Reservation Form");
+//        reservationFrame.setContentPane(new ReservationGui().panelRootReserve);
+//        reservationFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        reservationFrame.pack();
+//        reservationFrame.setVisible(true);
+//    }
 
 }
