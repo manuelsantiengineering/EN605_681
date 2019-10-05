@@ -1,16 +1,17 @@
 package com.msanti16.net.domain;
 
+import com.msanti16.net.exceptions.BadBookingDateException;
 import com.msanti16.net.exceptions.BadUserNameException;
 import java.util.Date;
 
 public class Reservation {
     private final String[]  TOURS = {"Gardiner Lake", "Hellroaring Plateau", "The Beaten Path"};
 
-    private long            id;
-    private String          username;
+    private long            id = -1L;
+    private String          username = "no name";
     private BookingDay      startDate;
-    private int             tourId;
-    private int             duration;
+    private int             tourId = 0;
+    private int             duration = 0;
     private Date            createdAt;
     private Double          totalCost = 0.0;
 
@@ -18,7 +19,7 @@ public class Reservation {
         super();
     }
 
-    public Reservation(long id, String username, int tourId, int duration, BookingDay startDate)
+    public Reservation(long id, String username, int tourId, BookingDay startDate, int duration)
             throws BadUserNameException {
         super();
         username = username.trim();
@@ -31,8 +32,25 @@ public class Reservation {
         this.id = id;
         this.username = username;
         this.tourId = tourId;
-        this.duration = duration;
         this.startDate = startDate;
+        this.duration = duration;
+    }
+
+    public Reservation(long id, String username, int tourId, int startYear, int startMonth, int startDay, int duration)
+            throws BadUserNameException, BadBookingDateException {
+        super();
+        username = username.trim();
+        if(username.length() < 1 || username.isEmpty()){
+            throw new BadUserNameException("Username value is too short", username);
+        }
+        if(!username.matches("^[a-zA-Z]*$")){
+            throw new BadUserNameException("Username must be all characters", username);
+        }
+        this.id = id;
+        this.username = username;
+        this.tourId = tourId;
+        this.duration = duration;
+        this.startDate = new BookingDay(startYear, startMonth, startDay);
     }
 
     public long getId() {
@@ -65,6 +83,12 @@ public class Reservation {
     public void setStartDate(BookingDay startDate) {
         this.startDate = startDate;
     }
+
+    public int getStartYear(){ return this.startDate.getYear(); }
+
+    public int getStartMonth(){ return this.startDate.getMonth(); }
+
+    public int getStartDay(){ return this.startDate.getDayOfMonth(); }
 
     public String getTourName() {
         return TOURS[tourId];
