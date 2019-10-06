@@ -38,6 +38,8 @@ public class ReservationGui extends JFrame {
     private JLabel labelDuration;
     private JLabel labelTours;
     private JLabel labelCost;
+    private JLabel labelPremiumCostPerDay;
+    private JLabel labelCostPerDay;
 
     /* User Selections */
     private JTextField txtUsername;
@@ -46,16 +48,16 @@ public class ReservationGui extends JFrame {
     private JTextField txtReservationYear;
     private JComboBox comboBoxTours;
     private JComboBox comboBoxDuration;
-    private JLabel labelCostPerDay;
 
     /* Buttons */
     private JButton btnReserve;
-    private JLabel labelPremiumCostPerDay;
+
 
     private final static List<Reservation> reservationsList = new ArrayList<Reservation>();
 
     public ReservationGui(){
         super("Reservation Panel");
+
         comboBoxTours.addItem(ReservationConstants.TOURS[0]);
         comboBoxTours.addItem(ReservationConstants.TOURS[1]);
         comboBoxTours.addItem(ReservationConstants.TOURS[2]);

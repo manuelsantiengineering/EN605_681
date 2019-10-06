@@ -1,6 +1,4 @@
 package com.msanti16.net.view;
-
-
 /*
     Student Name: Manuel E. Santiago Laboy
     Course: EN.605.681.81.FA19 Principles of Enterprise Web Development
@@ -21,8 +19,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.util.ArrayList;
-import java.util.List;
 
 public class ReservationGui extends JFrame {
     /* Panels */
@@ -53,10 +49,39 @@ public class ReservationGui extends JFrame {
     /* Buttons */
     private JButton btnReserve;
 
-    private final static List<Reservation> reservationsList = new ArrayList<Reservation>();
+    public ReservationGui(String title){
+        super(title);
+////
+//        panelRootReserve = new JPanel();
+//        panelSouthReserve = new JPanel();
+//        panelEastInputReserve = new JPanel();
+//        panelWestLabelReserve = new JPanel();
+//        panelNorthLabelReserve = new JPanel();
+//
+//        labelTitle = new JLabel();
+//        labelReserveDate = new JLabel();
+//        labelName = new JLabel();
+//        labelDuration = new JLabel();
+//        labelTours = new JLabel();
+//        labelCost = new JLabel();
+//
+//        txtUsername = new JTextField();
+//        txtReservationMonth = new JTextField();
+//        txtReservationDay = new JTextField();
+//        txtReservationYear = new JTextField();
+//        comboBoxTours = new JComboBox();
+//        comboBoxDuration = new JComboBox();
+//        labelCostPerDay = new JLabel();
+//
+//        btnReserve = new JButton();
+//        labelPremiumCostPerDay = new JLabel();
 
-    public ReservationGui(){
-        super("Reservation Panel");
+
+
+
+
+
+
         comboBoxTours.addItem(ReservationConstants.TOURS[0]);
         comboBoxTours.addItem(ReservationConstants.TOURS[1]);
         comboBoxTours.addItem(ReservationConstants.TOURS[2]);
@@ -72,11 +97,11 @@ public class ReservationGui extends JFrame {
         txtReservationYear.setDocument(new JTextFieldLimit(4));
 
         //START NEW MANUEL
-        ReservationController reservationController = new ReservationController(
-                txtUsername, txtReservationYear, txtReservationMonth,
-                txtReservationDay, comboBoxTours, comboBoxDuration
-        );
-        btnReserve.addActionListener(reservationController);
+//        ReservationController reservationController = new ReservationController(
+//                txtUsername, txtReservationYear, txtReservationMonth,
+//                txtReservationDay, comboBoxTours, comboBoxDuration
+//        );
+//        btnReserve.addActionListener(reservationController);
 
 
 
@@ -237,12 +262,12 @@ public class ReservationGui extends JFrame {
 //        });
     }
 
-//    public static void main(String[] args) {
-//        JFrame reservationFrame = new JFrame("Reservation Form");
-//        reservationFrame.setContentPane(new ReservationGui().panelRootReserve);
-//        reservationFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        reservationFrame.pack();
-//        reservationFrame.setVisible(true);
-//    }
+    public void create() {
+        JFrame reservationFrame = new JFrame("Reservation Form");
+        reservationFrame.setContentPane(this.panelRootReserve);
+        reservationFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        reservationFrame.pack();
+        reservationFrame.setVisible(true);
+    }
 
 }
