@@ -20,20 +20,20 @@ public class Main {
         System.out.println("Module 6 Homework");
         System.out.println("Manuel E. Santiago Laboy");
 
-//        ClientSocket clientSocket = new ClientSocket(SERVER_HOST, PORT);
-//        clientSocket.createSocket();
-//        clientSocket.sendMessage(CreateQuoteMessage.createMessage(1, 2019, 9, 4, 3));
-//        clientSocket.closeConnections();
-
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    createAndShowGUI();
-                } catch (Exception exception) {
-                    exception.printStackTrace();
-                }
-            }
-        });
+        ClientSocket clientSocket = new ClientSocket(SERVER_HOST, PORT);
+        clientSocket.createSocket();
+        String response = clientSocket.sendMessage(CreateQuoteMessage.createMessage(1, 2019, 10, 4, 3));
+        clientSocket.closeConnections();
+        System.out.println("response = " + response);
+//        SwingUtilities.invokeLater(new Runnable() {
+//            public void run() {
+//                try {
+//                    createAndShowGUI();
+//                } catch (Exception exception) {
+//                    exception.printStackTrace();
+//                }
+//            }
+//        });
 
     }
 

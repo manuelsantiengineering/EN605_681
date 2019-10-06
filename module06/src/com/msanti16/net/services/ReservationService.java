@@ -2,10 +2,7 @@ package com.msanti16.net.services;
 
 import com.msanti16.net.domain.BookingDay;
 import com.msanti16.net.domain.Reservation;
-import com.msanti16.net.exceptions.BadBookingDateException;
-import com.msanti16.net.exceptions.BadIntegerParsingException;
-import com.msanti16.net.exceptions.BadUserNameException;
-import com.msanti16.net.exceptions.OutOfSeasonException;
+import com.msanti16.net.exceptions.*;
 
 import javax.swing.*;
 import java.io.IOException;
@@ -72,37 +69,14 @@ public class ReservationService {
             BookingDay startDate = new BookingDay(year, month, day);
             int duration = Integer.parseInt(tourDuration);
 
-            ResponseMessage response = clientSocket.sendMessage(
+            String responseStr = clientSocket.sendMessage(
                     CreateQuoteMessage.createMessage(tourId, year, month, day, duration)
             );
-//                    Rates rates;
-//                    switch (comboBoxTours.getSelectedIndex()){
-//                        case 1:
-//                            rates = new Rates(Rates.HIKE.HELLROARING);
-//                            break;
-//                        case 2:
-//                            rates = new Rates(Rates.HIKE.BEATEN);
-//                            break;
-//                        case 0:
-//                        default:
-//                            rates = new Rates(Rates.HIKE.GARDINER);
-//                            break;
-//                    }
-//                    rates.setBeginDate(reservation.getStartDate());
-//                    rates.setDuration(duration);
-//
-//                    if(!rates.isValidDates()){
-//                        throw new OutOfSeasonException("Selected dates are out of the season.");
-//                    }
-//
-//                    System.out.println("Begin Date: " );
-//                    System.out.println("Rate: " + rates.getBaseRate());
-//                    System.out.println("Cost: " + rates.getCost());
-//
-//                    reservation.setTotalCost(rates.getCost());
-//            reservation.setTotalCost(9999999.99);
+            ResponseMessage response = new ResponseMessage(responseStr);
+            response.parseQuote();
 
             Reservation reservation = new Reservation();
+            reservation.setTotalCost(response.getQuote());
             reservation.setUsername(username);
             reservation.setTourName(tourId);
             reservation.setStartDate(startDate);
@@ -127,11 +101,15 @@ public class ReservationService {
         }catch (NumberFormatException exception){
             System.out.println("Error: " + exception);
             JOptionPane.showMessageDialog(null, exception.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-//        }catch (OutOfSeasonException exception){
-//            System.out.println("Error: " + exception);
-//            JOptionPane.showMessageDialog(null, exception.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }catch (OutOfSeasonException exception){
+            System.out.println("Error: " + exception);
+            JOptionPane.showMessageDialog(null, exception.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }catch(IOException exception){
             System.out.println("Unable to create send message using socket connection");
+        }catch (NullPointerException exception){
+            System.out.println("Unable to parse response");
+        }catch (UnableToGetQuoteException exception){
+            System.out.println("Unable to parse response");
         }
 
 

@@ -31,25 +31,20 @@ public class ClientSocket extends Socket {
         }
     }
 
-    public ResponseMessage sendMessage(String message) throws IOException {
-        ResponseMessage responseMessage = new ResponseMessage();
+    public String sendMessage(String message) throws IOException {
+        String responseStr = "";
         try {
             this.out.println(message);
-            String responseStr = this.in.readLine();
+            responseStr = this.in.readLine();
             if (responseStr == null) {
                 System.out.println("Disconnected!");
-            } else {
-                responseMessage.parseQuote(responseStr);
-                System.out.println(responseStr);
-                System.out.println("testQuote: " + responseMessage.getQuote());
-                System.out.println("testMessage: " + responseMessage.getMessage());
             }
-            return responseMessage;
+            return responseStr;
         }catch (IOException e) {
             System.err.println("Couldn't get I/O for " + "the connection to: " + this.serverHost + " at PORT " + this.serverPort);
             System.exit(1);
         }
-        return responseMessage;
+        return responseStr;
     }
 
     public void closeConnections() throws IOException {
