@@ -15,13 +15,14 @@ import java.util.List;
 
 //TODO throw out of season exception
 //TODO Erase CreateQuoteMessage class
+//TODO Verify used constant values
+//TODO Close socket connection
 
 
 public class ReservationService {
     private final static List<Reservation> reservationsList = new ArrayList<Reservation>();
 
     private ClientSocket    clientSocket;
-    private Reservation     reservation;
 
     public ReservationService(String serverHost, int port) {
         try {
@@ -71,13 +72,9 @@ public class ReservationService {
             BookingDay startDate = new BookingDay(year, month, day);
             int duration = Integer.parseInt(tourDuration);
 
-            reservation.setUsername(username);
-            reservation.setTourName(tourId);
-            reservation.setStartDate(startDate);
-            reservation.setDuration(duration);
-            reservation.setId(reservationsList.size());
-            reservation.setCreatedAt(new Date());
-
+            ResponseMessage response = clientSocket.sendMessage(
+                    CreateQuoteMessage.createMessage(tourId, year, month, day, duration)
+            );
 //                    Rates rates;
 //                    switch (comboBoxTours.getSelectedIndex()){
 //                        case 1:
@@ -103,7 +100,17 @@ public class ReservationService {
 //                    System.out.println("Cost: " + rates.getCost());
 //
 //                    reservation.setTotalCost(rates.getCost());
-            reservation.setTotalCost(9999999.99);
+//            reservation.setTotalCost(9999999.99);
+
+            Reservation reservation = new Reservation();
+            reservation.setUsername(username);
+            reservation.setTourName(tourId);
+            reservation.setStartDate(startDate);
+            reservation.setDuration(duration);
+            reservation.setId(reservationsList.size());
+            reservation.setCreatedAt(new Date());
+
+//            reservation.setTotalCost(9999999.99);
 
             reservationsList.add(reservation);
 
@@ -120,9 +127,11 @@ public class ReservationService {
         }catch (NumberFormatException exception){
             System.out.println("Error: " + exception);
             JOptionPane.showMessageDialog(null, exception.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        }catch (OutOfSeasonException exception){
-            System.out.println("Error: " + exception);
-            JOptionPane.showMessageDialog(null, exception.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+//        }catch (OutOfSeasonException exception){
+//            System.out.println("Error: " + exception);
+//            JOptionPane.showMessageDialog(null, exception.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }catch(IOException exception){
+            System.out.println("Unable to create send message using socket connection");
         }
 
 
