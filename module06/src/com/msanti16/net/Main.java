@@ -1,7 +1,10 @@
+/*
+    Student Name: Manuel E. Santiago Laboy
+    Course: EN.605.681.81.FA19 Principles of Enterprise Web Development
+*/
+
 package com.msanti16.net;
 
-import com.msanti16.net.services.ClientSocket;
-import com.msanti16.net.services.CreateQuoteMessage;
 import com.msanti16.net.view.ReservationGui;
 import controller.ReservationController;
 
@@ -20,29 +23,19 @@ public class Main {
         System.out.println("Module 6 Homework");
         System.out.println("Manuel E. Santiago Laboy");
 
-        ClientSocket clientSocket = new ClientSocket(SERVER_HOST, PORT);
-        clientSocket.createSocket();
-        String response = clientSocket.sendMessage(CreateQuoteMessage.createMessage(1, 2019, 10, 4, 3));
-        clientSocket.closeConnections();
-        System.out.println("response = " + response);
-//        SwingUtilities.invokeLater(new Runnable() {
-//            public void run() {
-//                try {
-//                    createAndShowGUI();
-//                } catch (Exception exception) {
-//                    exception.printStackTrace();
-//                }
-//            }
-//        });
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                createAndShowGUI();
+            }
+        });
 
     }
 
-    public static void createAndShowGUI() throws Exception {
+    public static void createAndShowGUI() throws NullPointerException {
         try {
             ReservationGui reservationGui = new ReservationGui( "Reservation Panel");
-            ReservationController reservationController = new ReservationController(
-                    reservationGui, SERVER_HOST, PORT
-            );
+            ReservationController reservationController =
+                    new ReservationController( reservationGui, SERVER_HOST, PORT);
             reservationController.initController();
         } catch (NullPointerException exception){
             System.out.println("Unable to create UI");

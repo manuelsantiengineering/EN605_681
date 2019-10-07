@@ -10,10 +10,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-//TODO throw out of season exception
+
 //TODO Erase CreateQuoteMessage class
 //TODO Verify used constant values
 //TODO Close socket connection
+//TODO Remove unecessary imports
 
 
 public class ReservationService {
@@ -52,6 +53,7 @@ public class ReservationService {
             String reservationYear, String tourDuration,
             String username, int tourId
     ){
+        System.out.println("Creating Reservation");
         try{
             if(reservationMonth.isEmpty()){
                 throw new BadIntegerParsingException("Reservation month can't be empty", reservationMonth);
@@ -74,17 +76,17 @@ public class ReservationService {
             );
             ResponseMessage response = new ResponseMessage(responseStr);
             response.parseQuote();
+            System.out.println("response: " + response.getMessage());
+            System.out.println("response: " + response.getResponse());
 
             Reservation reservation = new Reservation();
-            reservation.setTotalCost(response.getQuote());
             reservation.setUsername(username);
             reservation.setTourName(tourId);
             reservation.setStartDate(startDate);
             reservation.setDuration(duration);
             reservation.setId(reservationsList.size());
             reservation.setCreatedAt(new Date());
-
-//            reservation.setTotalCost(9999999.99);
+            reservation.setTotalCost(response.getQuote());
 
             reservationsList.add(reservation);
 
@@ -106,10 +108,13 @@ public class ReservationService {
             JOptionPane.showMessageDialog(null, exception.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }catch(IOException exception){
             System.out.println("Unable to create send message using socket connection");
+            JOptionPane.showMessageDialog(null, "Unable to create send message using socket connection", "Error", JOptionPane.ERROR_MESSAGE);
         }catch (NullPointerException exception){
             System.out.println("Unable to parse response");
+            JOptionPane.showMessageDialog(null, "Unable to parse response", "Error", JOptionPane.ERROR_MESSAGE);
         }catch (UnableToGetQuoteException exception){
-            System.out.println("Unable to parse response");
+            System.out.println("Error: " + exception);
+            JOptionPane.showMessageDialog(null, exception.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
 
 

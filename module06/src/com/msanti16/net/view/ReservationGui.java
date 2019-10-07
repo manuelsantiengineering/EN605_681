@@ -1,24 +1,11 @@
 package com.msanti16.net.view;
-/*
-    Student Name: Manuel E. Santiago Laboy
-    Course: EN.605.681.81.FA19 Principles of Enterprise Web Development
-*/
 
 import com.msanti16.net.constants.ReservationConstants;
-import com.msanti16.net.exceptions.BadBookingDateException;
-import com.msanti16.net.exceptions.BadIntegerParsingException;
-import com.msanti16.net.exceptions.BadUserNameException;
-import com.msanti16.net.exceptions.OutOfSeasonException;
-import com.msanti16.net.domain.BookingDay;
-import com.msanti16.net.domain.Reservation;
 import com.msanti16.net.utils.JTextFieldLimit;
-import controller.ReservationController;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 
 public class ReservationGui extends JFrame {
     private JFrame reservationFrame;
@@ -70,48 +57,6 @@ public class ReservationGui extends JFrame {
         txtReservationMonth.setDocument(new JTextFieldLimit(2));
         txtReservationDay.setDocument(new JTextFieldLimit(2));
         txtReservationYear.setDocument(new JTextFieldLimit(4));
-
-        //START NEW MANUEL
-//        ReservationController reservationController = new ReservationController(
-//                txtUsername, txtReservationYear, txtReservationMonth,
-//                txtReservationDay, comboBoxTours, comboBoxDuration
-//        );
-//        btnReserve.addActionListener(reservationController);
-
-
-        //END NEW MANUEL
-
-//
-//
-//        comboBoxTours.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                if(comboBoxTours.getSelectedIndex() == 0){
-//                    comboBoxDuration.removeAllItems();
-//                    labelCostPerDay.setText("$40.00");
-//                    labelPremiumCostPerDay.setText("$60.00");
-//                    for(int x : ReservationConstants.DURATION_GARDINER_LAKE){
-//                        comboBoxDuration.addItem(x);
-//                    }
-//                }else if(comboBoxTours.getSelectedIndex() == 1){
-//                    comboBoxDuration.removeAllItems();
-//                    labelCostPerDay.setText("$35.00");
-//                    labelPremiumCostPerDay.setText("$52.50");
-//                    for(int x : ReservationConstants.DURATION_HELLROARING_PLATEAU){
-//                        comboBoxDuration.addItem(x);
-//                    }
-//                }else if(comboBoxTours.getSelectedIndex() == 2){
-//                    comboBoxDuration.removeAllItems();
-//                    labelCostPerDay.setText("$45.00");
-//                    labelPremiumCostPerDay.setText("$67.50");
-//                    for(int x : ReservationConstants.DURATION_BEATEN_PATH){
-//                        comboBoxDuration.addItem(x);
-//                    }
-//                }
-//            }
-//
-//        });
-
 
         reservationFrame.pack();
 
@@ -173,6 +118,14 @@ public class ReservationGui extends JFrame {
 
     public void setLabelCostPerDay(JLabel labelCostPerDay) {
         this.labelCostPerDay = labelCostPerDay;
+    }
+
+    public JLabel getLabelPremiumCostPerDay() {
+        return labelPremiumCostPerDay;
+    }
+
+    public void setLabelPremiumCostPerDay(JLabel labelPremiumCostPerDay) {
+        this.labelPremiumCostPerDay = labelPremiumCostPerDay;
     }
 
     public JButton getBtnReserve() {

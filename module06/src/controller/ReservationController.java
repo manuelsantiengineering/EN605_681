@@ -1,25 +1,9 @@
 package controller;
 
-import com.msanti16.net.domain.BookingDay;
-import com.msanti16.net.domain.Reservation;
-import com.msanti16.net.exceptions.BadBookingDateException;
-import com.msanti16.net.exceptions.BadIntegerParsingException;
-import com.msanti16.net.exceptions.BadUserNameException;
 import com.msanti16.net.services.InputValidationService;
 import com.msanti16.net.services.ReservationService;
 import com.msanti16.net.view.ReservationGui;
-
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.util.Date;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.swing.JTextField;
-import javax.swing.JComboBox;
-import javax.swing.JOptionPane;
+import com.msanti16.net.constants.ReservationConstants;
 
 public class ReservationController {
 
@@ -49,7 +33,33 @@ public class ReservationController {
         reservationGui.getTxtReservationYear().addKeyListener(
                 new InputValidationService()
         );
+        reservationGui.getComboBoxTours().addActionListener(e -> this.changeValuesAccordingToTour());
         reservationGui.getBtnReserve().addActionListener(e -> this.createReservation());
+    }
+
+    public void changeValuesAccordingToTour(){
+        if(reservationGui.getComboBoxTours().getSelectedIndex() == 0){
+            reservationGui.getComboBoxDuration().removeAllItems();
+            reservationGui.getLabelCostPerDay().setText("$40.00");
+            reservationGui.getLabelPremiumCostPerDay().setText("$60.00");
+            for(int x : ReservationConstants.DURATION_GARDINER_LAKE){
+                reservationGui.getComboBoxDuration().addItem(x);
+            }
+        }else if(reservationGui.getComboBoxTours().getSelectedIndex() == 1){
+            reservationGui.getComboBoxDuration().removeAllItems();
+            reservationGui.getLabelCostPerDay().setText("$35.00");
+            reservationGui.getLabelPremiumCostPerDay().setText("$52.50");
+            for(int x : ReservationConstants.DURATION_HELLROARING_PLATEAU){
+                reservationGui.getComboBoxDuration().addItem(x);
+            }
+        }else if(reservationGui.getComboBoxTours().getSelectedIndex() == 2){
+            reservationGui.getComboBoxDuration().removeAllItems();
+            reservationGui.getLabelCostPerDay().setText("$45.00");
+            reservationGui.getLabelPremiumCostPerDay().setText("$67.50");
+            for(int x : ReservationConstants.DURATION_BEATEN_PATH){
+                reservationGui.getComboBoxDuration().addItem(x);
+            }
+        }
     }
 
     public void createReservation() {

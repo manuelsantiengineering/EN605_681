@@ -29,6 +29,10 @@ public class ResponseMessage {
         }
     }
 
+    public String getResponse() {
+        return response;
+    }
+
     public Double getQuote() {
         return quote;
     }
