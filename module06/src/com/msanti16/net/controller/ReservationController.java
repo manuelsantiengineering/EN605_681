@@ -5,6 +5,11 @@ import com.msanti16.net.services.ReservationService;
 import com.msanti16.net.view.ReservationGui;
 import com.msanti16.net.constants.ReservationConstants;
 
+import javax.swing.*;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+import java.io.IOException;
+
 public class ReservationController {
 
     private ReservationGui reservationGui;
@@ -59,7 +64,7 @@ public class ReservationController {
     }
 
     public void createReservation() {
-        this.reservationService.createReservation(
+        if(this.reservationService.createReservation(
                 this.reservationGui.getTxtReservationMonth().getText(),
                 this.reservationGui.getTxtReservationDay().getText(),
                 this.reservationGui.getTxtReservationYear().getText(),
@@ -67,14 +72,15 @@ public class ReservationController {
                         .getSelectedIndex()).toString(),
                 this.reservationGui.getTxtUsername().getText(),
                 this.reservationGui.getComboBoxTours().getSelectedIndex()
-        );
+        ) == true){
+            try {
+                this.reservationService.closeSocket();
+            }catch(IOException exception){
+                System.err.println("Unable to close socket connection");
+                System.exit(1);
+            }
+            System.exit(0);
+        }
     }
-
-
-
-
-
-
-
 
 }

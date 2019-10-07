@@ -24,8 +24,8 @@ public class ClientSocket extends Socket {
         try {
             System.out.println("Creating Socket at " + this.serverHost + " PORT " + this.serverPort);
             this.socket = new Socket(this.serverHost, this.serverPort);
-            this.out = new PrintWriter(socket.getOutputStream(), true);
-            this.in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+//            this.out = new PrintWriter(socket.getOutputStream(), true);
+//            this.in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         } catch (UnknownHostException e) {
             System.err.println("Don't know about host: " + this.serverHost);
             System.exit(1);
@@ -33,6 +33,8 @@ public class ClientSocket extends Socket {
     }
 
     public String sendMessage(String message) throws IOException {
+        this.out = new PrintWriter(socket.getOutputStream(), true);
+        this.in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         String responseStr = "";
         System.out.println("message = " + message);
         try {
@@ -52,6 +54,7 @@ public class ClientSocket extends Socket {
 
     public void closeConnections() throws IOException {
         try{
+            System.out.println("Closing Socket at " + this.serverHost + " PORT " + this.serverPort);
             this.socket.close();
             this.out.close();
             this.in.close();

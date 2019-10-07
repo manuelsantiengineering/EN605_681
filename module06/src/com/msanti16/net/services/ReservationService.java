@@ -49,7 +49,7 @@ public class ReservationService {
         return stringBuilder.toString();
     }
 
-    public void createReservation(
+    public boolean createReservation(
             String reservationMonth, String reservationDay,
             String reservationYear, String tourDuration,
             String username, int tourId
@@ -92,6 +92,7 @@ public class ReservationService {
             reservationsList.add(this.reservation);
 
             JOptionPane.showMessageDialog(null, "Reservation Completed!\n" + reservation);
+            return true;
         }catch (BadUserNameException exception){
             System.err.println("Error: " + exception);
             JOptionPane.showMessageDialog(null, exception.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -117,5 +118,6 @@ public class ReservationService {
             System.err.println("Error: " + exception);
             JOptionPane.showMessageDialog(null, exception.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
+        return false;
     }
 }

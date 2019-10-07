@@ -59,6 +59,10 @@ public class ReservationGui extends JFrame {
         this.reservationFrame.pack();
     }
 
+    public JFrame getReservationFrame() {
+        return reservationFrame;
+    }
+
     public JTextField getTxtUsername() {
         return this.txtUsername;
     }
