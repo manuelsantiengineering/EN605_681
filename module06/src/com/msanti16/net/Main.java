@@ -28,8 +28,6 @@ public class Main {
                 createAndShowGUI();
             }
         });
-        System.out.println("Manuel E. Santiago Laboy");
-
     }
 
     public static void createAndShowGUI() throws NullPointerException {

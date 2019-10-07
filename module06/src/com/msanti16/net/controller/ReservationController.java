@@ -73,14 +73,16 @@ public class ReservationController {
                 this.reservationGui.getTxtUsername().getText(),
                 this.reservationGui.getComboBoxTours().getSelectedIndex()
         );
-        if(isCreated == true){
-            try {
-                this.reservationService.closeSocket();
-            }catch(IOException exception){
-                System.err.println("Unable to close socket connection");
-                System.exit(1);
-            }
+        try {
+
+            this.reservationService.closeSocket();
             System.exit(0);
+        }catch(IOException exception){
+            System.err.println("Unable to close socket connection");
+            System.exit(1);
+        }catch(NullPointerException exception){
+            System.err.println("Error creating reservation");
+            System.exit(1);
         }
     }
 
