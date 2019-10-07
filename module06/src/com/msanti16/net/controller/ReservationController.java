@@ -64,7 +64,7 @@ public class ReservationController {
     }
 
     public void createReservation() {
-        if(this.reservationService.createReservation(
+        boolean isCreated = this.reservationService.createReservation(
                 this.reservationGui.getTxtReservationMonth().getText(),
                 this.reservationGui.getTxtReservationDay().getText(),
                 this.reservationGui.getTxtReservationYear().getText(),
@@ -72,7 +72,8 @@ public class ReservationController {
                         .getSelectedIndex()).toString(),
                 this.reservationGui.getTxtUsername().getText(),
                 this.reservationGui.getComboBoxTours().getSelectedIndex()
-        ) == true){
+        );
+        if(isCreated == true){
             try {
                 this.reservationService.closeSocket();
             }catch(IOException exception){
