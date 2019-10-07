@@ -37,63 +37,62 @@ public class ReservationGui extends JFrame {
 
     public ReservationGui(String title){
         super(title);
-        reservationFrame = new JFrame(title);
-        reservationFrame.setContentPane(this.panelRootReserve);
-        reservationFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        reservationFrame.setVisible(true);
+        this.reservationFrame = new JFrame(title);
+        this.reservationFrame.setContentPane(this.panelRootReserve);
+        this.reservationFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.reservationFrame.setVisible(true);
 
-        comboBoxTours.addItem(ReservationConstants.TOURS[0]);
-        comboBoxTours.addItem(ReservationConstants.TOURS[1]);
-        comboBoxTours.addItem(ReservationConstants.TOURS[2]);
-        labelCostPerDay.setText("$40.00");
-        labelPremiumCostPerDay.setText("$60.00");
+        this.comboBoxTours.addItem(ReservationConstants.TOURS[0]);
+        this.comboBoxTours.addItem(ReservationConstants.TOURS[1]);
+        this.comboBoxTours.addItem(ReservationConstants.TOURS[2]);
+        this.labelCostPerDay.setText("$40.00");
+        this.labelPremiumCostPerDay.setText("$60.00");
         for(int x : ReservationConstants.DURATION_GARDINER_LAKE){
-            comboBoxDuration.addItem(x);
+            this.comboBoxDuration.addItem(x);
         }
 
-        txtUsername.setDocument(new JTextFieldLimit(56));
-        txtReservationMonth.setDocument(new JTextFieldLimit(2));
-        txtReservationDay.setDocument(new JTextFieldLimit(2));
-        txtReservationYear.setDocument(new JTextFieldLimit(4));
+        this.txtUsername.setDocument(new JTextFieldLimit(56));
+        this.txtReservationMonth.setDocument(new JTextFieldLimit(2));
+        this.txtReservationDay.setDocument(new JTextFieldLimit(2));
+        this.txtReservationYear.setDocument(new JTextFieldLimit(4));
 
-        reservationFrame.pack();
-
+        this.reservationFrame.pack();
     }
 
     public JTextField getTxtUsername() {
-        return txtUsername;
+        return this.txtUsername;
     }
 
     public JTextField getTxtReservationMonth() {
-        return txtReservationMonth;
+        return this.txtReservationMonth;
     }
 
     public JTextField getTxtReservationDay() {
-        return txtReservationDay;
+        return this.txtReservationDay;
     }
 
     public JTextField getTxtReservationYear() {
-        return txtReservationYear;
+        return this.txtReservationYear;
     }
 
     public JComboBox getComboBoxTours() {
-        return comboBoxTours;
+        return this.comboBoxTours;
     }
 
     public JComboBox getComboBoxDuration() {
-        return comboBoxDuration;
+        return this.comboBoxDuration;
     }
 
     public JLabel getLabelCostPerDay() {
-        return labelCostPerDay;
+        return this.labelCostPerDay;
     }
 
     public JLabel getLabelPremiumCostPerDay() {
-        return labelPremiumCostPerDay;
+        return this.labelPremiumCostPerDay;
     }
 
     public JButton getBtnReserve() {
-        return btnReserve;
+        return this.btnReserve;
     }
 
 }

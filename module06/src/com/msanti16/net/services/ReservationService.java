@@ -33,7 +33,7 @@ public class ReservationService {
     }
 
     public void closeSocket() throws IOException {
-        clientSocket.closeConnections();
+        this.clientSocket.closeConnections();
     }
 
     public static String createQuoteMessage(
@@ -71,7 +71,7 @@ public class ReservationService {
             int year = Integer.parseInt(reservationYear);
             int duration = Integer.parseInt(tourDuration);
 
-            String responseStr = clientSocket.sendMessage(
+            String responseStr = this.clientSocket.sendMessage(
                     this.createQuoteMessage(tourId, year, month, day, duration)
             );
             ResponseMessage response = new ResponseMessage(responseStr);
@@ -80,16 +80,16 @@ public class ReservationService {
             System.out.println("response: " + response.getResponse());
 
             BookingDay startDate = new BookingDay(year, month, day);
-            reservation = new Reservation();
-            reservation.setUsername(username);
-            reservation.setTourName(tourId);
-            reservation.setStartDate(startDate);
-            reservation.setDuration(duration);
-            reservation.setId(reservationsList.size());
-            reservation.setCreatedAt(new Date());
-            reservation.setTotalCost(response.getQuote());
+            this.reservation = new Reservation();
+            this.reservation.setUsername(username);
+            this.reservation.setTourName(tourId);
+            this.reservation.setStartDate(startDate);
+            this.reservation.setDuration(duration);
+            this.reservation.setId(reservationsList.size());
+            this.reservation.setCreatedAt(new Date());
+            this.reservation.setTotalCost(response.getQuote());
 
-            reservationsList.add(reservation);
+            reservationsList.add(this.reservation);
 
             JOptionPane.showMessageDialog(null, "Reservation Completed!\n" + reservation);
         }catch (BadUserNameException exception){
@@ -117,7 +117,5 @@ public class ReservationService {
             System.err.println("Error: " + exception);
             JOptionPane.showMessageDialog(null, exception.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
-
-
     }
 }

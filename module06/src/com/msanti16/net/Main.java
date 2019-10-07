@@ -6,7 +6,7 @@
 package com.msanti16.net;
 
 import com.msanti16.net.view.ReservationGui;
-import controller.ReservationController;
+import com.msanti16.net.controller.ReservationController;
 
 import javax.swing.*;
 import java.io.IOException;
@@ -28,6 +28,7 @@ public class Main {
                 createAndShowGUI();
             }
         });
+        System.out.println("Manuel E. Santiago Laboy");
 
     }
 

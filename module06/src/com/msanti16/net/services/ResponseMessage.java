@@ -30,15 +30,15 @@ public class ResponseMessage {
     }
 
     public String getResponse() {
-        return response;
+        return this.response;
     }
 
     public Double getQuote() {
-        return quote;
+        return this.quote;
     }
 
     public String getMessage() {
-        return message;
+        return this.message;
     }
 
 }
