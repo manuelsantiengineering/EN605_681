@@ -8,22 +8,18 @@ import com.msanti16.net.constants.ReservationConstants;
 public class ReservationController {
 
     private ReservationGui reservationGui;
-
-    /* Model */
-    ReservationService reservationService;
+    private ReservationService reservationService;
 
     public ReservationController(
             ReservationGui reservationGui,
             String serverHost, int port
     ) {
         super();
-        System.out.println("CREATING the Reservation Controller");
         reservationService = new ReservationService(serverHost, port);
         this.reservationGui = reservationGui;
     }
 
     public void initController() {
-        System.out.println("Initiating the Reservation Controller");
         reservationGui.getTxtReservationDay().addKeyListener(
                 new InputValidationService()
         );

@@ -21,6 +21,7 @@ public class ReservationService {
     private final static List<Reservation> reservationsList = new ArrayList<Reservation>();
 
     private ClientSocket    clientSocket;
+    private Reservation     reservation;
 
     public ReservationService(String serverHost, int port) {
         try {
@@ -68,18 +69,18 @@ public class ReservationService {
             int month = Integer.parseInt(reservationMonth);
             int day = Integer.parseInt(reservationDay);
             int year = Integer.parseInt(reservationYear);
-            BookingDay startDate = new BookingDay(year, month, day);
             int duration = Integer.parseInt(tourDuration);
 
             String responseStr = clientSocket.sendMessage(
-                    CreateQuoteMessage.createMessage(tourId, year, month, day, duration)
+                    this.createQuoteMessage(tourId, year, month, day, duration)
             );
             ResponseMessage response = new ResponseMessage(responseStr);
             response.parseQuote();
             System.out.println("response: " + response.getMessage());
             System.out.println("response: " + response.getResponse());
 
-            Reservation reservation = new Reservation();
+            BookingDay startDate = new BookingDay(year, month, day);
+            reservation = new Reservation();
             reservation.setUsername(username);
             reservation.setTourName(tourId);
             reservation.setStartDate(startDate);
@@ -92,28 +93,28 @@ public class ReservationService {
 
             JOptionPane.showMessageDialog(null, "Reservation Completed!\n" + reservation);
         }catch (BadUserNameException exception){
-            System.out.println("Error: " + exception);
+            System.err.println("Error: " + exception);
             JOptionPane.showMessageDialog(null, exception.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }catch (BadBookingDateException exception){
-            System.out.println("Error: " + exception);
+            System.err.println("Error: " + exception);
             JOptionPane.showMessageDialog(null, exception.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }catch (BadIntegerParsingException exception){
-            System.out.println("Error: " + exception);
+            System.err.println("Error: " + exception);
             JOptionPane.showMessageDialog(null, exception.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }catch (NumberFormatException exception){
-            System.out.println("Error: " + exception);
+            System.err.println("Error: " + exception);
             JOptionPane.showMessageDialog(null, exception.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }catch (OutOfSeasonException exception){
-            System.out.println("Error: " + exception);
+            System.err.println("Error: " + exception);
             JOptionPane.showMessageDialog(null, exception.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }catch(IOException exception){
-            System.out.println("Unable to create send message using socket connection");
+            System.err.println("Unable to create send message using socket connection");
             JOptionPane.showMessageDialog(null, "Unable to create send message using socket connection", "Error", JOptionPane.ERROR_MESSAGE);
         }catch (NullPointerException exception){
-            System.out.println("Unable to parse response");
+            System.err.println("Unable to parse response");
             JOptionPane.showMessageDialog(null, "Unable to parse response", "Error", JOptionPane.ERROR_MESSAGE);
         }catch (UnableToGetQuoteException exception){
-            System.out.println("Error: " + exception);
+            System.err.println("Error: " + exception);
             JOptionPane.showMessageDialog(null, exception.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
 

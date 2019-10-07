@@ -4,8 +4,6 @@ import com.msanti16.net.constants.ReservationConstants;
 import com.msanti16.net.utils.JTextFieldLimit;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class ReservationGui extends JFrame {
     private JFrame reservationFrame;
@@ -62,77 +60,40 @@ public class ReservationGui extends JFrame {
 
     }
 
-
-
     public JTextField getTxtUsername() {
         return txtUsername;
-    }
-
-    public void setTxtUsername(JTextField txtUsername) {
-        this.txtUsername = txtUsername;
     }
 
     public JTextField getTxtReservationMonth() {
         return txtReservationMonth;
     }
 
-    public void setTxtReservationMonth(JTextField txtReservationMonth) {
-        this.txtReservationMonth = txtReservationMonth;
-    }
-
     public JTextField getTxtReservationDay() {
         return txtReservationDay;
-    }
-
-    public void setTxtReservationDay(JTextField txtReservationDay) {
-        this.txtReservationDay = txtReservationDay;
     }
 
     public JTextField getTxtReservationYear() {
         return txtReservationYear;
     }
 
-    public void setTxtReservationYear(JTextField txtReservationYear) {
-        this.txtReservationYear = txtReservationYear;
-    }
-
     public JComboBox getComboBoxTours() {
         return comboBoxTours;
-    }
-
-    public void setComboBoxTours(JComboBox comboBoxTours) {
-        this.comboBoxTours = comboBoxTours;
     }
 
     public JComboBox getComboBoxDuration() {
         return comboBoxDuration;
     }
 
-    public void setComboBoxDuration(JComboBox comboBoxDuration) {
-        this.comboBoxDuration = comboBoxDuration;
-    }
-
     public JLabel getLabelCostPerDay() {
         return labelCostPerDay;
-    }
-
-    public void setLabelCostPerDay(JLabel labelCostPerDay) {
-        this.labelCostPerDay = labelCostPerDay;
     }
 
     public JLabel getLabelPremiumCostPerDay() {
         return labelPremiumCostPerDay;
     }
 
-    public void setLabelPremiumCostPerDay(JLabel labelPremiumCostPerDay) {
-        this.labelPremiumCostPerDay = labelPremiumCostPerDay;
-    }
-
     public JButton getBtnReserve() {
         return btnReserve;
     }
 
-    public void setBtnReserve(JButton btnReserve) {
-        this.btnReserve = btnReserve;
-    }
 }

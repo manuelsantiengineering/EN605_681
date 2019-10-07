@@ -1,7 +1,11 @@
 package com.msanti16.net.services;
 
-import java.io.*;
-import java.net.*;
+import java.io.PrintWriter;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.Socket;
+import java.net.UnknownHostException;
 
 public class ClientSocket extends Socket {
     private Socket socket = null;
@@ -25,19 +29,18 @@ public class ClientSocket extends Socket {
         } catch (UnknownHostException e) {
             System.err.println("Don't know about host: " + this.serverHost);
             System.exit(1);
-        } catch (IOException e) {
-            System.err.println("Couldn't get I/O for " + "the connection to: " + this.serverHost + " at PORT " + this.serverPort);
-            System.exit(1);
         }
     }
 
     public String sendMessage(String message) throws IOException {
         String responseStr = "";
+        System.out.println("message = " + message);
         try {
             this.out.println(message);
             responseStr = this.in.readLine();
+            System.out.println("responseStr = " + responseStr);
             if (responseStr == null) {
-                System.out.println("Disconnected!");
+                System.err.println("Disconnected!");
             }
             return responseStr;
         }catch (IOException e) {
