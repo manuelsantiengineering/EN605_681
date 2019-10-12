@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Reservation Form</title>
+</head>
+<body>
+<h1>BHC Tour Reservation</h1>
+<hr>
+<form name="form1" method="get" action="/module7/reservation">
+  <table>
+    <tbody>
+      <tr>
+        <td>Name:</td>
+        <td><input type="text" name="username"/></td>
+      </tr>
+      <tr>
+        <td>Start Date (mm/dd/yyyy):</td>
+        <td><input type="text" name="startDate"/></td>
+      </tr>
+      <tr>
+        <td>Tour:</td>
+        <td>
+          <input type="radio" name="tourName" value="Gardiner Lake"/> Gardiner Lake &nbsp;
+          <input type="radio" name="tourName" value="Hellroaring Plateau"/> Hellroaring Plateau &nbsp;
+          <input type="radio" name="tourName" value="The Beaten Path"/> The Beaten Path
+        </td>
+      </tr>
+      <tr>
+        <td>Duration:</td>
+        <td>
+          <select name="duration">
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="7">7</option>  
+          </select>
+        </td>        
+      </tr>
+    </tbody>
+  </table>
+</form>
+</body>
+</html>
