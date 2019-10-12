@@ -1,5 +1,7 @@
 package com.msanti16.servlet.web;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -9,16 +11,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class ReservationController
- */
 @WebServlet("/reservation")
 public class ReservationController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     public ReservationController() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {			
@@ -46,20 +44,39 @@ public class ReservationController extends HttpServlet {
 				duration = "<none entered>";
 			}
 			
-			out.println("<html>");
-			out.println("<head>");
-			out.println("<title>Reservation Completed</title>");
-			out.println("</head>");
-			out.println("<body>");
-			out.println("<h1>Reservation Completed</h1>");
-			out.println("<p>Name: " + username + "</p>");
-			out.println("<p>Start Date: " + startDate + "</p>");
-			out.println("<p>Tour: " + tourName + "</p>");
-			out.println("<p>Duration: " + duration + "</p>");
-			out.println("</body>");
-			out.println("</html>");
+//			out.println("<html>");
+//			out.println("<head>");
+//			out.println("<title>Reservation Completed</title>");
+//			out.println("</head>");
+//			out.println("<body>");
+//			out.println("<h1>Reservation Completed</h1>");
+//			out.println("<p>Name: " + username + "</p>");
+//			out.println("<p>Start Date: " + startDate + "</p>");
+//			out.println("<p>Tour: " + tourName + "</p>");
+//			out.println("<p>Duration: " + duration + "</p>");
+//			out.println("</body>");
+//			out.println("</html>");
 			
-		} finally {
+//			File f=new File("icecreamTopping.txt");
+//		 System.out.println(f.getAbsolutePath());
+
+//			BufferedReader reader = new BufferedReader(					
+//					new FileReader("src/com/msanti16/servlet/resources/errorReservation.html")
+//					);
+//			String line = reader.readLine();
+//			while(line != null) {
+//				out.println(line);
+//				line = reader.readLine();
+//			}
+//			reader.close();
+			
+			response.sendRedirect("/module07/errorReservation.html");
+			
+		}catch(IOException exception)	{
+			exception.printStackTrace();
+			out.close();
+		} 
+		finally {
 			out.close();
 		}
 	}
