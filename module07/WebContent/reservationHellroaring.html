@@ -21,44 +21,28 @@
       </ul>
     </div>
   </nav>
-  
-  
-  <div class="container">
-    <div class="row"> 
-      <h1>Make a Reservation</h1>
-      <form name="form1" method="get" action="/module07/reservation">
-        <div class="form-group">
-          <label for="username">Name:</label>
-          <input type="text" name="username" class="form-control">
-        </div>
-        <div class="dropdown">
-          <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Tour
-          <span class="caret"></span></button>
-          <ul class="dropdown-menu">
-            <li><a href="#">HTML</a></li>
-            <li><a href="#">CSS</a></li>
-            <li><a href="#">JavaScript</a></li>
-          </ul>
-        </div>
-      </form>
-    </div>
-  </div>
 
   <div class="container">
     <div class="row"> 
       <h1>Make a Reservation</h1>
       <form name="form1" method="get" action="/module07/reservation">
         <div class="form-group">
-          <label for="tourName">Tour:</label>
-          <input type="text" name="tourName" class="form-control" value="Gardiner Lake" disabled>
+          <label for="tourName">Tour:</label>          
+          <input type="text" name="tourName" class="form-control" value="Hellroaring Plateau" disabled>      
+        </div>
+        <div class="form-group">          
           <label for="username">Name:</label>
-          <input type="text" name="username" class="form-control">
+          <input type="text" name="username" class="form-control">  
         </div>
         <div class="form-group">
-          <label for="sel1">Select list:</label>
+          <label for="startDate">Start Date (mm/dd/yyyy):</label>
+          <input type="text" name="startDate" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="sel1">Duration:</label>
           <select class="form-control" name="duration" id="sel1">
-            <option>3</option>
-            <option>5</option>
+            <option value="5">5</option>
+            <option value="7">7</option>
           </select>
         </div>
       </form>
