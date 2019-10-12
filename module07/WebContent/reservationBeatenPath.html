@@ -17,7 +17,7 @@
       <ul class="nav navbar-nav">
         <li><a href="./index.html">Home</a></li>
         <li><a href="./tours.html">Tours</a></li>
-        <li class="active"><a href="./reservation.html">Reservation</a></li>
+        <li class="active"><a href="#">Reservation</a></li>
       </ul>
     </div>
   </nav>
@@ -44,51 +44,26 @@
     </div>
   </div>
 
-
-
-
-
-  <h1>BHC Tour Reservation</h1>
-  <hr>
-  <form name="form1" method="get" action="/module07/reservation">
-    <table>
-      <tbody>
-        <tr>
-          <td>Name:</td>
-          <td><input type="text" name="username"/></td>
-        </tr>
-        <tr>
-          <td>Start Date (mm/dd/yyyy):</td>
-          <td><input type="text" name="startDate"/></td>
-        </tr>
-        <tr>
-          <td>Tour:</td>
-          <td>
-            <input type="radio" name="tourName" value="Gardiner Lake"/> Gardiner Lake &nbsp;
-            <input type="radio" name="tourName" value="Hellroaring Plateau"/> Hellroaring Plateau &nbsp;
-            <input type="radio" name="tourName" value="The Beaten Path"/> The Beaten Path
-          </td>
-        </tr>
-        <tr>
-          <td>Duration:</td>
-          <td>
-            <select name="duration">
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="7">7</option>  
-            </select>
-          </td>           
-        </tr>
-        <tr>
-          <td>
-            <input type="submit" value="reserve" name="btnReserve"/> &nbsp;
-            <input type="submit" value="Clear" name="btnClear"/> &nbsp;
-          </td> 
-        </tr>
-      </tbody>
-    </table>
-  </form>
+  <div class="container">
+    <div class="row"> 
+      <h1>Make a Reservation</h1>
+      <form name="form1" method="get" action="/module07/reservation">
+        <div class="form-group">
+          <label for="tourName">Tour:</label>
+          <input type="text" name="tourName" class="form-control" value="Gardiner Lake" disabled>
+          <label for="username">Name:</label>
+          <input type="text" name="username" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="sel1">Select list:</label>
+          <select class="form-control" name="duration" id="sel1">
+            <option>3</option>
+            <option>5</option>
+          </select>
+        </div>
+      </form>
+    </div>
+  </div>
+  
 </body>
 </html>
