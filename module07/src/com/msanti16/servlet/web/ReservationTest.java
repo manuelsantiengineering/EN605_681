@@ -13,14 +13,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 // http://localhost:8080/module07_servlet/reservation?firstName=Tomate&lastName=Rojo
-@WebServlet("/reservation")
-public class ReservationController extends HttpServlet {
+@WebServlet("/reservationTest")
+public class ReservationTest extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ReservationController() {
+    public ReservationTest() {
         super();
         // TODO Auto-generated constructor stub
     }
