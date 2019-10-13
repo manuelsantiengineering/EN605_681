@@ -49,9 +49,7 @@ public class ReservationController extends HttpServlet {
 			
 			reservationServiceResponse = 
 					reservationService.createReservation(username, tourName, startDate, duration);
-			
-			System.out.println("End");
-//			System.out.println(reservationServiceResponse);
+
 			out.println(reservationServiceResponse);			
 		} 
 		finally {

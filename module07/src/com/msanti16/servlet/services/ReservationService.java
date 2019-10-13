@@ -21,7 +21,7 @@ public class ReservationService {
     ){
         System.out.println("Creating Reservation");
         try{
-        	if(reservationDate.chars().filter(ch -> ch == '/').count() != 3) {
+        	if(reservationDate.chars().filter(ch -> ch == '/').count() != 2) {
         		throw new BadIntegerParsingException("Incorrect date format", reservationDate);
         	}
         	String[] parsedDate = reservationDate.split("/");
@@ -37,7 +37,7 @@ public class ReservationService {
             if(parsedDate[2].isEmpty()){
                 throw new BadIntegerParsingException("Reservation year can't be empty", parsedDate[2]);
             }
-            
+
             int month = Integer.parseInt(parsedDate[0]);
             int day = Integer.parseInt(parsedDate[1]);
             int year = Integer.parseInt(parsedDate[2]);
@@ -55,8 +55,8 @@ public class ReservationService {
             	tourId = 0;
                 rates = new Rates(Rates.HIKE.GARDINER);                
             }
-            rates.setBeginDate(reservation.getStartDate());
-            rates.setDuration(duration);
+            
+    		System.out.println("Tomate: " + reservationDate.chars().filter(ch -> ch == '/').count());
             
             BookingDay startDate = new BookingDay(year, month, day);
             this.reservation = new Reservation();
@@ -65,7 +65,9 @@ public class ReservationService {
             this.reservation.setStartDate(startDate);
             this.reservation.setDuration(duration);
             this.reservation.setCreatedAt(new Date());
-                        
+            rates.setBeginDate(reservation.getStartDate());
+            rates.setDuration(duration);
+            
             if(!rates.isValidDates()){
                 throw new OutOfSeasonException("Selected dates are out of the season.");
             }

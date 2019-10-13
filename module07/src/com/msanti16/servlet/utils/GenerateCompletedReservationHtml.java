@@ -103,7 +103,8 @@ public class GenerateCompletedReservationHtml extends GenerateHtml {
 			"      <div class=\"col-sm-12\">\r\n" + 
 			"        <h1>Reservation Completed</h1>\r\n" + 
 			"        <p>Get prepare for your next adventure!</p>\r\n" + 
-			"        <button type=\"button\" class=\"btn btn-success btn-block\" data-toggle=\"collapse\" data-target=\"#reservation\">Simple collapsible</button>\r\n" + 
+			"        <button type=\"button\" class=\"btn btn-success btn-block\" data-toggle=\"collapse\" " + 
+			"data-target=\"#reservation\">" + this.tourName +" Reservation</button>\r\n" + 
 			"        <div id=\"reservation\" class=\"collapse\">\r\n" + 
 			"          <table class=\"table table-hover\">\r\n" + 
 			"            <tbody>\r\n" + 
