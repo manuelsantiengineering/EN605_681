@@ -84,23 +84,57 @@ public class GenerateCompletedReservationHtml extends GenerateHtml {
 		String extraBody = new String();
 		extraHead += this.title;
 		extraBody = 
-			"<nav class=\"navbar navbar-default\">\r\n" + 
-			"    <div class=\"container-fluid\">\r\n" + 
-			"      <div class=\"navbar-header\">\r\n" + 
-			"        <a class=\"navbar-brand\" href=\"./index.html\">Beartooth Hiking Company</a>\r\n" + 
-			"      </div>\r\n" + 
-			"      <ul class=\"nav navbar-nav\">\r\n" + 
-			"        <li class=\"active\"><a href=\"./index.html\">Home</a></li>\r\n" + 
-			"        <li><a href=\"./tours.html\">Tours</a></li>\r\n" + 
-			"      </ul>\r\n" + 
-			"    </div>\r\n" + 
-			"  </nav>"
+				"<nav class=\"navbar navbar-default\">\r\n" + 
+				"    <div class=\"container-fluid\">\r\n" + 
+				"      <div class=\"navbar-header\">\r\n" + 
+				"        <a class=\"navbar-brand\" href=\"./index.html\">Beartooth Hiking Company</a>\r\n" + 
+				"      </div>\r\n" + 
+				"      <ul class=\"nav navbar-nav\">\r\n" + 
+				"        <li><a href=\"./index.html\">Home</a></li>\r\n" + 
+				"        <li><a href=\"./tours.html\">Tours</a></li>\r\n" + 
+				"        <li class=\"active\"><a href=\"./tours.html\">Reservation</a></li>\r\n" + 
+				"      </ul>\r\n" + 
+				"    </div>\r\n" + 
+				"  </nav>"
 		;
 		extraBody += 
 			"<div class=\"container\">\r\n" + 
-			"    <div class=\"row\"> \r\n" + 
-			"      <div class=\"alert alert-danger\">\r\n" + 
-			"        <strong>Error: </strong>" + this.errorMessage + "\r\n" + 
+			"    <div class=\"row\">       \r\n" + 
+			"      <div class=\"col-sm-12\">\r\n" + 
+			"        <h1>Reservation Completed</h1>\r\n" + 
+			"        <p>Get prepare for your next adventure!</p>\r\n" + 
+			"        <button type=\"button\" class=\"btn btn-success btn-block\" data-toggle=\"collapse\" data-target=\"#reservation\">Simple collapsible</button>\r\n" + 
+			"        <div id=\"reservation\" class=\"collapse\">\r\n" + 
+			"          <table class=\"table table-hover\">\r\n" + 
+			"            <tbody>\r\n" + 
+			"              <tr>\r\n" + 
+			"                <td>Reserved on: </td>\r\n" + 
+			"                <td>"+ this.createdAt +"</td>\r\n" + 
+			"              </tr>\r\n" + 
+			"              <tr>\r\n" + 
+			"                <td>Name: </td>\r\n" + 
+			"                <td>"+ this.username +"</td>\r\n" + 
+			"              </tr>\r\n" + 
+			"              <tr>\r\n" + 
+			"                <td>Tour: </td>\r\n" + 
+			"                <td>"+ this.tourName +"</td>\r\n" +  
+			"              </tr>\r\n" + 
+			"              <tr>\r\n" + 
+			"                <td>Start Date: </td>\r\n" + 
+			"                <td>"+ this.startDate +"</td>\r\n" +  
+			"              </tr>\r\n" + 
+			"              <tr>\r\n" + 
+			"                <td>Duration: </td>\r\n" + 
+			"                <td>"+ this.duration +"</td>\r\n" + 
+			"              </tr>\r\n" + 
+			"              <tr>\r\n" + 
+			"                <td>Total Cost: </td>\r\n" + 
+			"                <td>"+ this.totalCost +"</td>\r\n" + 
+			"              </tr>\r\n" + 
+			"            </tbody>\r\n" + 
+			"          </table>\r\n" + 
+			"            Please make sure to fill out and send the waiver before the tour date. \r\n" + 
+			"      	</div>\r\n" + 
 			"      </div>\r\n" + 
 			"    </div>\r\n" + 
 			"  </div>"
