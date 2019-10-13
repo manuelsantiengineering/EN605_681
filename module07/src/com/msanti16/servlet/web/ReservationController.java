@@ -51,21 +51,8 @@ public class ReservationController extends HttpServlet {
 					reservationService.createReservation(username, tourName, startDate, duration);
 			
 			System.out.println("End");
-			System.out.println(reservationServiceResponse);
-			out.println(reservationServiceResponse);
-//			out.println("<html>");
-//			out.println("<head>");
-//			out.println("<title>Reservation Completed</title>");
-//			out.println("</head>");
-//			out.println("<body>");
-//			out.println("<h1>Reservation Completed</h1>");
-//			out.println("<p>Name: " + username + "</p>");
-//			out.println("<p>Start Date: " + startDate + "</p>");
-//			out.println("<p>Tour: " + tourName + "</p>");
-//			out.println("<p>Duration: " + duration + "</p>");
-//			out.println("</body>");
-//			out.println("</html>");			
-			
+//			System.out.println(reservationServiceResponse);
+			out.println(reservationServiceResponse);			
 		} 
 		finally {
 			out.close();

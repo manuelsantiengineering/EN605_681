@@ -47,7 +47,6 @@ public abstract class GenerateHtml implements HtmlGenerator {
 		if(extraParts.length() > 0) {
 			strBld.append(extraParts);
 		}	
-		strBld.append(extraParts);
 		strBld.append("</body>");		
 		this.body = strBld.toString();
 	}
