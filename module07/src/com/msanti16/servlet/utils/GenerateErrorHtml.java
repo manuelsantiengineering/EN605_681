@@ -7,7 +7,7 @@ public class GenerateErrorHtml extends GenerateHtml {
 	public GenerateErrorHtml(String title, String errorMessage) {
 		super();
 		this.title = title;
-		this.errorMessage = errorMessage;
+		this.errorMessage = errorMessage;		
 	}
 
 	public String getTitle() {

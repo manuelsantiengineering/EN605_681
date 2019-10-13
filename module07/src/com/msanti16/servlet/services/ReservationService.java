@@ -5,6 +5,8 @@ import com.msanti16.servlet.domain.BookingDay;
 import com.msanti16.servlet.domain.Rates;
 import com.msanti16.servlet.domain.Reservation;
 import com.msanti16.servlet.exceptions.*;
+import com.msanti16.servlet.utils.GenerateErrorHtml;
+import com.msanti16.servlet.utils.GenerateCompletedReservationHtml;
 
 import java.util.Date;
 
@@ -13,13 +15,11 @@ public class ReservationService {
 
     public ReservationService() {	super();	}
 
-    public boolean createReservation(
+    public String createReservation(
             String username, String tourName,
             String reservationDate, String tourDuration
     ){
         System.out.println("Creating Reservation");
-        //TODO Return error Page with Error information for each exception
-        //TODO Create Reservation Created page
         try{
         	if(reservationDate.chars().filter(ch -> ch == '/').count() != 3) {
         		throw new BadIntegerParsingException("Incorrect date format", reservationDate);
@@ -72,21 +72,67 @@ public class ReservationService {
             
             this.reservation.setTotalCost(rates.getCost());
 
-            return true;
+            GenerateCompletedReservationHtml reservationHtml = 
+            		new GenerateCompletedReservationHtml(
+            				"<title>Beartooth Hiking Company</title>",
+            				this.reservation.getUsername(),
+            				reservationDate,
+            				tourName,
+            				tourDuration,
+            				this.reservation.getCreatedAt().toString(),
+            				this.reservation.getTotalCostString()
+            				);
+            reservationHtml.generateHtml();
+            return reservationHtml.toString();
         }catch (BadUserNameException exception){
-            System.err.println("Error: " + exception);
+            System.err.println("Error: " + exception.getMessage());
+            GenerateErrorHtml errorHtml = new GenerateErrorHtml(
+            		"<title>Beartooth Hiking Company</title>",
+            		exception.getMessage()
+            		);
+            errorHtml.generateHtml();
+            return errorHtml.toString();
         }catch (BadBookingDateException exception){
-            System.err.println("Error: " + exception);
+        	System.err.println("Error: " + exception.getMessage());
+            GenerateErrorHtml errorHtml = new GenerateErrorHtml(
+            		"<title>Beartooth Hiking Company</title>",
+            		exception.getMessage()
+            		);
+            errorHtml.generateHtml();
+            return errorHtml.toString();
         }catch (BadIntegerParsingException exception){
-            System.err.println("Error: " + exception);
+        	System.err.println("Error: " + exception.getMessage());
+            GenerateErrorHtml errorHtml = new GenerateErrorHtml(
+            		"<title>Beartooth Hiking Company</title>",
+            		exception.getMessage()
+            		);
+            errorHtml.generateHtml();
+            return errorHtml.toString();
         }catch (NumberFormatException exception){
-            System.err.println("Error: " + exception);
+        	System.err.println("Error: " + exception.getMessage());
+            GenerateErrorHtml errorHtml = new GenerateErrorHtml(
+            		"<title>Beartooth Hiking Company</title>",
+            		exception.getMessage()
+            		);
+            errorHtml.generateHtml();
+            return errorHtml.toString();
         }catch (OutOfSeasonException exception){
-            System.err.println("Error: " + exception);
+        	System.err.println("Error: " + exception.getMessage());
+            GenerateErrorHtml errorHtml = new GenerateErrorHtml(
+            		"<title>Beartooth Hiking Company</title>",
+            		exception.getMessage()
+            		);
+            errorHtml.generateHtml();
+            return errorHtml.toString();
         }catch (NullPointerException exception){
-            System.err.println("Unable to parse response");
+        	System.err.println("Error: " + exception.getMessage());
+            GenerateErrorHtml errorHtml = new GenerateErrorHtml(
+            		"<title>Beartooth Hiking Company</title>",
+            		exception.getMessage()
+            		);
+            errorHtml.generateHtml();
+            return errorHtml.toString();
         }
-        return false;
     }
 
 }

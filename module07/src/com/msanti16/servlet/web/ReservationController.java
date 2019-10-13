@@ -9,11 +9,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.msanti16.servlet.services.ReservationService;
+
 @WebServlet("/reservation")
 public class ReservationController extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -9094172156258412636L;
+	
+	private ReservationService reservationService = new ReservationService();
 
-    public ReservationController() {
+	public ReservationController() {
         super();
     }
 
@@ -24,6 +28,7 @@ public class ReservationController extends HttpServlet {
 		String startDate = null;
 		String tourName = null;
 		String duration = null;
+		String reservationServiceResponse = null;
 		try {
 			username = request.getParameter("username");
 			if(username == null) {
@@ -40,20 +45,26 @@ public class ReservationController extends HttpServlet {
 			duration = request.getParameter("duration");
 			if(duration == null) {
 				duration = "<none entered>";
-			}
+			}			
 			
-			out.println("<html>");
-			out.println("<head>");
-			out.println("<title>Reservation Completed</title>");
-			out.println("</head>");
-			out.println("<body>");
-			out.println("<h1>Reservation Completed</h1>");
-			out.println("<p>Name: " + username + "</p>");
-			out.println("<p>Start Date: " + startDate + "</p>");
-			out.println("<p>Tour: " + tourName + "</p>");
-			out.println("<p>Duration: " + duration + "</p>");
-			out.println("</body>");
-			out.println("</html>");			
+			reservationServiceResponse = 
+					reservationService.createReservation(username, tourName, startDate, duration);
+			
+			System.out.println("End");
+			System.out.println(reservationServiceResponse);
+			out.println(reservationServiceResponse);
+//			out.println("<html>");
+//			out.println("<head>");
+//			out.println("<title>Reservation Completed</title>");
+//			out.println("</head>");
+//			out.println("<body>");
+//			out.println("<h1>Reservation Completed</h1>");
+//			out.println("<p>Name: " + username + "</p>");
+//			out.println("<p>Start Date: " + startDate + "</p>");
+//			out.println("<p>Tour: " + tourName + "</p>");
+//			out.println("<p>Duration: " + duration + "</p>");
+//			out.println("</body>");
+//			out.println("</html>");			
 			
 		} 
 		finally {

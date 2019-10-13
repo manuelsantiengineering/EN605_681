@@ -117,6 +117,10 @@ public class Reservation {
     public Double getTotalCost() {
         return totalCost;
     }
+    
+    public String getTotalCostString() {
+        return String.format("%.2f", this.totalCost);
+    }
 
     public void setTotalCost(Double totalCost) {
         this.totalCost = totalCost;
