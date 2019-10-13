@@ -30,7 +30,7 @@ public class GenerateErrorHtml extends GenerateHtml {
 	public void generateHtml() {				
 		String extraHead = new String();
 		String extraBody = new String();
-		extraHead = "<title>Beartooth Hiking Company</title>";
+		extraHead += this.title;
 		extraBody = 
 			"<nav class=\"navbar navbar-default\">\r\n" + 
 			"    <div class=\"container-fluid\">\r\n" + 
@@ -57,11 +57,4 @@ public class GenerateErrorHtml extends GenerateHtml {
 		this.buildHtml(extraHead, extraBody);
 	}
 
-	@Override
-	public String toString() {
-		return this.getHtml();
-	}
-	
-	
-	
 }

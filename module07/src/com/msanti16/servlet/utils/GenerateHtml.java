@@ -44,19 +44,6 @@ public abstract class GenerateHtml implements HtmlGenerator {
 	public void buildBody(String extraParts) {
 		StringBuilder strBld = new StringBuilder();
 		strBld.append("<body bgcolor=\"#B0F5B0\" text=\"#000000\" link=\"#0000EE\" vlink=\"#551A8B\" alink=\"#FF0000\">");
-//		strBld.append(
-//				"<nav class=\"navbar navbar-default\">\r\n" + 
-//				"    <div class=\"container-fluid\">\r\n" + 
-//				"      <div class=\"navbar-header\">\r\n" + 
-//				"        <a class=\"navbar-brand\" href=\"./index.html\">Beartooth Hiking Company</a>\r\n" + 
-//				"      </div>\r\n" + 
-//				"      <ul class=\"nav navbar-nav\">\r\n" + 
-//				"        <li class=\"active\"><a href=\"./index.html\">Home</a></li>\r\n" + 
-//				"        <li><a href=\"./tours.html\">Tours</a></li>\r\n" + 
-//				"      </ul>\r\n" + 
-//				"    </div>\r\n" + 
-//				"  </nav>"
-//				);
 		if(extraParts.length() > 0) {
 			strBld.append(extraParts);
 		}	
@@ -85,5 +72,10 @@ public abstract class GenerateHtml implements HtmlGenerator {
 		strBld.append(this.body);
 		strBld.append("</html>");		
 		this.html = strBld.toString();
+	}
+	
+	@Override
+	public String toString() {
+		return this.getHtml();
 	}
 }
