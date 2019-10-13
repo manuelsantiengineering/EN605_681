@@ -53,7 +53,7 @@ public class ReservationController extends HttpServlet {
 			out.println("<p>Tour: " + tourName + "</p>");
 			out.println("<p>Duration: " + duration + "</p>");
 			out.println("</body>");
-			out.println("</html>");
+			out.println("</html>");			
 			
 		} 
 		finally {
