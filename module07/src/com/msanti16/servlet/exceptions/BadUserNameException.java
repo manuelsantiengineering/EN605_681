@@ -1,7 +1,8 @@
 package com.msanti16.servlet.exceptions;
 
 public class BadUserNameException extends Exception {
-    private String username;
+	private static final long serialVersionUID = 9137951669193253841L;
+	private String username;
 
     public BadUserNameException(String msg, String username){
         super(msg);

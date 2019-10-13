@@ -2,12 +2,11 @@ package com.msanti16.servlet.domain;
 
 import java.util.Date;
 
+import com.msanti16.servlet.constants.*;
 import com.msanti16.servlet.exceptions.BadBookingDateException;
 import com.msanti16.servlet.exceptions.BadUserNameException;
 
 public class Reservation {
-    private final String[]  TOURS = {"Gardiner Lake", "Hellroaring Plateau", "The Beaten Path"};
-
     private long            id = -1L;
     private String          username = "no name";
     private BookingDay      startDate;
@@ -92,7 +91,7 @@ public class Reservation {
     public int getStartDay(){ return this.startDate.getDayOfMonth(); }
 
     public String getTourName() {
-        return TOURS[tourId];
+        return ReservationConstants.TOURS[tourId];
     }
 
     public void setTourName(int tourId) {
