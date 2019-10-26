@@ -27,7 +27,7 @@
   <div class="container">
     <div class="row">
       <h1>Make a Reservation</h1>
-      <form name="form1" method="get" action="/module08/reservation">
+      <form name="form1" method="get" action="/module08_msanti16/reservation">
         <div class="form-group">
           <label for="tourName">Tour:</label> <input type="text"
             name="tourName" class="form-control" value="The Beaten Path"
@@ -48,7 +48,8 @@
               <div class="form-group">
               <label class="control-label" for="date">Start Date</label>
               <div class='input-group date' id='datetimepicker'>            
-                <input class="form-control" name="startDate" placeholder="mm/dd/yyyy" type="text"/>
+                <input class="form-control" name="startDate" id="startDate" placeholder="mm/dd/yyyy" 
+                    type="text" onchange="isValidDateFormat()"/>
                 <span class="input-group-addon"> 
                   <span class="glyphicon glyphicon-calendar" id="dateGlyph"></span> 
                 </span>
@@ -102,8 +103,64 @@
   	  	document.getElementById("numOfPeople").value = document.getElementById("numOfPeople").min  	  	
         document.getElementById("modalMessage").innerHTML = 
         	"<strong>Error:</strong> Min party size is 1"
-        $('#errorModal').modal('show');
+        $('#errorModal').modal('show')
       }
+    }
+    function isValidDateFormat(){
+    	if(!checkDateFormatIsCorrect()){
+  			document.getElementById("startDate").value
+    		document.getElementById("modalMessage").innerHTML = 
+            	"<strong>Error:</strong> Wrong date format"
+        	$('#errorModal').modal('show');
+  			document.getElementById("startDate").value = ""
+    	}
+    }
+    function checkDateFormatIsCorrect(){
+    	let value = document.getElementById("startDate").value
+    	if(value.length === 0){
+    		return true
+    	}
+    	if(value.length > 8){    
+        	let array = value.split("/")
+        	if(array.length !== 3){
+    			return false
+        	}
+        	if(array[2].length !== 4){
+    			return false
+        	}
+        	console.log(array)
+        	for(let i = 0; i < array.length; i++){
+        		if(isNaN(array[i]) || parseInt(array[i]) < 1){
+        			return false
+        		}
+        		array[i] = parseInt(array[i])
+        	}
+        	var today = new Date();
+			if(
+				array[2] < today.getFullYear() ||
+				array[2] === today.getFullYear() &&
+				( array[0] < (today.getMonth()+1) || array[0] === (today.getMonth()+1) && array[1] < today.getDate() )
+			){
+				document.getElementById("startDate").value
+	    		document.getElementById("modalMessage").innerHTML = 
+	            	"<strong>Error:</strong> Unable to select a start date before today"
+	        	$('#errorModal').modal('show');
+	        	document.getElementById("startDate").value = ""
+				return true
+        	}
+			if(array[2] > 2022){
+				document.getElementById("startDate").value
+	    		document.getElementById("modalMessage").innerHTML = 
+	            	"<strong>Error:</strong> Unable to select a start date so far in advance"
+	        	$('#errorModal').modal('show');
+	        	document.getElementById("startDate").value = ""
+				return true
+			}
+        	
+    	}else{
+    		return false
+    	}
+    	return true
     }
     $(document).ready(function(){
 		$('#datetimepicker').datepicker({
