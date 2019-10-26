@@ -1,4 +1,4 @@
-package com.msanti16.server;
+package com.msanti16.web;
 import java.io.*;
 import java.net.*;
 
