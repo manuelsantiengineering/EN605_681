@@ -21,11 +21,11 @@ public class ResponseMessage {
         String[] parsedMessage = this.response.split(":");
         this.quote = Double.parseDouble(parsedMessage[0]);
         this.message = parsedMessage[1].trim();
-        if(this.quote == -0.01){
-            throw new UnableToGetQuoteException("Unable to receive response from server", this.response);
-        }
         if(this.message.equals("begin or end date was out of season") == true ){
             throw new OutOfSeasonException("Selected dates are out of the season");
+        }
+        if(this.quote == -0.01){
+            throw new UnableToGetQuoteException("Unable to receive response from server", this.response);
         }
     }
 

@@ -15,12 +15,15 @@ import java.io.IOException;
 //TODO throw alerts
 
 public class Main {
-    private static final String SERVER_HOST = "web7.jhuep.com";
-    private static final int    PORT = 20025;
+//    private static final String SERVER_HOST = "web7.jhuep.com";
+//    private static final int    PORT        = 20025;
+
+    private static final String SERVER_HOST = "localhost";
+    private static final int    PORT        = 20005;
 
     public static void main(String[] args) throws IOException {
         System.out.println("EN.605.681.81.FA19 Principles of Enterprise Web Development");
-        System.out.println("Module 6 Homework");
+        System.out.println("Module 9 Homework");
         System.out.println("Manuel E. Santiago Laboy");
 
         SwingUtilities.invokeLater(new Runnable() {

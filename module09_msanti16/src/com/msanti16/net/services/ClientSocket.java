@@ -24,8 +24,6 @@ public class ClientSocket extends Socket {
         try {
             System.out.println("Creating Socket at " + this.serverHost + " PORT " + this.serverPort);
             this.socket = new Socket(this.serverHost, this.serverPort);
-//            this.out = new PrintWriter(socket.getOutputStream(), true);
-//            this.in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         } catch (UnknownHostException e) {
             System.err.println("Don't know about host: " + this.serverHost);
             System.exit(1);
@@ -40,7 +38,7 @@ public class ClientSocket extends Socket {
         try {
             this.out.println(message);
             responseStr = this.in.readLine();
-            System.out.println("responseStr = " + responseStr);
+            System.out.println("response = " + responseStr);
             if (responseStr == null) {
                 System.err.println("Disconnected!");
             }

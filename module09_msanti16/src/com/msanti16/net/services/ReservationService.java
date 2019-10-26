@@ -6,9 +6,7 @@ import com.msanti16.net.exceptions.*;
 
 import javax.swing.*;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 
 //TODO Erase CreateQuoteMessage class
@@ -18,8 +16,6 @@ import java.util.List;
 
 
 public class ReservationService {
-    private final static List<Reservation> reservationsList = new ArrayList<Reservation>();
-
     private ClientSocket    clientSocket;
     private Reservation     reservation;
 
@@ -85,11 +81,9 @@ public class ReservationService {
             this.reservation.setTourName(tourId);
             this.reservation.setStartDate(startDate);
             this.reservation.setDuration(duration);
-            this.reservation.setId(reservationsList.size());
+            this.reservation.setId(1);
             this.reservation.setCreatedAt(new Date());
             this.reservation.setTotalCost(response.getQuote());
-
-            reservationsList.add(this.reservation);
 
             JOptionPane.showMessageDialog(null, "Reservation Completed!\n" + reservation);
             return true;

@@ -5,9 +5,6 @@ import com.msanti16.net.services.ReservationService;
 import com.msanti16.net.view.ReservationGui;
 import com.msanti16.net.constants.ReservationConstants;
 
-import javax.swing.*;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 import java.io.IOException;
 
 public class ReservationController {
