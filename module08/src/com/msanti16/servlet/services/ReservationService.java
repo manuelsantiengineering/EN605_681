@@ -96,6 +96,7 @@ public class ReservationService {
             				this.reservation.getTotalCostString()
             				);
             reservationHtml.generateHtml();
+            System.out.println("numOfPeople: " + reservationHtml.getPartySize());
             return reservationHtml.toString();
         }catch (BadUserNameException exception){
             System.err.println("Error: " + exception.getMessage());
