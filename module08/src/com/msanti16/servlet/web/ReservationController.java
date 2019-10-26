@@ -28,6 +28,7 @@ public class ReservationController extends HttpServlet {
 		String startDate = null;
 		String tourName = null;
 		String duration = null;
+		String numOfPeople = null;
 		String reservationServiceResponse = null;
 		try {
 			username = request.getParameter("username");
@@ -45,10 +46,14 @@ public class ReservationController extends HttpServlet {
 			duration = request.getParameter("duration");
 			if(duration == null) {
 				duration = "<none entered>";
-			}			
+			}	
+			numOfPeople = request.getParameter("numOfPeople");
+			if(numOfPeople == null) {
+				numOfPeople = "<none entered>";
+			}
 			
 			reservationServiceResponse = 
-					reservationService.createReservation(username, tourName, startDate, duration);
+					reservationService.createReservation(username, tourName, startDate, duration, numOfPeople);
 
 			out.println(reservationServiceResponse);			
 		} 

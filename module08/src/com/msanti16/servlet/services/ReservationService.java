@@ -17,7 +17,8 @@ public class ReservationService {
 
     public String createReservation(
             String username, String tourName,
-            String reservationDate, String tourDuration
+            String reservationDate, String tourDuration,
+            String numOfPeople
     ){
         try{
         	if(reservationDate.chars().filter(ch -> ch == '/').count() != 2) {
@@ -44,6 +45,7 @@ public class ReservationService {
             int day = Integer.parseInt(parsedDate[1]);
             int year = Integer.parseInt(parsedDate[2]);
             int duration = Integer.parseInt(tourDuration);
+            int partySize = Integer.parseInt(numOfPeople);
             
             Rates rates;
             int tourId;            
@@ -64,7 +66,8 @@ public class ReservationService {
             this.reservation.setTourName(tourId);
             this.reservation.setStartDate(startDate);
             this.reservation.setDuration(duration);
-            this.reservation.setCreatedAt(new Date());
+            this.reservation.setPartySize(partySize);
+            this.reservation.setCreatedAt(new Date());            
             rates.setBeginDate(startDate);
             rates.setDuration(duration);
             
@@ -78,7 +81,8 @@ public class ReservationService {
                 		);
             }
             
-            this.reservation.setTotalCost(rates.getCost());
+            double totalCost = rates.getCost() * partySize;
+            this.reservation.setTotalCost(totalCost);
 
             GenerateCompletedReservationHtml reservationHtml = 
             		new GenerateCompletedReservationHtml(
@@ -87,6 +91,7 @@ public class ReservationService {
             				reservationDate,
             				tourName,
             				tourDuration,
+            				numOfPeople,
             				this.reservation.getCreatedAt().toString(),
             				this.reservation.getTotalCostString()
             				);
@@ -125,6 +130,14 @@ public class ReservationService {
             errorHtml.generateHtml();
             return errorHtml.toString();
         }catch (OutOfSeasonException exception){
+        	System.err.println("Error: " + exception.getMessage());
+            GenerateErrorHtml errorHtml = new GenerateErrorHtml(
+            		"<title>Beartooth Hiking Company</title>",
+            		exception.getMessage()
+            		);
+            errorHtml.generateHtml();
+            return errorHtml.toString();
+        }catch (OutOfLimitsReservationException exception){
         	System.err.println("Error: " + exception.getMessage());
             GenerateErrorHtml errorHtml = new GenerateErrorHtml(
             		"<title>Beartooth Hiking Company</title>",

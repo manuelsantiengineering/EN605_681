@@ -5,6 +5,7 @@ import java.util.Date;
 import com.msanti16.servlet.constants.*;
 import com.msanti16.servlet.exceptions.BadBookingDateException;
 import com.msanti16.servlet.exceptions.BadUserNameException;
+import com.msanti16.servlet.exceptions.OutOfLimitsReservationException;
 
 public class Reservation {
     private long            id = -1L;
@@ -12,6 +13,7 @@ public class Reservation {
     private BookingDay      startDate;
     private int             tourId = 0;
     private int             duration = 0;
+    private int             partySize = 0;
     private Date            createdAt;
     private Double          totalCost = 0.0;
 
@@ -19,8 +21,8 @@ public class Reservation {
         super();
     }
 
-    public Reservation(long id, String username, int tourId, BookingDay startDate, int duration)
-            throws BadUserNameException {
+    public Reservation(long id, String username, int tourId, BookingDay startDate, int duration, int partySize)
+            throws BadUserNameException, OutOfLimitsReservationException {
         super();
         username = username.trim();
         if(username.length() < 1 || username.isEmpty()){
@@ -28,16 +30,24 @@ public class Reservation {
         }
         if(!username.matches("^[a-zA-Z]*$")){
             throw new BadUserNameException("Username must be all characters", username);
+        }
+        if(!username.matches("^[a-zA-Z]*$")){
+            throw new BadUserNameException("Username must be all characters", username);
+        }
+        if(partySize < 1 || partySize > 10) {
+        	throw new OutOfLimitsReservationException("Party size must be between 1 and 10, size = ", partySize);
         }
         this.id = id;
         this.username = username;
         this.tourId = tourId;
         this.startDate = startDate;
         this.duration = duration;
+        this.partySize = partySize;
     }
 
-    public Reservation(long id, String username, int tourId, int startYear, int startMonth, int startDay, int duration)
-            throws BadUserNameException, BadBookingDateException {
+    public Reservation(long id, String username, int tourId, int startYear, int startMonth, 
+    		int startDay, int duration , int partySize)
+            throws BadUserNameException, BadBookingDateException, OutOfLimitsReservationException {
         super();
         username = username.trim();
         if(username.length() < 1 || username.isEmpty()){
@@ -46,11 +56,15 @@ public class Reservation {
         if(!username.matches("^[a-zA-Z]*$")){
             throw new BadUserNameException("Username must be all characters", username);
         }
+        if(partySize < 1 || partySize > 10) {
+        	throw new OutOfLimitsReservationException("Party size must be between 1 and 10, size = ", partySize);
+        }
         this.id = id;
         this.username = username;
         this.tourId = tourId;
         this.duration = duration;
         this.startDate = new BookingDay(startYear, startMonth, startDay);
+        this.partySize = partySize;
     }
 
     public long getId() {
@@ -114,7 +128,26 @@ public class Reservation {
         this.createdAt = createdAt;
     }
 
-    public Double getTotalCost() {
+    public int getTourId() {
+		return tourId;
+	}
+
+	public void setTourId(int tourId) {
+		this.tourId = tourId;
+	}
+
+	public int getPartySize() {
+		return partySize;
+	}
+
+	public void setPartySize(int partySize) throws OutOfLimitsReservationException {
+		if(partySize < 1 || partySize > 10) {
+        	throw new OutOfLimitsReservationException("Party size must be between 1 and 10, size = ", partySize);
+        }
+		this.partySize = partySize;
+	}
+
+	public Double getTotalCost() {
         return totalCost;
     }
     
@@ -133,6 +166,7 @@ public class Reservation {
         strBld.append("\nDate of Reservation: ").append(createdAt.toString());
         strBld.append("\nName: ").append(username);
         strBld.append("\nTour: ").append(this.getTourName());
+        strBld.append("\nParty size: ").append(this.getPartySize());
         strBld.append("\nStart Date: ").append(startDate);
         strBld.append("\nDuration: ").append(duration).append(" days");
         strBld.append("\nTotal Cost: $").append(String.format("%.2f", totalCost));

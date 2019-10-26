@@ -6,13 +6,14 @@ public class GenerateCompletedReservationHtml extends GenerateHtml {
 	private String startDate;
 	private String tourName;
 	private String duration;
+	private String partySize;
 	private String createdAt;
 	private String totalCost;
 	
 	public GenerateCompletedReservationHtml(
 			String title, String username, String startDate, 
-			String tourName, String duration, String createdAt, 
-			String totalCost) {
+			String tourName, String duration, String partySize,
+			String createdAt, String totalCost) {
 		super();
 		this.title = title;
 		this.username = username;
@@ -21,6 +22,7 @@ public class GenerateCompletedReservationHtml extends GenerateHtml {
 		this.duration = duration;
 		this.createdAt = createdAt;
 		this.totalCost = totalCost;
+		this.partySize = partySize;
 	}
 
 	public String getTitle() {
@@ -79,6 +81,14 @@ public class GenerateCompletedReservationHtml extends GenerateHtml {
 		this.totalCost = totalCost;
 	}
 
+	public String getPartySize() {
+		return partySize;
+	}
+
+	public void setPartySize(String partySize) {
+		this.partySize = partySize;
+	}
+
 	public void generateHtml() {				
 		String extraHead = new String();
 		String extraBody = new String();
@@ -115,6 +125,10 @@ public class GenerateCompletedReservationHtml extends GenerateHtml {
 			"              <tr>\r\n" + 
 			"                <td>Name: </td>\r\n" + 
 			"                <td>"+ this.username +"</td>\r\n" + 
+			"              </tr>\r\n" + 
+			"              <tr>\r\n" + 
+			"                <td>Party size: </td>\r\n" + 
+			"                <td>"+ this.partySize +"</td>\r\n" +  
 			"              </tr>\r\n" + 
 			"              <tr>\r\n" + 
 			"                <td>Tour: </td>\r\n" + 
