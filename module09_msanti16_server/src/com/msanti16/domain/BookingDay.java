@@ -1,6 +1,6 @@
 package com.msanti16.domain;
 
-import com.msanti16.servlet.exceptions.BadBookingDateException;
+import com.msanti16.exceptions.BadBookingDateException;
 
 import java.util.GregorianCalendar;
 
