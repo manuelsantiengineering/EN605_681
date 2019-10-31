@@ -4,12 +4,8 @@ import com.msanti16.services.RequestManager;
 import java.io.*;
 import java.net.*;
 
-/**
- *
- * @author evansrb1
- */
 public class Main {
-    private final static int PORT=20005;
+    private final static int PORT   = 20005;
 
     public static void main(String[] args) throws IOException {
         System.out.println("EN.605.681.81.FA19 Principles of Enterprise Web Development");
@@ -42,7 +38,6 @@ public class Main {
                     while (!clientSocket.isClosed()) {
                         requestLine = in.readLine();
                         if (requestLine == null) {
-                            System.out.println("Request has null value");
                             break;
                         }
                         String response = RequestManager.getQuote(requestLine);

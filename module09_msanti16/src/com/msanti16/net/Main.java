@@ -15,10 +15,10 @@ import java.io.IOException;
 //TODO throw alerts
 
 public class Main {
-//    private static final String SERVER_HOST = "web7.jhuep.com";
+    private static final String SERVER_HOST = "web7.jhuep.com";
 //    private static final int    PORT        = 20025;
 
-    private static final String SERVER_HOST = "localhost";
+//    private static final String SERVER_HOST = "localhost";
     private static final int    PORT        = 20005;
 
     public static void main(String[] args) throws IOException {
