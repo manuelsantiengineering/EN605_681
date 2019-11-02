@@ -1,19 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 
-  <%@ page import="com.msanti16.servlet.constants.ReservationConstants" %>
-  <%!
-    String[] tourNames = ReservationConstants.TOURS;
-    int[] tourId = {0, 1, 2};   
-    int selectedTourId = -1;  
-    
-    void setSelectedTourId(String value){
-    	selectedTourId = Integer.parseInt(value);
+  <%@ page import="com.msanti16.servlet.constants.ReservationConstantsArrays" %>
+  <%! 
+    String dataTargetName(int val){
+      return  "#myModal-" + val;
     }
-    
-    void getSelectedTourId(){
-	 System.out.println(selectedTourId);
-    }
-        
   %>
 
 <!DOCTYPE html>
@@ -42,9 +33,7 @@
       <li class="active"><a href="./tours.jsp">Tours</a></li>
     </ul>
   </div>
-  </nav>
-  
-
+  </nav>  
 
   <div class="container">
     <div class="row">
@@ -52,187 +41,53 @@
       <p>Select tours for more information and reservations</p>
       <div class="col-sm-12">
         <div class="list-group">
-          <% for(int i = 0; i < tourNames.length; i++) { %>
+          <% for(int i = 0; i < ReservationConstantsArrays.TOURS.length; i++) { %>
             <button 
               data-toggle="modal" 
-              data-target="#myModal"
+              data-target="<%= this.dataTargetName(i) %>"
               class="list-group-item"
-              onclick='setSelectedTourId(this)'
-              id=<%= i %>
             >
-            <%= tourNames[i] %>
+            <%= ReservationConstantsArrays.TOURS[i] %>
             </button> 
           <% } %>
-        
-          NUEVOS
-          <a 
-            data-toggle="modal" 
-            data-target="#modal01"
-            class="list-group-item"
-            name="Gardiner Lake"
-            id="0"
-            >
-            Gardiner Lake
-          </a> 
-          <a
-            data-toggle="modal" 
-            data-target="#modal02"
-            class="list-group-item"
-            name="Hellroaring Plateau"
-            id="1"
-            >
-            Hellroaring Plateau
-          </a> 
-          <a
-            data-toggle="modal" 
-            data-target="#modal03"
-            class="list-group-item"
-            name="The Beaten Path"
-            id="2"
-            >
-            The Beaten Path
-          </a>
-          <button
-            data-toggle="modal" 
-            data-target="#myModal"
-            class="list-group-item"
-            name="Gardiner Lake"
-            id="4"
-            >
-            Test Modal
-          </button>
-          
-          
 
-          
         </div>
       </div>
     </div>
   </div>
 
-  <div class="modal fade" id="myModal" role="dialog">
+  <div class="modal fade" id="myModal-0" role="dialog">
     <jsp:include page="components/tourModal.jsp" >
-      <jsp:param name="tourId" value="Chaitanya" />
-      <jsp:param name="tourName" value="Pratap" />
-      <jsp:param name="duration" value="Singh" />
-      <jsp:param name="pricePerDay" value="Singh" />
-      <jsp:param name="premiumPricePerDay" value="Singh" />
-      <jsp:param name="level" value="Singh" />
+      <jsp:param name="tourName" value="<%= ReservationConstantsArrays.TOURS[0] %>" />
+      <jsp:param name="tourDuration" value="<%= ReservationConstantsArrays.DURATION[0] %>" />
+      <jsp:param name="tourCostPerDay" value="<%= ReservationConstantsArrays.PRICES[0] %>" />
+      <jsp:param name="tourPremiumCost" value="<%= ReservationConstantsArrays.PREMIUM_PRICES[0] %>" />
+      <jsp:param name="tourLevel" value="<%= ReservationConstantsArrays.LEVEL[0] %>" />
+      <jsp:param name="reservationUri" value="./reservationGardiner.jsp" />
     </jsp:include>
   </div>
   
-  <div class="modal fade" id="modal01" role="dialog">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h3>Costs</h3>
-          <p>Gardiner Lake</p>
-        </div>
-        <div class="modal-body">
-          <table class="table">
-            <thead>
-              <tr>
-                <th>Duration</th>
-                <th>Cost Per Day</th>
-                <th>Premium Days</th>
-                <th>Level</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>3 or 5 days</td>
-                <td>$40.00/day</td>
-                <td>$60.00/day</td>
-                <td>Intermediate</td>
-              </tr>
-            </tbody>
-          </table>
-          <div class="text-right">
-            <a type="button" class="btn btn-primary btn-sm"
-              href="./reservationGardiner.html">Reserve</a>
-          </div>
-        </div>
-      </div>
-    </div>
+  <div class="modal fade" id="myModal-1" role="dialog">
+    <jsp:include page="components/tourModal.jsp" >
+      <jsp:param name="tourName" value="<%= ReservationConstantsArrays.TOURS[1] %>" />
+      <jsp:param name="tourDuration" value="<%= ReservationConstantsArrays.DURATION[1] %>" />
+      <jsp:param name="tourCostPerDay" value="<%= ReservationConstantsArrays.PRICES[1] %>" />
+      <jsp:param name="tourPremiumCost" value="<%= ReservationConstantsArrays.PREMIUM_PRICES[1] %>" />
+      <jsp:param name="tourLevel" value="<%= ReservationConstantsArrays.LEVEL[1] %>" />
+      <jsp:param name="reservationUri" value="./reservationHellroaring.jsp" />
+    </jsp:include>
   </div>
-  <div class="modal fade" id="modal02" role="dialog">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h3>Costs</h3>
-          <p>Hellroaring Plateau</p>
-        </div>
-        <div class="modal-body">
-          <table class="table">
-            <thead>
-              <tr>
-                <th>Duration</th>
-                <th>Cost Per Day</th>
-                <th>Premium Days</th>
-                <th>Level</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>2,3, or 4 days</td>
-                <td>$35.00/day</td>
-                <td>$52.50/day</td>
-                <td>Easy</td>
-              </tr>
-            </tbody>
-          </table>
-          <div class="text-right">
-            <a type="button" class="btn btn-primary btn-sm"
-              href="./reservationHellroaring.html">Reserve</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="modal fade" id="modal03" role="dialog">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h3>Costs</h3>
-          <p>The Beaten Path</p>
-        </div>
-        <div class="modal-body">
-          <table class="table">
-            <thead>
-              <tr>
-                <th>Duration</th>
-                <th>Cost Per Day</th>
-                <th>Premium Days</th>
-                <th>Level</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>5 or 7 days</td>
-                <td>$45.00/day</td>
-                <td>$67.50/day</td>
-                <td>Difficult</td>
-              </tr>
-            </tbody>
-          </table>
-          <div class="text-right">
-            <a type="button" class="btn btn-primary btn-sm"
-              href="./reservationBeatenPath.html">Reserve</a>
-          </div>
-        </div>
-      </div>
-    </div>
+  
+  <div class="modal fade" id="myModal-2" role="dialog">
+    <jsp:include page="components/tourModal.jsp" >
+      <jsp:param name="tourName" value="<%= ReservationConstantsArrays.TOURS[2] %>" />
+      <jsp:param name="tourDuration" value="<%= ReservationConstantsArrays.DURATION[2] %>" />
+      <jsp:param name="tourCostPerDay" value="<%= ReservationConstantsArrays.PRICES[2] %>" />
+      <jsp:param name="tourPremiumCost" value="<%= ReservationConstantsArrays.PREMIUM_PRICES[2] %>" />
+      <jsp:param name="tourLevel" value="<%= ReservationConstantsArrays.LEVEL[2] %>" />
+      <jsp:param name="reservationUri" value="./reservationBeatenPath.jsp" />
+    </jsp:include>
   </div>
 
-  <script>
-  	function setSelectedTourId(x){
-  		<% setSelectedTourId( "1"); %>
-  		console.log(x.id);
-  		<% getSelectedTourId(); %>
-  	}
-  </script>
 </body>
 </html>

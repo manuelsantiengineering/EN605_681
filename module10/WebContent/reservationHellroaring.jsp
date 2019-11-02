@@ -13,67 +13,66 @@
   <nav class="navbar navbar-default">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand" href="./index.html">Beartooth Hiking
+        <a class="navbar-brand" href="./index.jsp">Beartooth Hiking
           Company</a>
       </div>
       <ul class="nav navbar-nav">
-        <li><a href="./index.html">Home</a></li>
-        <li><a href="./tours.html">Tours</a></li>
+        <li><a href="./index.jsp">Home</a></li>
+        <li><a href="./tours.jsp">Tours</a></li>
         <li class="active"><a href="#">Reservation</a></li>
       </ul>
     </div>
   </nav>
 
-  <div class="bootstrap-iso">
-    <div class="container">
-      <div class="row">
-        <h1>Make a Reservation</h1>
-        <form name="form1" method="get" action="/module10/reservation">
-          <div class="form-group">
-            <label for="tourName">Tour:</label> <input type="text"
-              name="tourName" class="form-control" value="Gardiner Lake"
-              readonly>
-          </div>
-          <div class="form-group">
-            <label for="username">Name:</label> <input type="text"
-              name="username" class="form-control">
-          </div>
-          <div class="form-group">
-            <label for="numOfPeople">Party Size:</label> <input type="number"
-              name="numOfPeople" class="form-control" min="1" max="10"
-              onchange="checkPartyLimits()" id="numOfPeople" value="1">
-          </div>
-          
-          <div class="row">
-            <div class="col-sm-6">
-                <div class="form-group">
-                <label class="control-label" for="date">Start Date</label>
-                <div class='input-group date' id='datetimepicker'>            
-                  <input class="form-control" name="startDate" id="startDate" placeholder="mm/dd/yyyy" 
+  <div class="container">
+    <div class="row">
+      <h1>Make a Reservation</h1>
+      <form name="form1" method="get" action="/module10/reservation">
+        <div class="form-group">
+          <label for="tourName">Tour:</label> <input type="text"
+            name="tourName" class="form-control"
+            value="Hellroaring Plateau" readonly>
+        </div>
+        <div class="form-group">
+          <label for="username">Name:</label> <input type="text"
+            name="username" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="numOfPeople">Party Size:</label> <input type="number"
+            name="numOfPeople" class="form-control" min="1" max="10"
+            onchange="checkPartyLimits()" id="numOfPeople" value="1">
+        </div>
+        
+        <div class="row">
+          <div class="col-sm-6">
+              <div class="form-group">
+              <label class="control-label" for="date">Start Date</label>
+              <div class='input-group date' id='datetimepicker'>            
+                <input class="form-control" name="startDate" id="startDate" placeholder="mm/dd/yyyy" 
                     type="text" onchange="isValidDateFormat()"/>
-                  <span class="input-group-addon"> 
-                    <span class="glyphicon glyphicon-calendar" id="dateGlyph"></span> 
-                  </span>
-                </div>
-              </div>   
-            </div>
-            <div class="col-sm-6">
-            <div class="form-group">
-              <label for="sel1">Duration:</label> <select
-                class="form-control" name="duration" id="sel1">
-                <option value="3">3</option>
-                <option value="5">5</option>
-              </select>
-            </div>
-            </div>
+                <span class="input-group-addon"> 
+                  <span class="glyphicon glyphicon-calendar" id="dateGlyph"></span> 
+                </span>
+              </div>
+            </div>   
           </div>
-                    
-          <div class="form-group text-right">
-            <input type="submit" class="btn btn-primary btn-lg"
-              value="Reserve" />
+          <div class="col-sm-6">
+          <div class="form-group">
+            <label for="sel1">Duration:</label> <select
+              class="form-control" name="duration" id="sel1">
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+            </select>
           </div>
-        </form>
-      </div>
+          </div>
+        </div>
+
+        <div class="form-group text-right">
+          <input type="submit" class="btn btn-primary btn-lg"
+            value="Reserve" />
+        </div>
+      </form>
     </div>
   </div>
   

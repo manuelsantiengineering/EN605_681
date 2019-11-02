@@ -13,12 +13,12 @@
   <nav class="navbar navbar-default">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand" href="./index.html">Beartooth Hiking
+        <a class="navbar-brand" href="./index.jsp">Beartooth Hiking
           Company</a>
       </div>
       <ul class="nav navbar-nav">
-        <li><a href="./index.html">Home</a></li>
-        <li><a href="./tours.html">Tours</a></li>
+        <li><a href="./index.jsp">Home</a></li>
+        <li><a href="./tours.jsp">Tours</a></li>
         <li class="active"><a href="#">Reservation</a></li>
       </ul>
     </div>
@@ -30,8 +30,8 @@
       <form name="form1" method="get" action="/module10/reservation">
         <div class="form-group">
           <label for="tourName">Tour:</label> <input type="text"
-            name="tourName" class="form-control"
-            value="Hellroaring Plateau" readonly>
+            name="tourName" class="form-control" value="The Beaten Path"
+            readonly>
         </div>
         <div class="form-group">
           <label for="username">Name:</label> <input type="text"
@@ -60,9 +60,8 @@
           <div class="form-group">
             <label for="sel1">Duration:</label> <select
               class="form-control" name="duration" id="sel1">
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="7">7</option>
             </select>
           </div>
           </div>

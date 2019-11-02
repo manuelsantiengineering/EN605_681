@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,8 +12,7 @@
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h3>Costs</h3>
-        <p>Hike Name</p>
-        <p>Value: ${param.tourName} </p>
+        <p>${param.tourName}</p>
       </div>
       <div class="modal-body">
         <table class="table">
@@ -26,16 +26,16 @@
           </thead>
           <tbody>
             <tr>
-              <td>5 or 7 days</td>
-              <td>$45.00/day</td>
-              <td>$67.50/day</td>
-              <td>Difficult</td>
+              <td>${param.tourDuration}</td>
+              <td>${param.tourCostPerDay}</td>
+              <td>${param.tourPremiumCost}</td>
+              <td>${param.tourLevel}</td>
             </tr>
           </tbody>
         </table>        
         <div class="text-right">
           <a type="button" class="btn btn-primary btn-sm"
-            href="./reservationBeatenPath.html">Reserve</a>
+            href="${param.reservationUri}">Reserve</a>
         </div>
       </div>
     </div>
