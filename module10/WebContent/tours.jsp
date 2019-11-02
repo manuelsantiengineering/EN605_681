@@ -1,5 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+
+  <%@ page import="com.msanti16.servlet.constants.ReservationConstants" %>
+  <%
+    String[] tourNames = ReservationConstants.TOURS;
+    int[] tourId = {0, 1, 2};    
+  %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,9 +19,8 @@
 <title>Beartooth Hiking Company</title>
 </head>
 
-<body bgcolor="#B0F5B0" text="#000000" link="#0000EE" vlink="#551A8B"
-  alink="#FF0000">
-
+<body bgcolor="#B0F5B0" text="#000000" link="#0000EE" vlink="#551A8B" alink="#FF0000">
+  
   <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -28,6 +33,8 @@
     </ul>
   </div>
   </nav>
+  
+
 
   <div class="container">
     <div class="row">
@@ -35,10 +42,25 @@
       <p>Select tours for more information and reservations</p>
       <div class="col-sm-12">
         <div class="list-group">
+          <% for(int i = 0; i < tourNames.length; i++) { %>
+            <a 
+            data-toggle="modal" 
+            data-target="#myModal"
+            class="list-group-item"
+            name=<%= tourNames[i] %>
+            id=<%= tourId[i] %>
+            >
+            <%= tourNames[i] %>
+            </a> 
+          <% } %>
+        
+          NUEVOS
           <a 
             data-toggle="modal" 
             data-target="#modal01"
             class="list-group-item"
+            name="Gardiner Lake"
+            id="0"
             >
             Gardiner Lake
           </a> 
@@ -46,6 +68,8 @@
             data-toggle="modal" 
             data-target="#modal02"
             class="list-group-item"
+            name="Hellroaring Plateau"
+            id="1"
             >
             Hellroaring Plateau
           </a> 
@@ -53,23 +77,38 @@
             data-toggle="modal" 
             data-target="#modal03"
             class="list-group-item"
+            name="The Beaten Path"
+            id="2"
             >
             The Beaten Path
           </a>
-          <a
+          <button
             data-toggle="modal" 
-            data-target="#modal04"
+            data-target="#myModal"
             class="list-group-item"
+            name="Gardiner Lake"
+            id="4"
             >
             Test Modal
-          </a>
+          </button>
+          
+          
+
+          
         </div>
       </div>
     </div>
   </div>
 
-  <div class="modal fade" id="modal04" role="dialog">
-    <jsp:include page="components/tourModal.jsp" flush="true" />
+  <div class="modal fade" id="myModal" role="dialog">
+    <jsp:include page="components/tourModal.jsp" >
+      <jsp:param name="tourId" value="Chaitanya" />
+      <jsp:param name="tourName" value="Pratap" />
+      <jsp:param name="duration" value="Singh" />
+      <jsp:param name="pricePerDay" value="Singh" />
+      <jsp:param name="premiumPricePerDay" value="Singh" />
+      <jsp:param name="level" value="Singh" />
+    </jsp:include>
   </div>
   
   <div class="modal fade" id="modal01" role="dialog">

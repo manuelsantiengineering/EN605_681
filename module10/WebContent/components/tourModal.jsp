@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,6 +12,7 @@
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h3>Costs</h3>
         <p>Hike Name</p>
+        <p>Value: ${param.middlename} </p>
       </div>
       <div class="modal-body">
         <table class="table">
@@ -32,7 +32,7 @@
               <td>Difficult</td>
             </tr>
           </tbody>
-        </table>
+        </table>        
         <div class="text-right">
           <a type="button" class="btn btn-primary btn-sm"
             href="./reservationBeatenPath.html">Reserve</a>
@@ -40,5 +40,6 @@
       </div>
     </div>
   </div>
+  
 </body>
 </html>
