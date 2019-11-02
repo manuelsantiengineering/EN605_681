@@ -35,12 +35,12 @@ public class GenerateErrorHtml extends GenerateHtml {
 				"<nav class=\"navbar navbar-default\">\r\n" + 
 				"    <div class=\"container-fluid\">\r\n" + 
 				"      <div class=\"navbar-header\">\r\n" + 
-				"        <a class=\"navbar-brand\" href=\"./index.html\">Beartooth Hiking Company</a>\r\n" + 
+				"        <a class=\"navbar-brand\" href=\"./index.jsp\">Beartooth Hiking Company</a>\r\n" + 
 				"      </div>\r\n" + 
 				"      <ul class=\"nav navbar-nav\">\r\n" + 
-				"        <li><a href=\"./index.html\">Home</a></li>\r\n" + 
-				"        <li><a href=\"./tours.html\">Tours</a></li>\r\n" + 
-				"        <li class=\"active\"><a href=\"./tours.html\">Reservation</a></li>\r\n" + 
+				"        <li><a href=\"./index.jsp\">Home</a></li>\r\n" + 
+				"        <li><a href=\"./tours.jsp\">Tours</a></li>\r\n" + 
+				"        <li class=\"active\"><a href=\"./tours.jsp\">Reservation</a></li>\r\n" + 
 				"      </ul>\r\n" + 
 				"    </div>\r\n" + 
 				"  </nav>"

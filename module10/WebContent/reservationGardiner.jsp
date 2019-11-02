@@ -16,58 +16,57 @@
       <jsp:param name="hideReservation" value="" />
   </jsp:include>
 
-  <div class="bootstrap-iso">
-    <div class="container">
-      <div class="row">
-        <h1>Make a Reservation</h1>
-        <form name="form1" method="get" action="/module10/reservation">
+  <div class="container">
+    <div class="row">
+      <h1>Make a Reservation</h1>
+      <form name="form1" method="get" action="/module10/reservation">
+        <div class="form-group">
+          <label for="tourName">Tour:</label> <input type="text"
+            name="tourName" class="form-control" value="Gardiner Lake"
+            readonly>
+        </div>
+        <div class="form-group">
+          <label for="username">Name:</label> <input type="text"
+            name="username" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label for="numOfPeople">Party Size:</label> <input type="number"
+            name="numOfPeople" class="form-control" min="1" max="10"
+            onchange="checkPartyLimits()" id="numOfPeople" value="1">
+        </div>
+        
+        <div class="row">
+          <div class="col-sm-6">
+              <div class="form-group">
+              <label class="control-label" for="date">Start Date</label>
+              <div class='input-group date' id='datetimepicker'>            
+                <input class="form-control" name="startDate" id="startDate" placeholder="mm/dd/yyyy" 
+                  type="text" onchange="isValidDateFormat()" required/>
+                <span class="input-group-addon"> 
+                  <span class="glyphicon glyphicon-calendar" id="dateGlyph"></span> 
+                </span>
+              </div>
+            </div>   
+          </div>
+          <div class="col-sm-6">
           <div class="form-group">
-            <label for="tourName">Tour:</label> <input type="text"
-              name="tourName" class="form-control" value="Gardiner Lake"
-              readonly>
+            <label for="sel1">Duration:</label> <select
+              class="form-control" name="duration" id="sel1">
+              <option value="3">3</option>
+              <option value="5">5</option>
+            </select>
           </div>
-          <div class="form-group">
-            <label for="username">Name:</label> <input type="text"
-              name="username" class="form-control">
           </div>
-          <div class="form-group">
-            <label for="numOfPeople">Party Size:</label> <input type="number"
-              name="numOfPeople" class="form-control" min="1" max="10"
-              onchange="checkPartyLimits()" id="numOfPeople" value="1">
-          </div>
-          
-          <div class="row">
-            <div class="col-sm-6">
-                <div class="form-group">
-                <label class="control-label" for="date">Start Date</label>
-                <div class='input-group date' id='datetimepicker'>            
-                  <input class="form-control" name="startDate" id="startDate" placeholder="mm/dd/yyyy" 
-                    type="text" onchange="isValidDateFormat()"/>
-                  <span class="input-group-addon"> 
-                    <span class="glyphicon glyphicon-calendar" id="dateGlyph"></span> 
-                  </span>
-                </div>
-              </div>   
-            </div>
-            <div class="col-sm-6">
-            <div class="form-group">
-              <label for="sel1">Duration:</label> <select
-                class="form-control" name="duration" id="sel1">
-                <option value="3">3</option>
-                <option value="5">5</option>
-              </select>
-            </div>
-            </div>
-          </div>
-                    
-          <div class="form-group text-right">
-            <input type="submit" class="btn btn-primary btn-lg"
-              value="Reserve" />
-          </div>
-        </form>
-      </div>
+        </div>
+                  
+        <div class="form-group text-right">
+          <input type="submit" class="btn btn-primary btn-lg"
+            value="Reserve" />
+        </div>
+      </form>
     </div>
   </div>
+
   
   <!-- Modal -->
   <div class="modal fade" id="errorModal" role="dialog">

@@ -27,7 +27,7 @@
         </div>
         <div class="form-group">
           <label for="username">Name:</label> <input type="text"
-            name="username" class="form-control">
+            name="username" class="form-control" required>
         </div>
         <div class="form-group">
           <label for="numOfPeople">Party Size:</label> <input type="number"
@@ -41,7 +41,7 @@
               <label class="control-label" for="date">Start Date</label>
               <div class='input-group date' id='datetimepicker'>            
                 <input class="form-control" name="startDate" id="startDate" placeholder="mm/dd/yyyy" 
-                    type="text" onchange="isValidDateFormat()"/>
+                    type="text" onchange="isValidDateFormat()" required/>
                 <span class="input-group-addon"> 
                   <span class="glyphicon glyphicon-calendar" id="dateGlyph"></span> 
                 </span>
