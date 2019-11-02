@@ -8,20 +8,14 @@
 <title>Beartooth Hiking Company</title>
 </head>
 
-<body bgcolor="#B0F5B0" text="#000000" link="#0000EE" vlink="#551A8B"
-  alink="#FF0000">
-  <nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="./index.jsp">Beartooth Hiking
-        Company</a>
-    </div>
-    <ul class="nav navbar-nav">
-      <li class="active"><a href="./index.jsp">Home</a></li>
-      <li><a href="./tours.jsp">Tours</a></li>
-    </ul>
-  </div>
-  </nav>
+<body bgcolor="#B0F5B0" text="#000000" link="#0000EE" vlink="#551A8B" alink="#FF0000">
+  <jsp:include page="components/navBar.jsp" >
+      <jsp:param name="isIndex" value="active" />
+      <jsp:param name="isTours" value="" />
+      <jsp:param name="isReservation" value="" />
+      <jsp:param name="hideReservation" value="hide" />
+  </jsp:include>
+  
   <div class="jumbotron text-center">
     <h1>Beartooth Hiking Company (BHC)</h1>
     <p>Find great hiking trips!</p>

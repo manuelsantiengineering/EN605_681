@@ -21,19 +21,12 @@
 </head>
 
 <body bgcolor="#B0F5B0" text="#000000" link="#0000EE" vlink="#551A8B" alink="#FF0000">
-  
-  <nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="./index.jsp">Beartooth Hiking
-        Company</a>
-    </div>
-    <ul class="nav navbar-nav">
-      <li><a href="./index.jsp">Home</a></li>
-      <li class="active"><a href="./tours.jsp">Tours</a></li>
-    </ul>
-  </div>
-  </nav>  
+  <jsp:include page="components/navBar.jsp" >
+      <jsp:param name="isIndex" value="" />
+      <jsp:param name="isTours" value="active" />
+      <jsp:param name="isReservation" value="" />
+      <jsp:param name="hideReservation" value="hide" />
+  </jsp:include>
 
   <div class="container">
     <div class="row">
