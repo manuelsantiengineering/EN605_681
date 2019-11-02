@@ -1,9 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 
   <%@ page import="com.msanti16.servlet.constants.ReservationConstants" %>
-  <%
+  <%!
     String[] tourNames = ReservationConstants.TOURS;
-    int[] tourId = {0, 1, 2};    
+    int[] tourId = {0, 1, 2};   
+    int selectedTourId = -1;  
+    
+    void setSelectedTourId(String value){
+    	selectedTourId = Integer.parseInt(value);
+    }
+    
+    void getSelectedTourId(){
+	 System.out.println(selectedTourId);
+    }
+        
   %>
 
 <!DOCTYPE html>
@@ -43,15 +53,15 @@
       <div class="col-sm-12">
         <div class="list-group">
           <% for(int i = 0; i < tourNames.length; i++) { %>
-            <a 
-            data-toggle="modal" 
-            data-target="#myModal"
-            class="list-group-item"
-            name=<%= tourNames[i] %>
-            id=<%= tourId[i] %>
+            <button 
+              data-toggle="modal" 
+              data-target="#myModal"
+              class="list-group-item"
+              onclick='setSelectedTourId(this)'
+              id=<%= i %>
             >
             <%= tourNames[i] %>
-            </a> 
+            </button> 
           <% } %>
         
           NUEVOS
@@ -217,5 +227,12 @@
     </div>
   </div>
 
+  <script>
+  	function setSelectedTourId(x){
+  		<% setSelectedTourId( "1"); %>
+  		console.log(x.id);
+  		<% getSelectedTourId(); %>
+  	}
+  </script>
 </body>
 </html>

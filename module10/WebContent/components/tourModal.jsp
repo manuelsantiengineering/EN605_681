@@ -12,7 +12,7 @@
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h3>Costs</h3>
         <p>Hike Name</p>
-        <p>Value: ${param.middlename} </p>
+        <p>Value: ${param.tourName} </p>
       </div>
       <div class="modal-body">
         <table class="table">
