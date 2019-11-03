@@ -1,4 +1,5 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
@@ -7,20 +8,14 @@
 <title>Beartooth Hiking Company</title>
 </head>
 
-<body bgcolor="#B0F5B0" text="#000000" link="#0000EE" vlink="#551A8B"
-  alink="#FF0000">
-  <nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="./index.html">Beartooth Hiking
-        Company</a>
-    </div>
-    <ul class="nav navbar-nav">
-      <li class="active"><a href="./index.html">Home</a></li>
-      <li><a href="./tours.html">Tours</a></li>
-    </ul>
-  </div>
-  </nav>
+<body bgcolor="#B0F5B0" text="#000000" link="#0000EE" vlink="#551A8B" alink="#FF0000">
+  <jsp:include page="components/navBar.jsp" >
+      <jsp:param name="isIndex" value="active" />
+      <jsp:param name="isTours" value="" />
+      <jsp:param name="isReservation" value="" />
+      <jsp:param name="hideReservation" value="hide" />
+  </jsp:include>
+  
   <div class="jumbotron text-center">
     <h1>Beartooth Hiking Company (BHC)</h1>
     <p>Find great hiking trips!</p>
@@ -62,7 +57,7 @@
           <ul class="pager">
             <p>
               To find out more about prices and reservations click on
-              our <a href="./tours.html">Tours</a> link.
+              our <a href="./tours.jsp">Tours</a> link.
             </p>
           </ul>
         </div>

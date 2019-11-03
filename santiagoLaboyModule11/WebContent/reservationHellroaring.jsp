@@ -21,11 +21,11 @@
   <div class="container">
     <div class="row">
       <h1>Make a Reservation</h1>
-      <form name="form1" method="get" action="/module10/reservation">
+      <form name="form1" method="get" action="/santiagoLaboyModule11/reservation">
         <div class="form-group">
           <label for="tourName">Tour:</label> <input type="text"
-            name="tourName" class="form-control" value="The Beaten Path"
-            readonly>
+            name="tourName" class="form-control"
+            value="Hellroaring Plateau" readonly>
         </div>
         <div class="form-group">
           <label for="username">Name:</label> <input type="text"
@@ -54,8 +54,9 @@
           <div class="form-group">
             <label for="sel1">Duration:</label> <select
               class="form-control" name="duration" id="sel1">
-              <option value="5">5</option>
-              <option value="7">7</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
             </select>
           </div>
           </div>
