@@ -39,8 +39,6 @@ public class GenerateErrorHtml extends GenerateHtml {
 				"      </div>\r\n" + 
 				"      <ul class=\"nav navbar-nav\">\r\n" + 
 				"        <li><a href=\"./index.jsp\">Home</a></li>\r\n" + 
-				"        <li><a href=\"./tours.jsp\">Tours</a></li>\r\n" + 
-				"        <li class=\"active\"><a href=\"./tours.jsp\">Reservation</a></li>\r\n" + 
 				"      </ul>\r\n" + 
 				"    </div>\r\n" + 
 				"  </nav>"

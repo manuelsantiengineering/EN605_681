@@ -1,6 +1,6 @@
 package com.msanti16.servlet.utils;
 
-public class GenerateCompletedReservationHtml extends GenerateHtml {
+public class GenerateFoundReservationHtml extends GenerateHtml {
 	private String title;
 	private String username;
 	private String startDate;
@@ -10,7 +10,7 @@ public class GenerateCompletedReservationHtml extends GenerateHtml {
 	private String createdAt;
 	private String totalCost;
 	
-	public GenerateCompletedReservationHtml(
+	public GenerateFoundReservationHtml(
 			String title, String username, String startDate, 
 			String tourName, String duration, String partySize,
 			String createdAt, String totalCost) {

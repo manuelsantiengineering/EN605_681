@@ -39,18 +39,24 @@ public class FindReservationService {
       	throw new BadIntegerParsingException("Incorrect date format", startDate);
       }
         
-      int month = Integer.parseInt(parsedDate[0]);
+      int month = Integer.parseInt(parsedDate[0]) - 1; // Jan = 0, Dec = 11
       int day = Integer.parseInt(parsedDate[1]);
       int year = Integer.parseInt(parsedDate[2]);
       
       Calendar calendarDate = Calendar.getInstance();
-      calendarDate.set(year, month, day);      
+      calendarDate.set(year, month, day, 0, 0);      
       Date reservationDate = new Date(calendarDate.getTimeInMillis());
       
-//      Reservation reservation = new Reservation()
+      Reservation reservation = new Reservation();
+      reservation.setFirst("TOMATERO");
         
         
-        
+      GenerateErrorHtml errorHtml = new GenerateErrorHtml(
+      		"<title>Beartooth Hiking Company</title>",
+      		"Just for testing until gettin real results  " + reservationDate.toString()
+      		);
+      errorHtml.generateHtml();
+      return errorHtml.toString();
         
         
 		}catch (BadIntegerParsingException exception){
@@ -78,8 +84,6 @@ public class FindReservationService {
       errorHtml.generateHtml();
       return errorHtml.toString();
 		}
-		
-		return "";
 	}
 
 }
