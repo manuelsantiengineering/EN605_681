@@ -2,6 +2,7 @@ package com.msanti16.servlet.services;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.sql.SQLException;
 
 import com.msanti16.servlet.domain.Reservation;
 import com.msanti16.servlet.exceptions.BadIntegerParsingException;
@@ -80,6 +81,14 @@ public class FindReservationService {
       GenerateErrorHtml errorHtml = new GenerateErrorHtml(
       		"<title>Beartooth Hiking Company</title>",
       		exception.getMessage()
+      		);
+      errorHtml.generateHtml();
+      return errorHtml.toString();
+		}catch (SQLException exception) {
+			System.err.println("Error: " + exception.getMessage());
+      GenerateErrorHtml errorHtml = new GenerateErrorHtml(
+      		"<title>Beartooth Hiking Company</title>",
+      		"Unable to connect to the database."
       		);
       errorHtml.generateHtml();
       return errorHtml.toString();

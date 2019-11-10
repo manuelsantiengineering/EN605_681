@@ -2,7 +2,7 @@ package com.msanti16.servlet.domain;
 
 import java.io.Serializable;
 
-import com.msanti16.servlet.constants.ReservationConstants;
+import com.msanti16.servlet.constants.DBConnectionConstants;
 
 @SuppressWarnings("serial")
 public class Hike implements Serializable {
@@ -26,25 +26,25 @@ public class Hike implements Serializable {
 	public void initHike() {
 		switch(this.id) {
 		case 0:
-			this.name = ReservationConstants.TOURS[0];
-			this.durations = ReservationConstants.DURATION_GARDINER_LAKE;
-			this.costPerDay = ReservationConstants.PRICE_GARDINER_LAKE;
-			this.costPerPremiumDay = ReservationConstants.PREMIUM_GARDINER_LAKE;
-			this.level = ReservationConstants.LEVEL_GARDINER_LAKE;
+			this.name = DBConnectionConstants.TOURS[0];
+			this.durations = DBConnectionConstants.DURATION_GARDINER_LAKE;
+			this.costPerDay = DBConnectionConstants.PRICE_GARDINER_LAKE;
+			this.costPerPremiumDay = DBConnectionConstants.PREMIUM_GARDINER_LAKE;
+			this.level = DBConnectionConstants.LEVEL_GARDINER_LAKE;
 			break;
 		case 1:
-			this.name = ReservationConstants.TOURS[1];
-			this.durations = ReservationConstants.DURATION_HELLROARING_PLATEAU;
-			this.costPerDay = ReservationConstants.PRICE_HELLROARING_PLATEAU;
-			this.costPerPremiumDay = ReservationConstants.PREMIUM_HELLROARING_PLATEAU;
-			this.level = ReservationConstants.LEVEL_HELLROARING_PLATEAU;
+			this.name = DBConnectionConstants.TOURS[1];
+			this.durations = DBConnectionConstants.DURATION_HELLROARING_PLATEAU;
+			this.costPerDay = DBConnectionConstants.PRICE_HELLROARING_PLATEAU;
+			this.costPerPremiumDay = DBConnectionConstants.PREMIUM_HELLROARING_PLATEAU;
+			this.level = DBConnectionConstants.LEVEL_HELLROARING_PLATEAU;
 			break;
 		case 2:
-			this.name = ReservationConstants.TOURS[2];
-			this.durations = ReservationConstants.DURATION_BEATEN_PATH;
-			this.costPerDay = ReservationConstants.PRICE_BEATEN_PATH;
-			this.costPerPremiumDay = ReservationConstants.PREMIUM_BEATEN_PATH;
-			this.level = ReservationConstants.LEVEL_BEATEN_PATH;
+			this.name = DBConnectionConstants.TOURS[2];
+			this.durations = DBConnectionConstants.DURATION_BEATEN_PATH;
+			this.costPerDay = DBConnectionConstants.PRICE_BEATEN_PATH;
+			this.costPerPremiumDay = DBConnectionConstants.PREMIUM_BEATEN_PATH;
+			this.level = DBConnectionConstants.LEVEL_BEATEN_PATH;
 			break;
 		}
 	}
@@ -54,25 +54,25 @@ public class Hike implements Serializable {
 		
 		switch(this.id) {
 		case 0:
-			this.name = ReservationConstants.TOURS[0];
-			this.durations = ReservationConstants.DURATION_GARDINER_LAKE;
-			this.costPerDay = ReservationConstants.PRICE_GARDINER_LAKE;
-			this.costPerPremiumDay = ReservationConstants.PREMIUM_GARDINER_LAKE;
-			this.level = ReservationConstants.LEVEL_GARDINER_LAKE;
+			this.name = DBConnectionConstants.TOURS[0];
+			this.durations = DBConnectionConstants.DURATION_GARDINER_LAKE;
+			this.costPerDay = DBConnectionConstants.PRICE_GARDINER_LAKE;
+			this.costPerPremiumDay = DBConnectionConstants.PREMIUM_GARDINER_LAKE;
+			this.level = DBConnectionConstants.LEVEL_GARDINER_LAKE;
 			break;
 		case 1:
-			this.name = ReservationConstants.TOURS[1];
-			this.durations = ReservationConstants.DURATION_HELLROARING_PLATEAU;
-			this.costPerDay = ReservationConstants.PRICE_HELLROARING_PLATEAU;
-			this.costPerPremiumDay = ReservationConstants.PREMIUM_HELLROARING_PLATEAU;
-			this.level = ReservationConstants.LEVEL_HELLROARING_PLATEAU;
+			this.name = DBConnectionConstants.TOURS[1];
+			this.durations = DBConnectionConstants.DURATION_HELLROARING_PLATEAU;
+			this.costPerDay = DBConnectionConstants.PRICE_HELLROARING_PLATEAU;
+			this.costPerPremiumDay = DBConnectionConstants.PREMIUM_HELLROARING_PLATEAU;
+			this.level = DBConnectionConstants.LEVEL_HELLROARING_PLATEAU;
 			break;
 		case 2:
-			this.name = ReservationConstants.TOURS[2];
-			this.durations = ReservationConstants.DURATION_BEATEN_PATH;
-			this.costPerDay = ReservationConstants.PRICE_BEATEN_PATH;
-			this.costPerPremiumDay = ReservationConstants.PREMIUM_BEATEN_PATH;
-			this.level = ReservationConstants.LEVEL_BEATEN_PATH;
+			this.name = DBConnectionConstants.TOURS[2];
+			this.durations = DBConnectionConstants.DURATION_BEATEN_PATH;
+			this.costPerDay = DBConnectionConstants.PRICE_BEATEN_PATH;
+			this.costPerPremiumDay = DBConnectionConstants.PREMIUM_BEATEN_PATH;
+			this.level = DBConnectionConstants.LEVEL_BEATEN_PATH;
 			break;
 		}
 	}	
