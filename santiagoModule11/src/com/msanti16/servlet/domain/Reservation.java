@@ -18,6 +18,30 @@ public class Reservation {
         super();
     }
 
+    public Reservation(String id, String first, String last, Date startDay, String numberOfDays, String guide, String location)
+        throws BadUserNameException, NumberFormatException {
+    super();
+    this.first = first.trim();
+    this.last = last.trim();
+    if(this.first.length() < 1 || this.first.isEmpty()){
+        throw new BadUserNameException("First name value is too short", this.first);
+    }
+    if(!this.first.matches("^[a-zA-Z]*$")){
+        throw new BadUserNameException("First name must be all characters", this.first);
+    }
+    if(this.last.length() < 1 || this.last.isEmpty()){
+      throw new BadUserNameException("Last name value is too short", this.last);
+    }
+    if(!this.last.matches("^[a-zA-Z]*$")){
+        throw new BadUserNameException("Last name must be all characters", this.last);
+    }
+    this.id = Integer.parseInt(id);
+    this.startDay = startDay;
+    this.numberOfDays = Integer.parseInt(numberOfDays);
+    this.guide = Integer.parseInt(guide);
+    this.location = Integer.parseInt(location);
+    }
+    
     public Reservation(long id, String first, String last, Date startDay, int numberOfDays, int guide, int location)
             throws BadUserNameException {
         super();
@@ -110,5 +134,12 @@ public class Reservation {
 		public void setLocation(int location) {
 			this.location = location;
 		}
+
+		@Override
+		public String toString() {
+			return "Reservation [id=" + id + ", first=" + first + ", last=" + last + ", startDay=" + startDay
+			    + ", numberOfDays=" + numberOfDays + ", guide=" + guide + ", location=" + location + "]";
+		}
     
+		
 }

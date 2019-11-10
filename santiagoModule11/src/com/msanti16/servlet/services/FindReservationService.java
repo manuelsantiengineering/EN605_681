@@ -1,5 +1,6 @@
 package com.msanti16.servlet.services;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.sql.SQLException;
@@ -7,7 +8,10 @@ import java.sql.SQLException;
 import com.msanti16.servlet.domain.Reservation;
 import com.msanti16.servlet.exceptions.BadIntegerParsingException;
 import com.msanti16.servlet.exceptions.BadUserNameException;
+import com.msanti16.servlet.repositories.MyDBConnection;
 import com.msanti16.servlet.utils.GenerateErrorHtml;
+import com.msanti16.servlet.repositories.MyDBConnection;
+import com.msanti16.servlet.constants.DBConnectionConstants;
 
 public class FindReservationService {
 	
@@ -40,9 +44,20 @@ public class FindReservationService {
       	throw new BadIntegerParsingException("Incorrect date format", startDate);
       }
         
-      int month = Integer.parseInt(parsedDate[0]) - 1; // Jan = 0, Dec = 11
-      int day = Integer.parseInt(parsedDate[1]);
-      int year = Integer.parseInt(parsedDate[2]);
+      int month, day, year;
+      try {
+	      month = Integer.parseInt(parsedDate[0]) - 1; // Jan = 0, Dec = 11
+	      day = Integer.parseInt(parsedDate[1]);
+	      year = Integer.parseInt(parsedDate[2]);
+      }catch (NumberFormatException exception){
+      	System.err.println("Error: " + exception.getMessage());
+        GenerateErrorHtml errorHtml = new GenerateErrorHtml(
+        		"<title>Beartooth Hiking Company</title>",
+        		"Make sure to use digits for the date values."
+        		);
+        errorHtml.generateHtml();
+        return errorHtml.toString();
+  		}
       
       Calendar calendarDate = Calendar.getInstance();
       calendarDate.set(year, month, day, 0, 0);      
@@ -51,6 +66,11 @@ public class FindReservationService {
       Reservation reservation = new Reservation();
       reservation.setFirst("TOMATERO");
         
+      ArrayList<Reservation> reservationList = MyDBConnection.initConnection(DBConnectionConstants.QUERY);
+      System.out.println("Printing Reservation List");
+      for (int i=0; i < reservationList.size(); i++) {
+        System.out.println(reservationList.get(i) );
+      }
         
       GenerateErrorHtml errorHtml = new GenerateErrorHtml(
       		"<title>Beartooth Hiking Company</title>",
@@ -72,7 +92,7 @@ public class FindReservationService {
     	System.err.println("Error: " + exception.getMessage());
       GenerateErrorHtml errorHtml = new GenerateErrorHtml(
       		"<title>Beartooth Hiking Company</title>",
-      		"Unable to convert date values."
+      		"Error parsing values from database."
       		);
       errorHtml.generateHtml();
       return errorHtml.toString();
