@@ -53,7 +53,7 @@ public class FindReservationService {
         
       GenerateErrorHtml errorHtml = new GenerateErrorHtml(
       		"<title>Beartooth Hiking Company</title>",
-      		"Just for testing until gettin real results  " + reservationDate.toString()
+      		"Just for testing until getting real results  " + reservationDate.toString()
       		);
       errorHtml.generateHtml();
       return errorHtml.toString();
