@@ -34,12 +34,12 @@ public class MyDBConnection {
 //		String id, String first, String last, Date startDay, String numberOfDays, String guide, String location
 		resultSet.first();
 		while(!resultSet.isAfterLast()) {
-			System.out.println("- ");
-			reservationList.add(new Reservation(
-					resultSet.getString(1), resultSet.getString(2), resultSet.getString(3), 
-					new Date(), resultSet.getString(5), new String(resultSet.getString(6) + resultSet.getString(7)),
-					resultSet.getString(8) 
-					));
+			System.out.print("- ");
+//			reservationList.add(new Reservation(
+//					resultSet.getString(1), resultSet.getString(2), resultSet.getString(3), 
+//					new Date(), resultSet.getString(5), new String(resultSet.getString(6) + resultSet.getString(7)),
+//					resultSet.getString(8) 
+//					));
 			System.out.print(resultSet.getString(1));
 			System.out.print(", " + resultSet.getString(2));
 			System.out.print(", " + resultSet.getString(3));
@@ -48,6 +48,7 @@ public class MyDBConnection {
 			System.out.print(", " + resultSet.getString(6));
 			System.out.print(", " + resultSet.getString(7));
 			System.out.print(", " + resultSet.getString(8));
+			System.out.println(" ");
 			resultSet.next();
 		}
 		

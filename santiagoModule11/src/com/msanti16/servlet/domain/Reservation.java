@@ -10,8 +10,8 @@ public class Reservation {
     private String          last = "";
     private Date            startDay;
     private int							numberOfDays;
-    private int							guide;
-    private int							location;
+    private String					guide;
+    private String					location;
 
 
     public Reservation() {
@@ -38,11 +38,11 @@ public class Reservation {
     this.id = Integer.parseInt(id);
     this.startDay = startDay;
     this.numberOfDays = Integer.parseInt(numberOfDays);
-    this.guide = Integer.parseInt(guide);
-    this.location = Integer.parseInt(location);
+    this.guide = guide;
+    this.location = location;
     }
     
-    public Reservation(long id, String first, String last, Date startDay, int numberOfDays, int guide, int location)
+    public Reservation(long id, String first, String last, Date startDay, int numberOfDays, String guide, String location)
             throws BadUserNameException {
         super();
         this.first = first.trim();
@@ -119,19 +119,19 @@ public class Reservation {
 			this.numberOfDays = numberOfDays;
 		}
 
-		public int getGuide() {
+		public String getGuide() {
 			return guide;
 		}
 
-		public void setGuide(int guide) {
+		public void setGuide(String guide) {
 			this.guide = guide;
 		}
 
-		public int getLocation() {
+		public String getLocation() {
 			return location;
 		}
 
-		public void setLocation(int location) {
+		public void setLocation(String location) {
 			this.location = location;
 		}
 
