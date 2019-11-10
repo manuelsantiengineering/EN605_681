@@ -6,12 +6,10 @@
   <nav class="navbar navbar-default">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand" href="./index.jsp">Beartooth Hiking Company</a>
+        <a class="navbar-brand" href="./index.jsp">BHC Employee Portal</a>
       </div>
       <ul class="nav navbar-nav">
-        <li class="${param.isIndex}" ><a href="./index.jsp" >Home</a></li>
-        <li  class="${param.isTours}" ><a href="./tours.jsp" >Tours</a></li>
-        <li class="${param.isReservation}" ><a href="#" class="${param.hideReservation}" >Reservation</a></li>
+        <li class="${param.isIndex}" ><a href="./index.jsp" >Reservations</a></li>
       </ul>
     </div>
   </nav>

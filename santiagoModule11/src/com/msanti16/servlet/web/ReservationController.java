@@ -11,17 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.msanti16.servlet.services.ReservationService;
 
-/** 
- * Use MVC/MVC2 for the design of this project.
- * - Instead of using Servlets to make the web pages, 
- * 			use a Servlet as a controller and then use JSP pages to show information to the user.
- * - The Controller will calculate the rates and perform error 
- * 			checking and then forward the user to the quote or error page
- * - Properly implementing MVC is required for this project.
- * 
- * - Remove all of the old html
- * **/
-
 @WebServlet("/reservation")
 public class ReservationController extends HttpServlet {
 	private static final long serialVersionUID = -9094172156258412636L;

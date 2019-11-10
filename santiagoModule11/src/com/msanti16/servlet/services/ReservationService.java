@@ -11,6 +11,7 @@ import com.msanti16.servlet.utils.GenerateCompletedReservationHtml;
 import java.util.Date;
 
 public class ReservationService {    
+	// Include the Respository interface object
     private Reservation     reservation;
 
     public ReservationService() {	super();	}

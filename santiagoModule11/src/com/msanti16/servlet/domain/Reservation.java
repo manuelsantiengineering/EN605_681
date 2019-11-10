@@ -2,69 +2,45 @@ package com.msanti16.servlet.domain;
 
 import java.util.Date;
 
-import com.msanti16.servlet.constants.*;
-import com.msanti16.servlet.exceptions.BadBookingDateException;
 import com.msanti16.servlet.exceptions.BadUserNameException;
-import com.msanti16.servlet.exceptions.OutOfLimitsReservationException;
 
 public class Reservation {
     private long            id = -1L;
-    private String          username = "";
-    private BookingDay      startDate;
-    private int             tourId = 0;
-    private int             duration = 0;
-    private int             partySize = 0;
-    private Date            createdAt;
-    private Double          totalCost = 0.0;
+    private String          first = "";
+    private String          last = "";
+    private Date            startDay;
+    private int							numberOfDays;
+    private int							guide;
+    private int							location;
+
 
     public Reservation() {
         super();
     }
 
-    public Reservation(long id, String username, int tourId, BookingDay startDate, int duration, int partySize)
-            throws BadUserNameException, OutOfLimitsReservationException {
+    public Reservation(long id, String first, String last, Date startDay, int numberOfDays, int guide, int location)
+            throws BadUserNameException {
         super();
-        username = username.trim();
-        if(username.length() < 1 || username.isEmpty()){
-            throw new BadUserNameException("Username value is too short", username);
+        this.first = first.trim();
+        this.last = last.trim();
+        if(this.first.length() < 1 || this.first.isEmpty()){
+            throw new BadUserNameException("First name value is too short", this.first);
         }
-        if(!username.matches("^[a-zA-Z]*$")){
-            throw new BadUserNameException("Username must be all characters", username);
+        if(!this.first.matches("^[a-zA-Z]*$")){
+            throw new BadUserNameException("First name must be all characters", this.first);
         }
-        if(!username.matches("^[a-zA-Z]*$")){
-            throw new BadUserNameException("Username must be all characters", username);
-        }
-        if(partySize < 1 || partySize > 10) {
-        	throw new OutOfLimitsReservationException("Party size must be between 1 and 10, size = ", partySize);
-        }
-        this.id = id;
-        this.username = username;
-        this.tourId = tourId;
-        this.startDate = startDate;
-        this.duration = duration;
-        this.partySize = partySize;
-    }
+        if(this.last.length() < 1 || this.last.isEmpty()){
+          throw new BadUserNameException("Last name value is too short", this.last);
+	      }
+	      if(!this.last.matches("^[a-zA-Z]*$")){
+	          throw new BadUserNameException("Last name must be all characters", this.last);
+	      }
 
-    public Reservation(long id, String username, int tourId, int startYear, int startMonth, 
-    		int startDay, int duration , int partySize)
-            throws BadUserNameException, BadBookingDateException, OutOfLimitsReservationException {
-        super();
-        username = username.trim();
-        if(username.length() < 1 || username.isEmpty()){
-            throw new BadUserNameException("Username value is too short", username);
-        }
-        if(!username.matches("^[a-zA-Z]*$")){
-            throw new BadUserNameException("Username must be all characters", username);
-        }
-        if(partySize < 1 || partySize > 10) {
-        	throw new OutOfLimitsReservationException("Party size must be between 1 and 10, size = ", partySize);
-        }
         this.id = id;
-        this.username = username;
-        this.tourId = tourId;
-        this.duration = duration;
-        this.startDate = new BookingDay(startYear, startMonth, startDay);
-        this.partySize = partySize;
+        this.startDay = startDay;
+        this.numberOfDays = numberOfDays;
+        this.guide = guide;
+        this.location = location;
     }
 
     public long getId() {
@@ -75,101 +51,64 @@ public class Reservation {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
-    }
+		public String getFirst() {
+			return first;
+		}
 
-    public void setUsername(String username)  throws BadUserNameException {
-        username = username.trim();
-        if(username.length() < 1 || username.isEmpty()){
-            throw new BadUserNameException("Username value is too short", username);
-        }
-        if(!username.matches("^[a-zA-Z]*$")){
-            throw new BadUserNameException("Username must be all characters", username);
-        }
-        this.username = username;
-    }
+		public void setFirst(String first) throws BadUserNameException {
+			this.first = first.trim();
+      if(this.first.length() < 1 || this.first.isEmpty()){
+          throw new BadUserNameException("First name value is too short", this.first);
+      }
+      if(!this.first.matches("^[a-zA-Z]*$")){
+          throw new BadUserNameException("First name must be all characters", this.first);
+      }
+		}
 
-    public BookingDay getStartDate() {
-        return startDate;
-    }
+		public String getLast() {
+			return last;
+		}
 
-    public void setStartDate(BookingDay startDate) {
-        this.startDate = startDate;
-    }
+		public void setLast(String last) throws BadUserNameException {
+			this.last = last.trim();
+      if(this.last.length() < 1 || this.last.isEmpty()){
+        throw new BadUserNameException("Last name value is too short", this.last);
+      }
+      if(!this.last.matches("^[a-zA-Z]*$")){
+          throw new BadUserNameException("Last name must be all characters", this.last);
+      }
+		}
 
-    public int getStartYear(){ return this.startDate.getYear(); }
+		public Date getStartDay() {
+			return startDay;
+		}
 
-    public int getStartMonth(){ return this.startDate.getMonth(); }
+		public void setStartDay(Date startDay) {
+			this.startDay = startDay;
+		}
 
-    public int getStartDay(){ return this.startDate.getDayOfMonth(); }
+		public int getNumberOfDays() {
+			return numberOfDays;
+		}
 
-    public String getTourName() {
-        return ReservationConstants.TOURS[tourId];
-    }
+		public void setNumberOfDays(int numberOfDays) {
+			this.numberOfDays = numberOfDays;
+		}
 
-    public void setTourName(int tourId) {
-        this.tourId = tourId;
-    }
+		public int getGuide() {
+			return guide;
+		}
 
-    public int getDuration() {
-        return duration;
-    }
+		public void setGuide(int guide) {
+			this.guide = guide;
+		}
 
-    public void setDuration(int duration) {
-        this.duration = duration;
-    }
+		public int getLocation() {
+			return location;
+		}
 
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public int getTourId() {
-		return tourId;
-	}
-
-	public void setTourId(int tourId) {
-		this.tourId = tourId;
-	}
-
-	public int getPartySize() {
-		return partySize;
-	}
-
-	public void setPartySize(int partySize) throws OutOfLimitsReservationException {
-		if(partySize < 1 || partySize > 10) {
-        	throw new OutOfLimitsReservationException("Party size must be between 1 and 10, size = ", partySize);
-        }
-		this.partySize = partySize;
-	}
-
-	public Double getTotalCost() {
-        return totalCost;
-    }
+		public void setLocation(int location) {
+			this.location = location;
+		}
     
-    public String getTotalCostString() {
-        return String.format("%.2f", this.totalCost);
-    }
-
-    public void setTotalCost(Double totalCost) {
-        this.totalCost = totalCost;
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder strBld = new StringBuilder();
-        strBld.append("Confirmation Num.: ").append(id);
-        strBld.append("\nDate of Reservation: ").append(createdAt.toString());
-        strBld.append("\nName: ").append(username);
-        strBld.append("\nTour: ").append(this.getTourName());
-        strBld.append("\nParty size: ").append(this.getPartySize());
-        strBld.append("\nStart Date: ").append(startDate);
-        strBld.append("\nDuration: ").append(duration).append(" days");
-        strBld.append("\nTotal Cost: $").append(String.format("%.2f", totalCost));
-        return  strBld.toString();
-    }
 }

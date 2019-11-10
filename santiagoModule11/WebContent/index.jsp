@@ -11,65 +11,115 @@
 <body bgcolor="#B0F5B0" text="#000000" link="#0000EE" vlink="#551A8B" alink="#FF0000">
   <jsp:include page="components/navBar.jsp" >
       <jsp:param name="isIndex" value="active" />
-      <jsp:param name="isTours" value="" />
-      <jsp:param name="isReservation" value="" />
-      <jsp:param name="hideReservation" value="hide" />
   </jsp:include>
   
   <div class="jumbotron text-center">
     <h1>Beartooth Hiking Company (BHC)</h1>
-    <p>Find great hiking trips!</p>
+    <h3>Employee Portal</h3>
   </div>
-
-
 
   <div class="container">
     <div class="row">
-      <div class="col-sm-4">
-        <img src="./images/001_womanHiker.jpg" alt="New Horizons"
-          width="350" height="220" />
-        <h3>Explore New Horizons</h3>
-        <p>Multiple adventures to choice from.</p>
-      </div>
-      <div class="col-sm-4">
-        <img src="./images/002_freedom.jpg" alt="Freedom" width="350"
-          height="220" />
-        <h3>Enjoy Freedom</h3>
-        <p>Incredible panoramic views.</p>
-      </div>
-      <div class="col-sm-4">
-        <img src="./images/003_groupselfie.jpg" alt="Sharing"
-          width="350" height="220" />
-        <h3>Share it with Friends</h3>
-        <p>Great trips to enjoy with friends.</p>
-      </div>
-      <div class="row">
-        <div class="col-sm-12">
-          <ul class="pager">
-            <li class="next"><a
-              href="https://www.fs.usda.gov/recarea/shoshone/recarea/?recid=80899">More
-                information</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-12">
-          <ul class="pager">
-            <p>
-              To find out more about prices and reservations click on
-              our <a href="./tours.jsp">Tours</a> link.
-            </p>
-          </ul>
-        </div>
-        <div class="col-sm-12">
-          <p class="text-right">Created by: Manuel E. Santiago Laboy
-          </p>
-        </div>
-      </div>
+      <h1>Find a Reservation</h1>
+        <form name="form1" method="get" action="/santiagoModule11/findReservation">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label class="control-label" for="date">Start Date</label>
+                <div class='input-group date' id='datetimepicker'>            
+                  <input class="form-control" name="startDate" id="startDate" placeholder="mm/dd/yyyy" 
+                      type="text" onchange="isValidDateFormat()" required/>
+                  <span class="input-group-addon"> 
+                    <span class="glyphicon glyphicon-calendar" id="dateGlyph"></span> 
+                  </span>
+                </div>
+              </div>   
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group text-right">
+                <input type="submit" class="btn btn-primary btn-lg" value="Search" />
+              </div>
+            </div>
+          </div>
+        </form>
     </div>
   </div>
   
+  <!-- Error Modal -->
+  <div class="modal fade" id="errorModal" role="dialog">
+    <div class="modal-dialog">    
+          <div class="alert alert-danger alert-dismissible">
+            <a class="close" data-dismiss="modal" aria-label="close">&times;</a>
+            <p id="modalMessage"></p>
+          </div>
+    </div>  
+  </div>
+  
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>  
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+  <script type="text/javascript">
+    function checkPartyLimits()
+    {
+    	let value = parseInt(document.getElementById("numOfPeople").value)
+    	let max = parseInt(document.getElementById("numOfPeople").max)
+    	let min = parseInt(document.getElementById("numOfPeople").min)
+      if (value > max){
+  	  	document.getElementById("numOfPeople").value = document.getElementById("numOfPeople").max  	  	
+        document.getElementById("modalMessage").innerHTML = 
+        	"<strong>Error:</strong> Max party size is 10"
+        $('#errorModal').modal('show');
+      }else if (value < min){
+  	  	document.getElementById("numOfPeople").value = document.getElementById("numOfPeople").min  	  	
+        document.getElementById("modalMessage").innerHTML = 
+        	"<strong>Error:</strong> Min party size is 1"
+        $('#errorModal').modal('show')
+      }
+    }
+    function isValidDateFormat(){
+    	if(!checkDateFormatIsCorrect()){
+  			document.getElementById("startDate").value
+    		document.getElementById("modalMessage").innerHTML = 
+            	"<strong>Error:</strong> Wrong date format"
+        	$('#errorModal').modal('show');
+  			document.getElementById("startDate").value = ""
+    	}
+    }
+    function checkDateFormatIsCorrect(){
+    	let value = document.getElementById("startDate").value
+    	if(value.length === 0){
+    		return true
+    	}
+    	if(value.length > 8){    
+        	let array = value.split("/")
+        	if(array.length !== 3){
+    			return false
+        	}
+        	if(array[2].length !== 4){
+    			return false
+        	}
+        	console.log(array)
+        	for(let i = 0; i < array.length; i++){
+        		if(isNaN(array[i]) || parseInt(array[i]) < 1){
+        			return false
+        		}
+        		array[i] = parseInt(array[i])
+        	}        	
+    	}else{
+    		return false
+    	}
+    	return true
+    }
+    $(document).ready(function(){
+		$('#datetimepicker').datepicker({
+			format: 'mm/dd/yyyy',
+			todayHighlight: true,
+			autoclose: true,
+			orientation: 'left'
+		})		
+	})
+  </script>
 </body>
 </html>
