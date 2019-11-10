@@ -21,11 +21,11 @@
   <div class="container">
     <div class="row">
       <h1>Make a Reservation</h1>
-      <form name="form1" method="get" action="/santiagoLaboyModule11/reservation">
+      <form name="form1" method="get" action="/santiagoModule11/reservation">
         <div class="form-group">
           <label for="tourName">Tour:</label> <input type="text"
-            name="tourName" class="form-control"
-            value="Hellroaring Plateau" readonly>
+            name="tourName" class="form-control" value="Gardiner Lake"
+            readonly>
         </div>
         <div class="form-group">
           <label for="username">Name:</label> <input type="text"
@@ -43,7 +43,7 @@
               <label class="control-label" for="date">Start Date</label>
               <div class='input-group date' id='datetimepicker'>            
                 <input class="form-control" name="startDate" id="startDate" placeholder="mm/dd/yyyy" 
-                    type="text" onchange="isValidDateFormat()" required/>
+                  type="text" onchange="isValidDateFormat()" required/>
                 <span class="input-group-addon"> 
                   <span class="glyphicon glyphicon-calendar" id="dateGlyph"></span> 
                 </span>
@@ -54,14 +54,13 @@
           <div class="form-group">
             <label for="sel1">Duration:</label> <select
               class="form-control" name="duration" id="sel1">
-              <option value="2">2</option>
               <option value="3">3</option>
-              <option value="4">4</option>
+              <option value="5">5</option>
             </select>
           </div>
           </div>
         </div>
-
+                  
         <div class="form-group text-right">
           <input type="submit" class="btn btn-primary btn-lg"
             value="Reserve" />
@@ -69,6 +68,7 @@
       </form>
     </div>
   </div>
+
   
   <!-- Modal -->
   <div class="modal fade" id="errorModal" role="dialog">

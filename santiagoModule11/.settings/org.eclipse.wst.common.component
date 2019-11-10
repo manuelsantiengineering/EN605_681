@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-	<wb-module deploy-name="santiagoLaboyModule11">
+	<wb-module deploy-name="santiagoModule11">
 		<wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
 		<wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-		<property name="java-output-path" value="/santiagoLaboyModule11/build/classes"/>
-        <property name="context-root" value="santiagoLaboyModule11"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/resources"/>
+		<property name="java-output-path" value="/santiagoModule11/build/classes"/>
+        <property name="context-root" value="santiagoModule11"/>
 	</wb-module>
 </project-modules>
