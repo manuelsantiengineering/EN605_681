@@ -2,7 +2,8 @@ package com.msanti16.servlet.constants;
 
 public interface DBConnectionConstants {
 	
-    final String		URL                            		= "jdbc:mysql://web7.jhuep.com:3306/";
+//    final String		URL                            		= "jdbc:mysql://web7.jhuep.com:3306/";
+    final String		URL                            		= "jdbc:mysql://localhost:3306/";
     final String		DB_SCHEMA                   			= "class";
     final String		DRIVER                            = "com.mysql.jdbc.Driver";
     final String		USER                            	= "johncolter";
@@ -15,5 +16,5 @@ public interface DBConnectionConstants {
 																								    		"FROM reservation, guides, locations \r\n" + 
 																								    		"WHERE reservation.guide = guides.idguides \r\n" + 
 																								    		"AND reservation.location = locations.idlocations \r\n" +
-    																										"AND reservation.StartDay = ";
+    																										"AND reservation.StartDay >= ";
 }

@@ -3,4 +3,4 @@ reservation.StartDay, reservation.NumberOfDays, guides.First, guides.Last, locat
 FROM reservation, guides, locations 
 WHERE reservation.guide = guides.idguides 
 AND reservation.location = locations.idlocations
-AND reservation.StartDay = "2019-11-08";
+AND reservation.StartDay = "2021-08-01";

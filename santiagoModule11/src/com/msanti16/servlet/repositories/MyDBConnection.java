@@ -17,7 +17,7 @@ public class MyDBConnection {
 	public static ArrayList<Reservation> initConnection(String query) 
 			throws SQLException, NumberFormatException, BadUserNameException, BadIntegerParsingException {
 		String dbUrl = DBConnectionConstants.URL + DBConnectionConstants.DB_SCHEMA + DBConnectionConstants.OPTIONS;
-		System.out.println("DB url: " + dbUrl);		
+		System.out.println("dbUrl: " + dbUrl);		
 		DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
 		Connection conn = DriverManager.getConnection(
 				dbUrl, DBConnectionConstants.USER, DBConnectionConstants.PASSWD );
@@ -27,9 +27,9 @@ public class MyDBConnection {
 		ArrayList<Reservation> reservationList = new ArrayList<Reservation>();
 
 		if(resultSet.next() == false) {
-			System.out.println("Found Nothing!");
+			System.out.println("No reservations found that date!");
 		}else {
-			System.out.println("Found data!");
+			System.out.println("Found some reservations!");
 			do {
 				reservationList.add(new Reservation(
 						resultSet.getString(1), resultSet.getString(2), resultSet.getString(3), 
