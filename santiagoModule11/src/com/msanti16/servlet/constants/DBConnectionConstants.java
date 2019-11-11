@@ -1,12 +1,6 @@
 package com.msanti16.servlet.constants;
 
 public interface DBConnectionConstants {
-
-//  final String		URL                            		= "jdbc:mysql://localhost:3306/";
-//  final String		DB_SCHEMA                   			= "en605681";
-//  final String		DRIVER                            = "com.mysql.jdbc.Driver";
-//  final String		USER                            	= "root";
-//  final String		OPTIONS                        		= "?serverTimezone=UTC&useSSL=false";
 	
     final String		URL                            		= "jdbc:mysql://web7.jhuep.com:3306/";
     final String		DB_SCHEMA                   			= "class";
