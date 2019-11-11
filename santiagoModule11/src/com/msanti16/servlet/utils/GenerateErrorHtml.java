@@ -38,7 +38,7 @@ public class GenerateErrorHtml extends GenerateHtml {
 				"        <a class=\"navbar-brand\" href=\"./index.jsp\">Beartooth Hiking Company</a>\r\n" + 
 				"      </div>\r\n" + 
 				"      <ul class=\"nav navbar-nav\">\r\n" + 
-				"        <li><a href=\"./index.jsp\">Home</a></li>\r\n" + 
+				"        <li><a href=\"./index.jsp\">Reservations</a></li>\r\n" + 
 				"      </ul>\r\n" + 
 				"    </div>\r\n" + 
 				"  </nav>"

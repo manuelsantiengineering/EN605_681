@@ -1,5 +1,6 @@
 package com.msanti16.servlet.domain;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import com.msanti16.servlet.exceptions.BadIntegerParsingException;
@@ -112,6 +113,11 @@ public class Reservation {
 
 		public void setStartDay(Date startDay) {
 			this.startDay = startDay;
+		}
+		
+		public String getStartDayString() {
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+			return dateFormat.format(this.startDay);
 		}
 
 		public int getNumberOfDays() {
