@@ -57,7 +57,6 @@ public class FindReservationService {
       return errorHtml.toString();
 		}catch (SQLException exception) {
 			System.err.println("Error: " + exception.getMessage());
-			exception.printStackTrace();
       GenerateErrorHtml errorHtml = new GenerateErrorHtml(
       		"<title>Beartooth Hiking Company</title>",
       		"Unable to connect to the database."

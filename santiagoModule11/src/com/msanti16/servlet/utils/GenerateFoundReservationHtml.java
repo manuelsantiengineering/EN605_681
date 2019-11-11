@@ -74,37 +74,45 @@ public class GenerateFoundReservationHtml extends GenerateHtml {
 		;
 		
 		if(this.reservationList.size() == 0) {
-			extraBody += "<div class=\"alert alert-warning\" role=\"alert\">\r\n" + 
-					"  <h4 class=\"alert-heading\">We've hit a snag!</h4>\r\n" + 
-					"  <p>There are no reservations for this date.</p>\r\n" + 
-					"  <hr>\r\n" + 
-					"  <p class=\"mb-0\">Please go back to the main menu to make a new query.</p>\r\n" + 
-					"</div>";
+			extraBody += 
+					"<div class=\"container\">\r\n" + 
+					"    <div class=\"row\">       \r\n" + 
+					"      <div class=\"col-sm-12\">\r\n" +  
+					"					<div class=\"alert alert-warning\" role=\"alert\">\r\n" + 
+					"  					<h4 class=\"alert-heading\">We've hit a snag!</h4>\r\n" + 
+					"  					<p>There are no reservations for this date.</p>\r\n" + 
+					"  					<hr>\r\n" + 
+					"  					<p class=\"mb-0\">Please go back to the <a href=\"./index.jsp\">Reservations menu</a> to make a new query.</p>\r\n" + 
+					"      		</div>\r\n" + 
+					"      </div>\r\n" + 
+					"    </div>\r\n" + 
+					"  </div>";
+		}else {
+			extraBody += 
+					"<div class=\"container\">\r\n" + 
+					"    <div class=\"row\">       \r\n" + 
+					"      <div class=\"col-sm-12\">\r\n" + 
+					"        <h1>Reservations</h1>\r\n" + 
+					"					<table class=\"table\">\r\n" + 
+					"  					<thead>\r\n" + 
+					"    					<tr>\r\n" + 
+					"      					<th scope=\"col\">Date</th>\r\n" + 
+					"      					<th scope=\"col\">Customer</th>\r\n" + 
+					"      					<th scope=\"col\">Location</th>\r\n" + 
+					"      					<th scope=\"col\">Guide</th>\r\n" +
+					"      					<th scope=\"col\">Num. of Days</th>\r\n" + 
+					"    					</tr>\r\n" + 
+					"  					</thead>\r\n" + 
+					"  					<tbody>\r\n";
+				extraBody += this.getReservationListTableData();
+				extraBody += "</tbody>\r\n" + 
+					"					</table>\r\n" +
+					"      </div>\r\n" + 
+					"    </div>\r\n" + 
+					"  </div>"
+				;
 		}
-		extraBody += 
-			"<div class=\"container\">\r\n" + 
-			"    <div class=\"row\">       \r\n" + 
-			"      <div class=\"col-sm-12\">\r\n" + 
-			"        <h1>Reservations</h1>\r\n" + 
-			"					<table class=\"table\">\r\n" + 
-			"  					<thead>\r\n" + 
-			"    					<tr>\r\n" + 
-			"      					<th scope=\"col\">Date</th>\r\n" + 
-			"      					<th scope=\"col\">Customer</th>\r\n" + 
-			"      					<th scope=\"col\">Location</th>\r\n" + 
-			"      					<th scope=\"col\">Guide</th>\r\n" +
-			"      					<th scope=\"col\">Num. of Days</th>\r\n" + 
-			"    					</tr>\r\n" + 
-			"  					</thead>\r\n" + 
-			"  					<tbody>\r\n";
-		extraBody += this.getReservationListTableData();
-		extraBody += "</tbody>\r\n" + 
-			"					</table>\r\n" +
-			"      </div>\r\n" + 
-			"    </div>\r\n" + 
-			"  </div>"
-		;
-		
+				
 		this.buildHtml(extraHead, extraBody);
 	}
 	
