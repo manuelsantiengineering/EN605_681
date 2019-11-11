@@ -26,19 +26,19 @@ public class MyDBConnection {
 		ResultSet resultSet = statement.executeQuery(query);		
 		ArrayList<Reservation> reservationList = new ArrayList<Reservation>();
 
-//		if(resultSet.next() == false) {
-//			System.out.println("Found Nothing!");
-//		}else {
-//			System.out.println("Found data!");
-//			do {
-//				reservationList.add(new Reservation(
-//						resultSet.getString(1), resultSet.getString(2), resultSet.getString(3), 
-//						resultSet.getString(4), resultSet.getString(5), 
-//						new String(resultSet.getString(6) + " " + resultSet.getString(7)), 
-//						resultSet.getString(8) 
-//						));
-//			} while(resultSet.next());
-//		}
+		if(resultSet.next() == false) {
+			System.out.println("Found Nothing!");
+		}else {
+			System.out.println("Found data!");
+			do {
+				reservationList.add(new Reservation(
+						resultSet.getString(1), resultSet.getString(2), resultSet.getString(3), 
+						resultSet.getString(4), resultSet.getString(5), 
+						new String(resultSet.getString(6) + " " + resultSet.getString(7)), 
+						resultSet.getString(8) 
+						));
+			} while(resultSet.next());
+		}
 		
 		return reservationList;
 	}
