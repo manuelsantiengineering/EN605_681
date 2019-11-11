@@ -5,12 +5,12 @@ import java.util.Date;
 import java.sql.SQLException;
 
 import com.msanti16.servlet.utils.ConvertDate;
-//import com.msanti16.servlet.domain.Reservation;
 import com.msanti16.servlet.exceptions.BadIntegerParsingException;
 import com.msanti16.servlet.exceptions.BadUserNameException;
 import com.msanti16.servlet.repositories.MyDBConnection;
-import com.msanti16.servlet.utils.GenerateErrorHtml;
+import com.msanti16.servlet.utils.GenerateFoundReservationHtml;
 import com.msanti16.servlet.constants.DBConnectionConstants;
+import com.msanti16.servlet.domain.Reservation;
 
 public class FindReservationService {
 	
@@ -23,15 +23,12 @@ public class FindReservationService {
 			 
       Date reservationDate = ConvertDate.convertStringFromClient(startDate);
               
-      ArrayList<?> reservationList = MyDBConnection.initConnection(DBConnectionConstants.QUERY);
-//      System.out.println("Printing Reservation List");
-//      for (int i=0; i < reservationList.size(); i++) {
-//        System.out.println(reservationList.get(i) );
-//      }
+      ArrayList<Reservation> reservationList = MyDBConnection.initConnection(DBConnectionConstants.QUERY);
         
-      GenerateErrorHtml errorHtml = new GenerateErrorHtml(
+      GenerateFoundReservationHtml errorHtml = 
+      		new GenerateFoundReservationHtml(
       		"<title>Beartooth Hiking Company</title>",
-      		"Just for testing until getting real results  " + reservationDate.toString()
+      		reservationList
       		);
       errorHtml.generateHtml();
       return errorHtml.toString();
