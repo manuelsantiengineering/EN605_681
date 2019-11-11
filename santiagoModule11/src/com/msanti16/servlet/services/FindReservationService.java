@@ -10,7 +10,6 @@ import com.msanti16.servlet.exceptions.BadIntegerParsingException;
 import com.msanti16.servlet.exceptions.BadUserNameException;
 import com.msanti16.servlet.repositories.MyDBConnection;
 import com.msanti16.servlet.utils.GenerateErrorHtml;
-import com.msanti16.servlet.repositories.MyDBConnection;
 import com.msanti16.servlet.constants.DBConnectionConstants;
 
 public class FindReservationService {
@@ -23,10 +22,7 @@ public class FindReservationService {
 		try{
 			 
       Date reservationDate = ConvertDate.convertStringFromClient(startDate);
-      
-      Reservation reservation = new Reservation();
-      reservation.setFirst("TOMATERO");
-        
+              
       ArrayList<Reservation> reservationList = MyDBConnection.initConnection(DBConnectionConstants.QUERY);
       System.out.println("Printing Reservation List");
       for (int i=0; i < reservationList.size(); i++) {
@@ -42,7 +38,7 @@ public class FindReservationService {
         
         
 		}catch (BadIntegerParsingException exception){
-    	System.err.println("Error: " + exception.getMessage());
+    	System.err.println("Error: " + exception.getMessage() + " " + exception.getStr() );
       GenerateErrorHtml errorHtml = new GenerateErrorHtml(
       		"<title>Beartooth Hiking Company</title>",
       		exception.getMessage()

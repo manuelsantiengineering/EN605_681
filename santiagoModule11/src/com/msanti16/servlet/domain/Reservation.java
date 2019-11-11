@@ -2,7 +2,9 @@ package com.msanti16.servlet.domain;
 
 import java.util.Date;
 
+import com.msanti16.servlet.exceptions.BadIntegerParsingException;
 import com.msanti16.servlet.exceptions.BadUserNameException;
+import com.msanti16.servlet.utils.ConvertDate;
 
 public class Reservation {
     private long            id = -1L;
@@ -18,8 +20,9 @@ public class Reservation {
         super();
     }
 
-    public Reservation(String id, String first, String last, Date startDay, String numberOfDays, String guide, String location)
-        throws BadUserNameException, NumberFormatException {
+    public Reservation(String id, String first, String last, 
+    		String startDay, String numberOfDays, String guide, String location)
+        throws BadUserNameException, NumberFormatException, BadIntegerParsingException {
     super();
     this.first = first.trim();
     this.last = last.trim();
@@ -36,7 +39,7 @@ public class Reservation {
         throw new BadUserNameException("Last name must be all characters", this.last);
     }
     this.id = Integer.parseInt(id);
-    this.startDay = startDay;
+    this.startDay = ConvertDate.convertStringFromDB(startDay);
     this.numberOfDays = Integer.parseInt(numberOfDays);
     this.guide = guide;
     this.location = location;

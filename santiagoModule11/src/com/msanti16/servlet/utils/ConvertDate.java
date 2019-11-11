@@ -29,7 +29,7 @@ public class ConvertDate {
     if(parsedDate[2].isEmpty()){
         throw new BadIntegerParsingException("Reservation day from DB can't be empty", parsedDate[2]);
     }
-    if(parsedDate[0].length() > 2 || parsedDate[1].length() > 2 || parsedDate[2].length() != 4){
+    if(parsedDate[0].length() != 4 || parsedDate[1].length() > 2 || parsedDate[2].length() > 2){
     	throw new BadIntegerParsingException("Incorrect date format from DB", strDate);
     }
     
@@ -39,7 +39,7 @@ public class ConvertDate {
       month = Integer.parseInt(parsedDate[1]) - 1; // Jan = 0, Dec = 11
       day = Integer.parseInt(parsedDate[2]);      
     }catch (NumberFormatException exception){
-    	throw new BadIntegerParsingException("Date from DB is not using format yyyy-mm-dd", parsedDate[2]);
+    	throw new BadIntegerParsingException("Date from DB is not using digits", strDate);
 		}
     
     Calendar calendarDate = Calendar.getInstance();
