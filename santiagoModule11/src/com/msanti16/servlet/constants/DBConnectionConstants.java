@@ -21,5 +21,6 @@ public interface DBConnectionConstants {
 																								    		"guides.First, guides.Last, locations.location \r\n" + 
 																								    		"FROM reservation, guides, locations \r\n" + 
 																								    		"WHERE reservation.guide = guides.idguides \r\n" + 
-																								    		"AND reservation.location = locations.idlocations;";
+																								    		"AND reservation.location = locations.idlocations \r\n" +
+    																										"AND reservation.StartDay = ";
 }

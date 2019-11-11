@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.sql.DatabaseMetaData;
 
 import com.msanti16.servlet.constants.DBConnectionConstants;
 import com.msanti16.servlet.domain.Reservation;

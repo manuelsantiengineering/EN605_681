@@ -87,4 +87,41 @@ public class ConvertDate {
 		
     return new Date(calendarDate.getTimeInMillis());
 	}
+	
+	public static String convertStringFromClientToQuery(String strDate) 
+			throws BadIntegerParsingException {
+		
+		if(strDate.chars().filter(ch -> ch == '/').count() != 2) {
+  		throw new BadIntegerParsingException("Incorrect date format", strDate);
+  	}
+  	
+  	String[] parsedDate = strDate.split("/");
+  	
+  	if(parsedDate.length != 3) {
+  		throw new BadIntegerParsingException("Incorrect date format", strDate);
+  	}
+    if(parsedDate[0].isEmpty()){
+        throw new BadIntegerParsingException("Reservation month can't be empty", parsedDate[0]);
+    }
+    if(parsedDate[1].isEmpty()){
+        throw new BadIntegerParsingException("Reservation day can't be empty", parsedDate[1]);
+    }
+    if(parsedDate[2].isEmpty()){
+        throw new BadIntegerParsingException("Reservation year can't be empty", parsedDate[2]);
+    }
+    if(parsedDate[0].length() != 2 || parsedDate[1].length() != 2 || parsedDate[2].length() != 4){
+    	throw new BadIntegerParsingException("Incorrect date format", strDate);
+    }
+    
+    try {
+      Integer.parseInt(parsedDate[0]); // Month Jan = 0, Dec = 11
+      Integer.parseInt(parsedDate[1]); // Day
+      Integer.parseInt(parsedDate[2]); // Year
+    }catch (NumberFormatException exception){
+    	throw new BadIntegerParsingException("Make sure date uses format mm/dd/yyyy", parsedDate[2]);
+		}
+    
+		
+    return "\"" + parsedDate[2] + "-" + parsedDate[0] + "-" + parsedDate[1] + "\"";
+	}
 }

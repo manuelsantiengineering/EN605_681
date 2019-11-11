@@ -63,7 +63,7 @@ public class GenerateFoundReservationHtml extends GenerateHtml {
 				"<nav class=\"navbar navbar-default\">\r\n" + 
 				"    <div class=\"container-fluid\">\r\n" + 
 				"      <div class=\"navbar-header\">\r\n" + 
-				"        <a class=\"navbar-brand\" href=\"./index.jsp\">Beartooth Hiking Company</a>\r\n" + 
+				"        <a class=\"navbar-brand\" href=\"./index.jsp\">BHC Employee Portal</a>\r\n" + 
 				"      </div>\r\n" + 
 				"      <ul class=\"nav navbar-nav\">\r\n" + 
 				"        <li><a href=\"./index.jsp\">Reservations</a></li>\r\n" + 
