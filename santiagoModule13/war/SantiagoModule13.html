@@ -17,6 +17,8 @@
     <!-- be added before this line.                -->
     <!--                                           -->
     <script type="text/javascript" language="javascript" src="santiagomodule13/santiagomodule13.nocache.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>  
   </head>
 
   <!--                                           -->
@@ -37,20 +39,7 @@
     <div class="jumbotron text-center">
       <h1>Beartooth Hiking Company (BHC)</h1>
       <p>Find great hiking trips!</p>
-    </div>
-
-    <table align="center">
-      <tr>
-        <td colspan="2" style="font-weight:bold;">Please enter your name:</td>        
-      </tr>
-      <tr>
-        <td id="nameFieldContainer"></td>
-        <td id="sendButtonContainer"></td>
-      </tr>
-      <tr>
-        <td colspan="2" style="color:red;" id="errorLabelContainer"></td>
-      </tr>
-    </table>
+    </div>    
     
     <div class="container">
       <div class="row">
@@ -83,13 +72,28 @@
         </div>
         <div class="row">
           <div class="col-sm-12">
-            <ul class="pager">
-              <p>
-                To find out more about prices and reservations click on
-                our <a href="./tours.html">Tours</a> link.
-              </p>
-            </ul>
+            <!-- Start Reservations Section -->
+            <h1>Make a Reservation</h1>
+            <br>
+            <table align="left">
+              <tr>
+                <td colspan="2" style="font-weight:bold;">Please enter your name:</td>        
+              </tr>
+              <tr>
+                <td id="nameFieldContainer"></td>
+                <td id="sendButtonContainer"></td>
+              </tr>
+              <tr>
+                <td colspan="2" style="color:red;" id="errorLabelContainer"></td>
+              </tr>
+            </table>
+            
+            <!-- End Reservations Section -->
           </div>
+          <br>
+          <br>
+          <br>
+          <br>
           <div class="col-sm-12">
             <p class="text-right">Created by: Manuel E. Santiago Laboy
             </p>
@@ -97,6 +101,8 @@
         </div>
       </div>
     </div>
+    
+    
     
   </body>
 </html>
