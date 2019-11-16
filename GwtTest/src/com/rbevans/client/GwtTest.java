@@ -57,7 +57,7 @@ public class GwtTest implements EntryPoint {
 		final DateBox dateBox = new DateBox();
 		final FlexTable grid = new FlexTable();
 		nameField.setText("Your name here");
-		DateTimeFormat dateFormat = DateTimeFormat.getFormat(PredefinedFormat.DATE_LONG);
+		DateTimeFormat dateFormat = DateTimeFormat.getFormat(PredefinedFormat.YEAR_MONTH_NUM_DAY);
 		dateBox.setFormat(new DateBox.DefaultFormat(dateFormat));
 
 		for (int i = 0; i < TYPE.length; i++) {
