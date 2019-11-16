@@ -10,11 +10,24 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 @SuppressWarnings("serial")
 public class GreetingServiceImpl extends RemoteServiceServlet implements GreetingService {
 
-	public String greetServer(String input) throws IllegalArgumentException {
-		if (!FieldVerifier.isValidName(input)) {
+	public String greetServer(
+			String nameToServer, 
+			String startDateToServer,
+			int partySizeToServer,
+			int hikeId			
+			) throws IllegalArgumentException {
+		if (!FieldVerifier.isValidName(nameToServer)) {
 			throw new IllegalArgumentException("Name must be at least 4 characters long");
 		}
-
+		if (FieldVerifier.isValidDate(startDateToServer).length() != 0) {
+			throw new IllegalArgumentException(FieldVerifier.isValidDate(startDateToServer));
+		}
+		if (FieldVerifier.isValidPartySize(""+partySizeToServer).length() != 0 ) {
+			throw new IllegalArgumentException(FieldVerifier.isValidPartySize(""+partySizeToServer));
+		}
+		if (!FieldVerifier.isValidHikeId(hikeId) ) {
+			throw new IllegalArgumentException("Invalid Hike Id");
+		}
 		String serverInfo = getServletContext().getServerInfo();
 		String userAgent = getThreadLocalRequest().getHeader("User-Agent");
 

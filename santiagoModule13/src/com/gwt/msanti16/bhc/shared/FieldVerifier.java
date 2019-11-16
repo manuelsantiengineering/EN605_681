@@ -58,7 +58,7 @@ public class FieldVerifier {
 	
 	public static String isValidPartySize(String value) {
 		try {
-			int initialNumberOfPeople = Integer.parseInt(value);
+			int initialNumberOfPeople = Integer.parseInt(value.trim());
 			if(initialNumberOfPeople <= 0 || initialNumberOfPeople > 10) {
 				return "Party size must be between 1 and 10";
 			}else {

@@ -190,30 +190,31 @@ public class SantiagoModule13 implements EntryPoint {
 				// First, we validate the input.
 				errorLabel.setText("");
 				String nameToServer = nameField.getText();
-				String partySizeToServer = numberOfPeopleBox.getText();
+				String partySizeStrToServer = numberOfPeopleBox.getText();
 				String startDateToServer = startDateBox.getTextBox().getText();
 				int hikeId = hikeListBox.getSelectedIndex();
 				
-//				if (!FieldVerifier.isValidName(textToServer)) {
-//					errorLabel.setText("Please enter at least four characters");
-//					return;
-//				}
-				
 				if (!FieldVerifier.isValidName(nameToServer) ||
 						FieldVerifier.isValidDate(startDateToServer).length() != 0 ||
-						FieldVerifier.isValidPartySize(partySizeToServer).length() != 0 ||
+						FieldVerifier.isValidPartySize(partySizeStrToServer).length() != 0 ||
 						!FieldVerifier.isValidHikeId(hikeId)
 						) {
 					return;
 				}
 
+				int partySizeToServer = Integer.parseInt(partySizeStrToServer);
+				
 				// Then, we send the input to the server.
 				sendButton.setEnabled(false);
 				textToServerLabel.setText(nameToServer);
 				serverResponseLabel.setText("");
 				greetingService.greetServer(
-						nameToServer, 
+						nameToServer,
+						startDateToServer,
+						partySizeToServer,
+						hikeId,
 						new AsyncCallback<String>() {
+							
 					public void onFailure(Throwable caught) {
 						// Show the RPC error message to the user
 						dialogBox.setText("Remote Procedure Call - Failure");
