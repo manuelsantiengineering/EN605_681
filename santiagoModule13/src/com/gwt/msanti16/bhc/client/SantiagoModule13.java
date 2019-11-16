@@ -3,6 +3,8 @@ package com.gwt.msanti16.bhc.client;
 import com.gwt.msanti16.bhc.shared.FieldVerifier;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.event.dom.client.ChangeEvent;
+import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.KeyCodes;
@@ -27,7 +29,7 @@ public class SantiagoModule13 implements EntryPoint {
 	private static final String SERVER_ERROR = 
 			"An error occurred while attempting to contact the server. Please check your network connection and try again.";
 
-	private final String[]	TOURS = {"Gardiner Lake", "Hellroaring Plateau", "The Beaten Path"};
+	private final String[]	TOURS 															= {"Gardiner Lake", "Hellroaring Plateau", "The Beaten Path"};
 	private final String[]	DURATION_GARDINER_LAKE 							= {"3", "5"};
 	private final String[]	DURATION_HELLROARING_PLATEAU   			= {"2", "3", "4"};
 	private final String[]	DURATION_BEATEN_PATH             		= {"5", "7"};
@@ -71,11 +73,8 @@ public class SantiagoModule13 implements EntryPoint {
 		DateTimeFormat dateFormat = DateTimeFormat.getFormat(PredefinedFormat.YEAR_MONTH_NUM_DAY);
 		startDateBox.setFormat(new DateBox.DefaultFormat(dateFormat));
 		numberOfPeopleBox.setValue(1);		
-//		durationListBox.setItemText(index, text);
-//		durationListBox.setValue(0, "0");
 		
-		
-//		grid.getFlexCellFormatter().setColSpan(0, 0, 3);
+		//Creating Grid
 		grid.setWidget(0, 0, usernameLbl);
 		grid.setWidget(0, 1, nameField);
 		grid.setWidget(1, 0, hikeLbl);
@@ -90,6 +89,8 @@ public class SantiagoModule13 implements EntryPoint {
 		grid.getFlexCellFormatter().setColSpan(5, 0, 2);		
 		grid.setStyleName("reservationTable");
 		sendButton.setStyleName("button");
+		grid.setWidget(6,  0,  errorLabel);
+		grid.getFlexCellFormatter().setColSpan(6, 0, 2);
 		
 		// Add the nameField and sendButton to the RootPanel
 		// Use RootPanel.get() to get the entire body element
@@ -98,6 +99,25 @@ public class SantiagoModule13 implements EntryPoint {
 		// Focus the cursor on the name field when the app loads
 		nameField.setFocus(true);
 		nameField.selectAll();
+		
+		hikeListBox.addChangeHandler(new ChangeHandler() {
+			@Override
+			public void onChange(ChangeEvent event) {
+				if(hikeListBox.getSelectedIndex() == 0) {
+					for (int i = 0; i < DURATION_GARDINER_LAKE.length; i++) {
+						durationListBox.addItem(DURATION_GARDINER_LAKE[i]);
+			    }					
+				}else if(hikeListBox.getSelectedIndex() == 1) {
+					for (int i = 0; i < DURATION_HELLROARING_PLATEAU.length; i++) {
+						durationListBox.addItem(DURATION_HELLROARING_PLATEAU[i]);
+			    }					
+				}else if(hikeListBox.getSelectedIndex() == 2) {
+					for (int i = 0; i < DURATION_BEATEN_PATH.length; i++) {
+						durationListBox.addItem(DURATION_BEATEN_PATH[i]);
+			    }					
+				}		
+			}
+		});
 
 		// Create the popup dialog box
 		final DialogBox dialogBox = new DialogBox();

@@ -1,9 +1,6 @@
+
 .reservationTable td {
     padding: 3px 10px !important;
     overflow: hidden;
     line-height: 15px;
-}
-
-.button {
-   align: right;
 }
