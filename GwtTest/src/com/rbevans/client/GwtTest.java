@@ -137,9 +137,6 @@ public class GwtTest implements EntryPoint {
 
 		// Create a handler for the sendButton and nameField
 		class MyHandler implements ClickHandler {
-			/**
-			 * Fired when the user clicks on the sendButton.
-			 */
 			public void onClick(ClickEvent event) {
 				sendDataToServer();
 			}
@@ -166,7 +163,8 @@ public class GwtTest implements EntryPoint {
 				sendButton.setEnabled(false);
 //				textToServerLabel.setText(textToServer);
 				serverResponseLabel.setText("");
-				greetingService.greetServer(textToServer,
+				greetingService.greetServer(
+						textToServer,
 						isMale,
 						date,
 						new AsyncCallback<String>() {

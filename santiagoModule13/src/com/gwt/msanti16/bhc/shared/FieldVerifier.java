@@ -29,6 +29,10 @@ public class FieldVerifier {
 		return name.length() > 3 && name.matches("^[a-zA-Z]*$");
 	}
 	
+	public static boolean isValidHikeId(int hikeId) {
+		return hikeId > 0 && hikeId < 3;
+	}
+	
 	public static String isValidDate(String dateString) {
 		String[] parsedDate = dateString.split("-");
   	if(parsedDate.length != 3) {

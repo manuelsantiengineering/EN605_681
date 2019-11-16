@@ -7,9 +7,6 @@ import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.event.dom.client.KeyCodes;
-import com.google.gwt.event.dom.client.KeyUpEvent;
-import com.google.gwt.event.dom.client.KeyUpHandler;
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.i18n.client.DateTimeFormat.PredefinedFormat;
 import com.google.gwt.user.client.rpc.AsyncCallback;
@@ -22,7 +19,6 @@ import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.TextBox;
-import com.google.gwt.user.client.ui.IntegerBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.datepicker.client.DateBox;
 
@@ -154,6 +150,8 @@ public class SantiagoModule13 implements EntryPoint {
 			}
 		});
 		
+		//EVERYTHING IS VALIDATED SEND IT TO SERVER FOR PRICE CALCULATION
+		
 		// Create the popup dialog box
 		final DialogBox dialogBox = new DialogBox();
 		dialogBox.setText("Remote Procedure Call");
@@ -182,7 +180,7 @@ public class SantiagoModule13 implements EntryPoint {
 			}
 		});
 
-		class MyHandler implements ClickHandler, KeyUpHandler {			
+		class MyHandler implements ClickHandler {			
 			// Fired when the user clicks on the sendButton.			
 			public void onClick(ClickEvent event) {
 				sendNameToServer();
@@ -191,17 +189,31 @@ public class SantiagoModule13 implements EntryPoint {
 			private void sendNameToServer() {
 				// First, we validate the input.
 				errorLabel.setText("");
-				String textToServer = nameField.getText();
-				if (!FieldVerifier.isValidName(textToServer)) {
-					errorLabel.setText("Please enter at least four characters");
+				String nameToServer = nameField.getText();
+				String partySizeToServer = numberOfPeopleBox.getText();
+				String startDateToServer = startDateBox.getTextBox().getText();
+				int hikeId = hikeListBox.getSelectedIndex();
+				
+//				if (!FieldVerifier.isValidName(textToServer)) {
+//					errorLabel.setText("Please enter at least four characters");
+//					return;
+//				}
+				
+				if (!FieldVerifier.isValidName(nameToServer) ||
+						FieldVerifier.isValidDate(startDateToServer).length() != 0 ||
+						FieldVerifier.isValidPartySize(partySizeToServer).length() != 0 ||
+						!FieldVerifier.isValidHikeId(hikeId)
+						) {
 					return;
 				}
 
 				// Then, we send the input to the server.
 				sendButton.setEnabled(false);
-				textToServerLabel.setText(textToServer);
+				textToServerLabel.setText(nameToServer);
 				serverResponseLabel.setText("");
-				greetingService.greetServer(textToServer, new AsyncCallback<String>() {
+				greetingService.greetServer(
+						nameToServer, 
+						new AsyncCallback<String>() {
 					public void onFailure(Throwable caught) {
 						// Show the RPC error message to the user
 						dialogBox.setText("Remote Procedure Call - Failure");
