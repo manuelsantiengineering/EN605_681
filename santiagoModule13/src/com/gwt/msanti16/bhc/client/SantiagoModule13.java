@@ -1,7 +1,6 @@
 package com.gwt.msanti16.bhc.client;
 
 import com.gwt.msanti16.bhc.shared.FieldVerifier;
-import com.msanti16.servlet.exceptions.BadUserNameException;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ChangeEvent;
@@ -43,7 +42,7 @@ public class SantiagoModule13 implements EntryPoint {
 			
 		final Label usernameLbl = new Label("Name");
 		final Label hikeLbl = new Label("Tour");
-		final Label startDateLbl = new Label("Start Date (mm/dd/yyyy)");
+		final Label startDateLbl = new Label("Start Date (yyyy-mm-dd)");
 		final Label numOfPeopleLbl = new Label("Party Size:");
 		final Label durationLbl = new Label("Duration:");
 		final Label errorLabel = new Label();
@@ -129,12 +128,10 @@ public class SantiagoModule13 implements EntryPoint {
 			public void onChange(ChangeEvent event) {				
 				try {			
 					final int initialNumberOfPeople =	numberOfPeopleBox.getValue();	
-					if(initialNumberOfPeople <= 0) {
-						errorLabel.setText("Minimum party size is 1");
-						numberOfPeopleBox.setText("1");
-					}else if(initialNumberOfPeople > 10) {
-						errorLabel.setText("Maximum party size is 10");
-						numberOfPeopleBox.setText("10");
+					if(initialNumberOfPeople <= 0 || initialNumberOfPeople > 10) {
+						errorLabel.setText("Party size must be between 1 and 10");
+					}else {
+						errorLabel.setText("");
 					}
 				}catch(NumberFormatException ex) {
 					errorLabel.setText("Make sure to use digit value for the party size");
@@ -147,11 +144,47 @@ public class SantiagoModule13 implements EntryPoint {
 			public void onChange(ChangeEvent event) {				
 				String username = nameField.getText();
 				if(username.length() < 1 || username.isEmpty()){
-					errorLabel.setText("Name value is too short");
+					errorLabel.setText("");
+					return;
 	      }
 	      if(!username.matches("^[a-zA-Z]*$")){
 	      	errorLabel.setText("Name must be all characters");
+	      	return;
 	      }
+			}
+		});
+		
+		startDateBox.getTextBox().addChangeHandler(new ChangeHandler() {
+			@Override
+			public void onChange(ChangeEvent event) {				
+				String dateString = startDateBox.getTextBox().getText();				
+				textAreaTest.setValue(dateString);				
+				String[] parsedDate = dateString.split("-");
+      	if(parsedDate.length != 3) {
+    			errorLabel.setText("Please use yyyy-mm-dd format");
+    			return;
+      	}
+      	for(int i = 0; i < parsedDate.length; i++) {
+      		parsedDate[i] = parsedDate[i].trim(); 
+      	}
+        if(parsedDate[0].isEmpty()){
+        	errorLabel.setText("Reservation year can't be empty (yyyy-mm-dd)");
+        	return;
+        }
+        if(parsedDate[1].isEmpty()){
+        	errorLabel.setText("Reservation month can't be empty (yyyy-mm-dd)");
+        	return;
+        }
+        if(parsedDate[2].isEmpty()){
+        	errorLabel.setText("Reservation day can't be empty (yyyy-mm-dd)");
+        	return;
+        }
+        if(parsedDate[0].length() != 4 || parsedDate[1].length() > 2 || parsedDate[2].length() > 2){
+        	errorLabel.setText("Please use yyyy-mm-dd format");
+        	return;
+        }
+
+        errorLabel.setText("");
 			}
 		});
 		
