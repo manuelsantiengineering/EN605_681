@@ -20,6 +20,7 @@ import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.RootPanel;
+import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.IntegerBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
@@ -34,14 +35,9 @@ public class SantiagoModule13 implements EntryPoint {
 	private final String[]	DURATION_HELLROARING_PLATEAU   			= {"2", "3", "4"};
 	private final String[]	DURATION_BEATEN_PATH             		= {"5", "7"};
 	
-	/**
-	 * Create a remote service proxy to talk to the server-side Greeting service.
-	 */
+	// Create a remote service proxy to talk to the server-side Greeting service.	 
 	private final GreetingServiceAsync greetingService = GWT.create(GreetingService.class);
 
-	/**
-	 * This is the entry point method.
-	 */
 	public void onModuleLoad() {
 			
 		final Label usernameLbl = new Label("Name");
@@ -56,6 +52,8 @@ public class SantiagoModule13 implements EntryPoint {
 		final DateBox startDateBox = new DateBox();
 		final ListBox durationListBox = new ListBox();
 		final IntegerBox numberOfPeopleBox = new IntegerBox();
+		
+		final TextArea textAreaTest = new TextArea();
 		
 		final Button sendButton = new Button("Reserve");
 		final FlexTable grid = new FlexTable();		
@@ -96,29 +94,57 @@ public class SantiagoModule13 implements EntryPoint {
 		// Use RootPanel.get() to get the entire body element
 		RootPanel.get("reservationContainer").add(grid);
 
+		RootPanel.get("testcontainer").add(textAreaTest);
+		
 		// Focus the cursor on the name field when the app loads
 		nameField.setFocus(true);
 		nameField.selectAll();
 		
 		hikeListBox.addChangeHandler(new ChangeHandler() {
 			@Override
-			public void onChange(ChangeEvent event) {
-				if(hikeListBox.getSelectedIndex() == 0) {
-					for (int i = 0; i < DURATION_GARDINER_LAKE.length; i++) {
-						durationListBox.addItem(DURATION_GARDINER_LAKE[i]);
-			    }					
-				}else if(hikeListBox.getSelectedIndex() == 1) {
-					for (int i = 0; i < DURATION_HELLROARING_PLATEAU.length; i++) {
-						durationListBox.addItem(DURATION_HELLROARING_PLATEAU[i]);
-			    }					
-				}else if(hikeListBox.getSelectedIndex() == 2) {
-					for (int i = 0; i < DURATION_BEATEN_PATH.length; i++) {
-						durationListBox.addItem(DURATION_BEATEN_PATH[i]);
-			    }					
-				}		
+			public void onChange(ChangeEvent event) {						
+				int initialItemsCount = durationListBox.getItemCount();				
+				for (int index = 0; index < initialItemsCount; index++) {
+					durationListBox.removeItem(0);
+				}
+				switch(hikeListBox.getSelectedIndex()) {
+					case 0:
+						for (int i = 0; i < DURATION_GARDINER_LAKE.length; i++) {
+							durationListBox.addItem(DURATION_GARDINER_LAKE[i]);
+				    }		
+						break;
+					case 1:
+						for (int i = 0; i < DURATION_HELLROARING_PLATEAU.length; i++) {
+							durationListBox.addItem(DURATION_HELLROARING_PLATEAU[i]);
+				    }
+						break;
+					case 2:
+						for (int i = 0; i < DURATION_BEATEN_PATH.length; i++) {
+							durationListBox.addItem(DURATION_BEATEN_PATH[i]);
+				    }	
+						break;
+				}
 			}
 		});
 
+		numberOfPeopleBox.addChangeHandler(new ChangeHandler() {
+			@Override
+			public void onChange(ChangeEvent event) {				
+				try {			
+					final int initialNumberOfPeople =	numberOfPeopleBox.getValue();	
+					if(initialNumberOfPeople <= 0) {
+						errorLabel.setText("Minimum party size is 1");
+						numberOfPeopleBox.setText("1");
+					}else if(initialNumberOfPeople > 10) {
+						errorLabel.setText("Maximum party size is 10");
+						numberOfPeopleBox.setText("10");
+					}
+				}catch(NumberFormatException ex) {
+					errorLabel.setText("Make sure to use digit value for the party size");
+				}
+			}
+		});
+		
 		// Create the popup dialog box
 		final DialogBox dialogBox = new DialogBox();
 		dialogBox.setText("Remote Procedure Call");
