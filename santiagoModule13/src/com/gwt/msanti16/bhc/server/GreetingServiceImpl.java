@@ -12,6 +12,7 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements Greetin
 	public String greetServer(
 			String nameToServer, 
 			String startDateToServer,
+			int durationToServer,
 			int partySizeToServer,
 			int hikeId			
 			) throws IllegalArgumentException {
@@ -35,6 +36,10 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements Greetin
 		startDateToServer = escapeHtml(startDateToServer);		
 		userAgent = escapeHtml(userAgent);
 		
+		String[] parsedDate = startDateToServer.split("-");
+    int year = Integer.parseInt(parsedDate[0]);
+		int month = Integer.parseInt(parsedDate[1]);
+    int day = Integer.parseInt(parsedDate[2]);
 		
 		GenerateCompletedReservationHtml completedReservationHtml 
 		= new GenerateCompletedReservationHtml(
@@ -48,13 +53,6 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements Greetin
 				);
 		completedReservationHtml.generateHtml();
 		return completedReservationHtml.toString();
-//		return "Hello, " + nameToServer 
-//				+ "!<br><br> Date: " + startDateToServer
-//				+ "!<br><br> Hike id: " + hikeId
-//				+ "!<br><br> Party Size: " + partySizeToServer
-//				+ "!<br><br>I am running " 
-//				+ serverInfo + ".<br><br>It looks like you are using:<br>"
-//		    + userAgent;
 	}
 
 	/**

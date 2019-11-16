@@ -9,6 +9,7 @@ public interface GreetingServiceAsync {
 	void greetServer(
 			String nameToServer, 
 			String startDateToServer,
+			int durationToServer,
 			int partySizeToServer,
 			int hikeId, 
 			AsyncCallback<String> callback

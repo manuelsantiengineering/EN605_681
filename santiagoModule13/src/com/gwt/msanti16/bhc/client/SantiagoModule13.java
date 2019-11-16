@@ -17,7 +17,6 @@ import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.RootPanel;
-import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.datepicker.client.DateBox;
@@ -48,8 +47,6 @@ public class SantiagoModule13 implements EntryPoint {
 		final DateBox startDateBox = new DateBox();
 		final ListBox durationListBox = new ListBox();
 		final TextBox numberOfPeopleBox = new TextBox();
-		
-		final TextArea textAreaTest = new TextArea();
 		
 		final Button sendButton = new Button("Reserve");
 		final FlexTable grid = new FlexTable();		
@@ -86,7 +83,6 @@ public class SantiagoModule13 implements EntryPoint {
 		grid.getFlexCellFormatter().setColSpan(6, 0, 2);
 		
 		RootPanel.get("reservationContainer").add(grid);
-		RootPanel.get("testcontainer").add(textAreaTest);
 		
 		// Focus the cursor on the name field when the app loads
 		nameField.setFocus(true);
@@ -162,9 +158,6 @@ public class SantiagoModule13 implements EntryPoint {
 		final Label textToServerLabel = new Label();
 		final HTML serverResponseLabel = new HTML();
 		VerticalPanel dialogVPanel = new VerticalPanel();
-		dialogVPanel.addStyleName("dialogVPanel");
-		dialogVPanel.add(new HTML("<b>Sending data to server:</b>"));
-		dialogVPanel.add(textToServerLabel);
 		dialogVPanel.add(new HTML("<br><b>Server replies:</b>"));
 		dialogVPanel.add(serverResponseLabel);
 		dialogVPanel.setHorizontalAlignment(VerticalPanel.ALIGN_RIGHT);
@@ -192,6 +185,7 @@ public class SantiagoModule13 implements EntryPoint {
 				String nameToServer = nameField.getText();
 				String partySizeStrToServer = numberOfPeopleBox.getText();
 				String startDateToServer = startDateBox.getTextBox().getText();
+				String durationStrToServer = durationListBox.getSelectedItemText();
 				int hikeId = hikeListBox.getSelectedIndex();
 				
 				if (!FieldVerifier.isValidName(nameToServer)) {
@@ -210,8 +204,13 @@ public class SantiagoModule13 implements EntryPoint {
 					errorLabel.setText("Invalid Hike selection [" + hikeId + "]");
 					return;
 				}
+				if (FieldVerifier.isValidDuration(durationStrToServer).length() != 0) {
+					errorLabel.setText(FieldVerifier.isValidDuration(durationStrToServer));
+					return;
+				}
 
 				int partySizeToServer = Integer.parseInt(partySizeStrToServer);
+				int durationToServer = Integer.parseInt(durationStrToServer);
 				
 				// Then, we send the input to the server.
 				sendButton.setEnabled(false);
@@ -220,6 +219,7 @@ public class SantiagoModule13 implements EntryPoint {
 				greetingService.greetServer(
 						nameToServer,
 						startDateToServer,
+						durationToServer,
 						partySizeToServer,
 						hikeId,
 						new AsyncCallback<String>() {

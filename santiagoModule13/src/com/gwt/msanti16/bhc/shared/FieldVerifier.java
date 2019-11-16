@@ -69,4 +69,13 @@ public class FieldVerifier {
 		}		
 	}
 	
+	public static String isValidDuration(String value) {
+		try {
+			Integer.parseInt(value.trim());
+			return "";
+		}catch(NumberFormatException ex) {
+			return "Make sure to use digit value for the duration";
+		}		
+	}
+	
 }

@@ -11,6 +11,7 @@ public interface GreetingService extends RemoteService {
 	String greetServer(
 			String nameToServer, 
 			String startDateToServer,
+			int durationToServer,
 			int partySizeToServer,
 			int hikeId ) 
 			throws IllegalArgumentException;
