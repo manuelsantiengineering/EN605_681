@@ -30,7 +30,7 @@ public class FieldVerifier {
 	}
 	
 	public static boolean isValidHikeId(int hikeId) {
-		return hikeId > 0 && hikeId < 3;
+		return hikeId >= 0 && hikeId < 3;
 	}
 	
 	public static String isValidDate(String dateString) {

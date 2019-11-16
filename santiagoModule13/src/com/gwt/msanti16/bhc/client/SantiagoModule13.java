@@ -163,7 +163,7 @@ public class SantiagoModule13 implements EntryPoint {
 		final HTML serverResponseLabel = new HTML();
 		VerticalPanel dialogVPanel = new VerticalPanel();
 		dialogVPanel.addStyleName("dialogVPanel");
-		dialogVPanel.add(new HTML("<b>Sending name to the server:</b>"));
+		dialogVPanel.add(new HTML("<b>Sending data to server:</b>"));
 		dialogVPanel.add(textToServerLabel);
 		dialogVPanel.add(new HTML("<br><b>Server replies:</b>"));
 		dialogVPanel.add(serverResponseLabel);
@@ -194,11 +194,20 @@ public class SantiagoModule13 implements EntryPoint {
 				String startDateToServer = startDateBox.getTextBox().getText();
 				int hikeId = hikeListBox.getSelectedIndex();
 				
-				if (!FieldVerifier.isValidName(nameToServer) ||
-						FieldVerifier.isValidDate(startDateToServer).length() != 0 ||
-						FieldVerifier.isValidPartySize(partySizeStrToServer).length() != 0 ||
-						!FieldVerifier.isValidHikeId(hikeId)
-						) {
+				if (!FieldVerifier.isValidName(nameToServer)) {
+					errorLabel.setText("Invalid name");
+					return;
+				}
+				if (FieldVerifier.isValidDate(startDateToServer).length() != 0) {
+					errorLabel.setText(FieldVerifier.isValidDate(startDateToServer));
+					return;
+				}
+				if (FieldVerifier.isValidPartySize(partySizeStrToServer).length() != 0) {
+					errorLabel.setText(FieldVerifier.isValidPartySize(partySizeStrToServer));
+					return;
+				}
+				if (!FieldVerifier.isValidHikeId(hikeId)) {
+					errorLabel.setText("Invalid Hike selection [" + hikeId + "]");
 					return;
 				}
 

@@ -4,9 +4,8 @@ import com.gwt.msanti16.bhc.client.GreetingService;
 import com.gwt.msanti16.bhc.shared.FieldVerifier;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
-/**
- * The server-side implementation of the RPC service.
- */
+import com.gwt.msanti16.bhc.services.GenerateCompletedReservationHtml;
+
 @SuppressWarnings("serial")
 public class GreetingServiceImpl extends RemoteServiceServlet implements GreetingService {
 
@@ -35,14 +34,27 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements Greetin
 		nameToServer = escapeHtml(nameToServer);
 		startDateToServer = escapeHtml(startDateToServer);		
 		userAgent = escapeHtml(userAgent);
-
-		return "Hello, " + nameToServer 
-				+ "!<br><br> Date: " + startDateToServer
-				+ "!<br><br> Hike id: " + hikeId
-				+ "!<br><br> Party Size: " + partySizeToServer
-				+ "!<br><br>I am running " 
-				+ serverInfo + ".<br><br>It looks like you are using:<br>"
-		    + userAgent;
+		
+		
+		GenerateCompletedReservationHtml completedReservationHtml 
+		= new GenerateCompletedReservationHtml(
+				"<title>Beartooth Hiking Company</title>",
+				nameToServer,
+				startDateToServer,
+				"Tour Name My",
+				"10",
+				"5",
+				"1234.56"
+				);
+		completedReservationHtml.generateHtml();
+		return completedReservationHtml.toString();
+//		return "Hello, " + nameToServer 
+//				+ "!<br><br> Date: " + startDateToServer
+//				+ "!<br><br> Hike id: " + hikeId
+//				+ "!<br><br> Party Size: " + partySizeToServer
+//				+ "!<br><br>I am running " 
+//				+ serverInfo + ".<br><br>It looks like you are using:<br>"
+//		    + userAgent;
 	}
 
 	/**
