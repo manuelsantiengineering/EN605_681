@@ -1,6 +1,7 @@
 package com.gwt.msanti16.bhc.client;
 
 import com.gwt.msanti16.bhc.shared.FieldVerifier;
+import com.msanti16.servlet.exceptions.BadUserNameException;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ChangeEvent;
@@ -72,7 +73,6 @@ public class SantiagoModule13 implements EntryPoint {
 		startDateBox.setFormat(new DateBox.DefaultFormat(dateFormat));
 		numberOfPeopleBox.setValue(1);		
 		
-		//Creating Grid
 		grid.setWidget(0, 0, usernameLbl);
 		grid.setWidget(0, 1, nameField);
 		grid.setWidget(1, 0, hikeLbl);
@@ -90,10 +90,7 @@ public class SantiagoModule13 implements EntryPoint {
 		grid.setWidget(6,  0,  errorLabel);
 		grid.getFlexCellFormatter().setColSpan(6, 0, 2);
 		
-		// Add the nameField and sendButton to the RootPanel
-		// Use RootPanel.get() to get the entire body element
 		RootPanel.get("reservationContainer").add(grid);
-
 		RootPanel.get("testcontainer").add(textAreaTest);
 		
 		// Focus the cursor on the name field when the app loads
@@ -142,6 +139,19 @@ public class SantiagoModule13 implements EntryPoint {
 				}catch(NumberFormatException ex) {
 					errorLabel.setText("Make sure to use digit value for the party size");
 				}
+			}
+		});
+		
+		nameField.addChangeHandler(new ChangeHandler() {
+			@Override
+			public void onChange(ChangeEvent event) {				
+				String username = nameField.getText();
+				if(username.length() < 1 || username.isEmpty()){
+					errorLabel.setText("Name value is too short");
+	      }
+	      if(!username.matches("^[a-zA-Z]*$")){
+	      	errorLabel.setText("Name must be all characters");
+	      }
 			}
 		});
 		
