@@ -7,7 +7,7 @@
  *
  * @author evansrb1
  */
-package com.gwt.msanti16.bhc.domain;
+package com.gwt.msanti16.bhc.services;
 
 import java.text.DateFormat;
 import java.util.Calendar;

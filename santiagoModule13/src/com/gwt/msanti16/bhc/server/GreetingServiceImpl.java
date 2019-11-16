@@ -32,10 +32,14 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements Greetin
 		String userAgent = getThreadLocalRequest().getHeader("User-Agent");
 
 		// Escape data from the client to avoid cross-site script vulnerabilities.
-		input = escapeHtml(input);
+		nameToServer = escapeHtml(nameToServer);
+		startDateToServer = escapeHtml(startDateToServer);		
 		userAgent = escapeHtml(userAgent);
 
-		return "Hello, " + input 
+		return "Hello, " + nameToServer 
+				+ "!<br><br> Date: " + startDateToServer
+				+ "!<br><br> Hike id: " + hikeId
+				+ "!<br><br> Party Size: " + partySizeToServer
 				+ "!<br><br>I am running " 
 				+ serverInfo + ".<br><br>It looks like you are using:<br>"
 		    + userAgent;

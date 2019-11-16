@@ -1,4 +1,4 @@
-package com.gwt.msanti16.bhc.domain;
+package com.gwt.msanti16.bhc.services;
 
 import java.util.GregorianCalendar;
 
