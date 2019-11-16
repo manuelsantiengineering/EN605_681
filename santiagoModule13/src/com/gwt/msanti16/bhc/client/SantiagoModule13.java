@@ -51,7 +51,7 @@ public class SantiagoModule13 implements EntryPoint {
 		final ListBox hikeListBox = new ListBox();
 		final DateBox startDateBox = new DateBox();
 		final ListBox durationListBox = new ListBox();
-		final IntegerBox numberOfPeopleBox = new IntegerBox();
+		final TextBox numberOfPeopleBox = new TextBox();
 		
 		final TextArea textAreaTest = new TextArea();
 		
@@ -70,7 +70,7 @@ public class SantiagoModule13 implements EntryPoint {
 
 		DateTimeFormat dateFormat = DateTimeFormat.getFormat(PredefinedFormat.YEAR_MONTH_NUM_DAY);
 		startDateBox.setFormat(new DateBox.DefaultFormat(dateFormat));
-		numberOfPeopleBox.setValue(1);		
+		numberOfPeopleBox.setValue("1");		
 		
 		grid.setWidget(0, 0, usernameLbl);
 		grid.setWidget(0, 1, nameField);
@@ -126,16 +126,8 @@ public class SantiagoModule13 implements EntryPoint {
 		numberOfPeopleBox.addChangeHandler(new ChangeHandler() {
 			@Override
 			public void onChange(ChangeEvent event) {				
-				try {			
-					final int initialNumberOfPeople =	numberOfPeopleBox.getValue();	
-					if(initialNumberOfPeople <= 0 || initialNumberOfPeople > 10) {
-						errorLabel.setText("Party size must be between 1 and 10");
-					}else {
-						errorLabel.setText("");
-					}
-				}catch(NumberFormatException ex) {
-					errorLabel.setText("Make sure to use digit value for the party size");
-				}
+				String validResponse = FieldVerifier.isValidPartySize(numberOfPeopleBox.getValue());
+				errorLabel.setText(validResponse);				
 			}
 		});
 		
@@ -156,35 +148,9 @@ public class SantiagoModule13 implements EntryPoint {
 		
 		startDateBox.getTextBox().addChangeHandler(new ChangeHandler() {
 			@Override
-			public void onChange(ChangeEvent event) {				
-				String dateString = startDateBox.getTextBox().getText();				
-				textAreaTest.setValue(dateString);				
-				String[] parsedDate = dateString.split("-");
-      	if(parsedDate.length != 3) {
-    			errorLabel.setText("Please use yyyy-mm-dd format");
-    			return;
-      	}
-      	for(int i = 0; i < parsedDate.length; i++) {
-      		parsedDate[i] = parsedDate[i].trim(); 
-      	}
-        if(parsedDate[0].isEmpty()){
-        	errorLabel.setText("Reservation year can't be empty (yyyy-mm-dd)");
-        	return;
-        }
-        if(parsedDate[1].isEmpty()){
-        	errorLabel.setText("Reservation month can't be empty (yyyy-mm-dd)");
-        	return;
-        }
-        if(parsedDate[2].isEmpty()){
-        	errorLabel.setText("Reservation day can't be empty (yyyy-mm-dd)");
-        	return;
-        }
-        if(parsedDate[0].length() != 4 || parsedDate[1].length() > 2 || parsedDate[2].length() > 2){
-        	errorLabel.setText("Please use yyyy-mm-dd format");
-        	return;
-        }
-
-        errorLabel.setText("");
+			public void onChange(ChangeEvent event) {										
+				String validResponse = FieldVerifier.isValidDate(startDateBox.getTextBox().getText());				
+				errorLabel.setText(validResponse);							
 			}
 		});
 		
@@ -216,27 +182,12 @@ public class SantiagoModule13 implements EntryPoint {
 			}
 		});
 
-		// Create a handler for the sendButton and nameField
-		class MyHandler implements ClickHandler, KeyUpHandler {
-			/**
-			 * Fired when the user clicks on the sendButton.
-			 */
+		class MyHandler implements ClickHandler, KeyUpHandler {			
+			// Fired when the user clicks on the sendButton.			
 			public void onClick(ClickEvent event) {
 				sendNameToServer();
-			}
-
-			/**
-			 * Fired when the user types in the nameField.
-			 */
-			public void onKeyUp(KeyUpEvent event) {
-				if (event.getNativeKeyCode() == KeyCodes.KEY_ENTER) {
-					sendNameToServer();
-				}
-			}
-
-			/**
-			 * Send the name from the nameField to the server and wait for a response.
-			 */
+			}			
+			// Send the name from the nameField to the server and wait for a response.
 			private void sendNameToServer() {
 				// First, we validate the input.
 				errorLabel.setText("");
@@ -274,6 +225,5 @@ public class SantiagoModule13 implements EntryPoint {
 		// Add a handler to send the name to the server
 		MyHandler handler = new MyHandler();
 		sendButton.addClickHandler(handler);
-		nameField.addKeyUpHandler(handler);
 	}
 }

@@ -22,21 +22,47 @@ package com.gwt.msanti16.bhc.shared;
  */
 public class FieldVerifier {
 
-	/**
-	 * Verifies that the specified name is valid for our service.
-	 * 
-	 * In this example, we only require that the name is at least four
-	 * characters. In your application, you can use more complex checks to ensure
-	 * that usernames, passwords, email addresses, URLs, and other fields have the
-	 * proper syntax.
-	 * 
-	 * @param name the name to validate
-	 * @return true if valid, false if invalid
-	 */
 	public static boolean isValidName(String name) {
 		if (name == null) {
 			return false;
-		}
-		return name.length() > 3;
+		}		
+		return name.length() > 3 && name.matches("^[a-zA-Z]*$");
 	}
+	
+	public static String isValidDate(String dateString) {
+		String[] parsedDate = dateString.split("-");
+  	if(parsedDate.length != 3) {
+			return "Please use yyyy-mm-dd format";
+  	}
+  	for(int i = 0; i < parsedDate.length; i++) {
+  		parsedDate[i] = parsedDate[i].trim(); 
+  	}
+    if(parsedDate[0].isEmpty()){
+    	return "Reservation year can't be empty (yyyy-mm-dd)";
+    }
+    if(parsedDate[1].isEmpty()){
+    	return "Reservation month can't be empty (yyyy-mm-dd)";
+    }
+    if(parsedDate[2].isEmpty()){    	
+    	return "Reservation day can't be empty (yyyy-mm-dd)";
+    }
+    if(parsedDate[0].length() != 4 || parsedDate[1].length() > 2 || parsedDate[2].length() > 2){
+    	return "Please use yyyy-mm-dd format";
+    }
+    return "";
+	}
+	
+	public static String isValidPartySize(String value) {
+		try {
+			int initialNumberOfPeople = Integer.parseInt(value);
+			if(initialNumberOfPeople <= 0 || initialNumberOfPeople > 10) {
+				return "Party size must be between 1 and 10";
+			}else {
+				return "";
+			}
+		}catch(NumberFormatException ex) {
+			return "Make sure to use digit value for the party size";
+		}		
+	}
+	
 }
