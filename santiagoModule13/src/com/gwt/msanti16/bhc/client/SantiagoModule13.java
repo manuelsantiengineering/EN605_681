@@ -208,6 +208,10 @@ public class SantiagoModule13 implements EntryPoint {
 					errorLabel.setText(FieldVerifier.isValidDuration(durationStrToServer));
 					return;
 				}
+				if(FieldVerifier.isValidPartySize(numberOfPeopleBox.getValue()).length() != 0) {
+					errorLabel.setText(FieldVerifier.isValidPartySize(numberOfPeopleBox.getValue()));
+					return;
+				}
 
 				int partySizeToServer = Integer.parseInt(partySizeStrToServer);
 				int durationToServer = Integer.parseInt(durationStrToServer);
